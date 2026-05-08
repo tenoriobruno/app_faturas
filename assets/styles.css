@@ -1,0 +1,41 @@
+/* Hide Streamlit defaults */
+#MainMenu { display: none !important; }
+.stDeployButton { display: none !important; }
+footer { display: none !important; }
+
+/* Select box styling */
+.stSelectbox {
+  background-color: white !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  border-radius: 12px !important;
+  color: #1A1D2E !important;
+}
+
+.stSelectbox > div > div {
+  background-color: white !important;
+  color: #1A1D2E !important;
+}
+
+.stSelectbox div[role="listbox"] {
+  background-color: white !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  border-radius: 12px !important;
+}
+
+.stSelectbox div[role="option"] {
+  background-color: white !important;
+  color: #1A1D2E !important;
+  padding: 8px 12px;
+}
+
+.stSelectbox div[role="option"]:hover {
+  background-color: #F8FAFC !important;
+}
+
+/* Select box input field */
+.stSelectbox input {
+  background-color: white !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  border-radius: 12px !important;
+  color: #1A1D2E !important;
+}

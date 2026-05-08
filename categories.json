@@ -1,0 +1,211 @@
+{
+  "Delivery": {
+    "keywords": [
+      "99food",
+      "ifood",
+      "ifd",
+      "rappi",
+      "ze delivery",
+      "aiqfome"
+    ],
+    "regex": []
+  },
+  "Restaurante": {
+    "keywords": [
+      "mcdonald",
+      "burger king",
+      "subway",
+      "pizza",
+      "restaurante",
+      "outback",
+      "spoleto",
+      "tia cida",
+      "donna cacau",
+      "bacio"
+    ],
+    "regex": []
+  },
+  "Transporte": {
+    "keywords": [
+      "uber",
+      "99app",
+      "metro",
+      "dl *uber",
+      "transporte",
+      "99 taxi",
+      "cabify",
+      "onibus"
+    ],
+    "regex": []
+  },
+  "Supermercado": {
+    "keywords": [
+      "mercadinho",
+      "mercado",
+      "mercearia",
+      "carrefour",
+      "extra",
+      "pao de acucar",
+      "oba",
+      "atacadao",
+      "assai",
+      "big",
+      "dia",
+      "natural da terra"
+    ],
+    "regex": []
+  },
+  "Saúde": {
+    "keywords": [
+      "farmac",
+      "droga",
+      "ultrafarma",
+      "medico",
+      "clinica",
+      "hospital"
+    ],
+    "regex": []
+  },
+  "Assinaturas": {
+    "keywords": [
+      "netflix",
+      "spotify",
+      "youtube",
+      "chatgpt",
+      "claude",
+      "openai",
+      "prime",
+      "globoplay",
+      "disney",
+      "hbo",
+      "max",
+      "paramount",
+      "crunchyroll",
+      "kindle"
+    ],
+    "regex": []
+  },
+  "Serviço": {
+    "keywords": [
+      "apple",
+      "microsoft",
+      "adobe",
+      "google"
+    ],
+    "regex": [
+      ".*\\.com/bill.*"
+    ]
+  },
+  "Compras": {
+    "keywords": [
+      "amazon",
+      "mercado livre",
+      "shopee",
+      "aliexpress",
+      "shein",
+      "magalu",
+      "americanas",
+      "casas bahia",
+      "loja",
+      "boticario",
+      "renner",
+      "c&a",
+      "riachuelo",
+      "shoppe",
+      "kabum"
+    ],
+    "regex": []
+  },
+  "Moradia": {
+    "keywords": [
+      "aluguel",
+      "condominio",
+      "energia",
+      "enel",
+      "sabesp",
+      "claro",
+      "vivo",
+      "tim",
+      "internet",
+      "agua",
+      "luz",
+      "gas"
+    ],
+    "regex": []
+  },
+  "Lazer": {
+    "keywords": [
+      "cinema",
+      "teatro",
+      "steam",
+      "playstation",
+      "xbox",
+      "academia",
+      "smartfit",
+      "ingresso",
+      "show",
+      "evento"
+    ],
+    "regex": []
+  },
+  "Educação": {
+    "keywords": [
+      "udemy",
+      "coursera",
+      "alura",
+      "escola",
+      "faculdade",
+      "livraria",
+      "curso"
+    ],
+    "regex": []
+  },
+  "Viagem": {
+    "keywords": [
+      "booking",
+      "airbnb",
+      "latam",
+      "gol",
+      "azul",
+      "hotel",
+      "pousada",
+      "decolar",
+      "passagem"
+    ],
+    "regex": []
+  },
+  "Feira": {
+    "keywords": [
+      "nutrisnack",
+      "feira",
+      "hortifruti",
+      "sacolao",
+      "Flavia Tarrao Cardoso",
+      "Rodrigocostap"
+    ],
+    "regex": []
+  },
+  "Gasolina": {
+    "keywords": [
+      "posto",
+      "shell",
+      "ipiranga",
+      "gasolina",
+      "combustivel",
+      "petrobras"
+    ],
+    "regex": []
+  },
+  "Estorno": {
+    "keywords": [
+      "estorno"
+    ],
+    "regex": []
+  },
+  "Outros": {
+    "keywords": [],
+    "regex": [
+      ".*"
+    ]
+  }
+}
