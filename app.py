@@ -50,11 +50,11 @@ def load_all_data(csv_files):
         try:
             df_temp = parse_nubank(str(f))
             df_temp = classify_batch(df_temp)
-            # Filtramos transações de ajuste de saldo ou pagamento de fatura
-            df_temp = df_temp[~df_temp['title'].str.lower().str.contains('saldo|pagamento', na=False)]
             frames[f.name] = df_temp
-        except Exception:
-            pass
+        except Exception as e:
+            # Captura log seguro e limpo
+            from utils.logger import get_logger
+            get_logger(__name__).error(f"Erro ao carregar {f.name}: {e}")
     return frames
 
 # Carregamento otimizado
@@ -98,55 +98,62 @@ try:
     else:
         st.caption(f"Nenhuma transação encontrada com os filtros atuais.")
 
-    # Layout de duas colunas: Esquerda (Gráfico de Composição), Direita (Métricas)
-    col_left, col_right = st.columns([0.6, 0.4], gap="large")
+    tabs = st.tabs(["Visão Geral", "Transações", "Recorrências", "Parcelas Futuras"])
+    
+    with tabs[0]:
+        # Layout de duas colunas: Esquerda (Gráfico de Composição), Direita (Métricas)
+        col_left, col_right = st.columns([0.6, 0.4], gap="large")
 
-    with col_right:
-        st.subheader("📊 Resumo do Período")
+        with col_right:
+            st.subheader("📊 Resumo do Período")
 
-        # Busca o CSV anterior cronologicamente para calcular o Delta
-        prev_df = None
-        try:
-            idx = csv_files.index(selected_file)
-            if idx + 1 < len(csv_files):
-                prev_file = csv_files[idx + 1]
-                prev_df = all_data[prev_file.name]
-        except ValueError:
-            pass
+            # Busca o CSV anterior cronologicamente para calcular o Delta
+            prev_df = None
+            try:
+                idx = csv_files.index(selected_file)
+                if idx + 1 < len(csv_files):
+                    prev_file = csv_files[idx + 1]
+                    prev_df = all_data[prev_file.name]
+            except ValueError:
+                pass
 
-        total_tx = len(df)
-        valor_total = df['amount'].sum() if total_tx > 0 else 0
-        ticket_medio = df['amount'].mean() if total_tx > 0 else 0
-        top_cat = df.groupby('categoria')['amount'].sum().idxmax() if total_tx > 0 else "N/A"
+            df_gastos = df[df['tipo_transacao'] == 'gasto']
+            total_tx = len(df_gastos)
+            valor_total = df_gastos['amount'].sum() if total_tx > 0 else 0
+            ticket_medio = df_gastos['amount'].mean() if total_tx > 0 else 0
+            top_cat = df_gastos.groupby('categoria')['amount'].sum().idxmax() if total_tx > 0 else "N/A"
 
-        delta_tx, delta_valor, delta_ticket = None, None, None
-        if prev_df is not None:
-            prev_tx = len(prev_df)
-            prev_valor = prev_df['amount'].sum() if prev_tx > 0 else 0
-            prev_ticket = prev_df['amount'].mean() if prev_tx > 0 else 0
+            delta_tx, delta_valor, delta_ticket = None, None, None
+            if prev_df is not None:
+                prev_gastos = prev_df[prev_df['tipo_transacao'] == 'gasto']
+                prev_tx = len(prev_gastos)
+                prev_valor = prev_gastos['amount'].sum() if prev_tx > 0 else 0
+                prev_ticket = prev_gastos['amount'].mean() if prev_tx > 0 else 0
+                
+                delta_tx = total_tx - prev_tx
+                delta_valor = valor_total - prev_valor
+                delta_ticket = ticket_medio - prev_ticket
+
+            st.metric("Transações (Gastos)", f"{total_tx}", delta=f"{delta_tx}" if delta_tx is not None else None, delta_color="normal")
+            st.metric("Valor Total", f"R$ {valor_total:,.2f}", delta=f"R$ {delta_valor:,.2f}" if delta_valor is not None else None, delta_color="inverse")
+            st.metric("Ticket Médio", f"R$ {ticket_medio:,.2f}", delta=f"R$ {delta_ticket:,.2f}" if delta_ticket is not None else None, delta_color="inverse")
+            st.metric("Maior Categoria", top_cat)
             
-            delta_tx = total_tx - prev_tx
-            delta_valor = valor_total - prev_valor
-            delta_ticket = ticket_medio - prev_ticket
+            outros_pct = (df['categoria'] == 'Outros').sum() / len(df) * 100 if len(df) > 0 else 0
+            st.metric("% Não-classificado", f"{outros_pct:.1f}%")
 
-        st.metric("Transações", f"{total_tx}", delta=f"{delta_tx}" if delta_tx is not None else None, delta_color="normal")
-        st.metric("Valor Total", f"R$ {valor_total:,.2f}", delta=f"R$ {delta_valor:,.2f}" if delta_valor is not None else None, delta_color="inverse")
-        st.metric("Ticket Médio", f"R$ {ticket_medio:,.2f}", delta=f"R$ {delta_ticket:,.2f}" if delta_ticket is not None else None, delta_color="inverse")
-        st.metric("Maior Categoria", top_cat)
-        
-        outros_pct = (df['categoria'] == 'Outros').sum() / total_tx * 100 if total_tx > 0 else 0
-        st.metric("% Outros", f"{outros_pct:.1f}%")
+        with col_left:
+            st.subheader("💸 Gastos por Categoria")
+            render_donut(df_gastos)
 
-    with col_left:
-        st.subheader("💸 Gastos por Categoria")
-        render_donut(df)
+        st.divider()
+        from components.budget import render_budget
+        render_budget(df)
+        st.divider()
+        render_bar_history(df_consolidated)
 
-    st.divider()
-    from components.budget import render_budget
-    render_budget(df)
-    st.divider()
-
-    with st.expander("📋 Ver Dados"):
+    with tabs[1]:
+        st.subheader("📋 Ver Dados Brutos")
         edited_df = st.data_editor(
             df,
             column_config={
@@ -171,18 +178,13 @@ try:
             load_all_data.clear()
             st.rerun()
 
+    with tabs[2]:
+        from analysis.recurrences import render_recurrences
+        render_recurrences(df_consolidated)
+
+    with tabs[3]:
+        from analysis.installments import render_installments
+        render_installments(df_consolidated)
+
 except Exception as e:
-    st.error(f"❌ Erro ao carregar o arquivo: {e}")
-
-render_bar_history(df_consolidated)
-
-st.divider()
-col_rec, col_inst = st.columns(2, gap="large")
-
-with col_rec:
-    from analysis.recurrences import render_recurrences
-    render_recurrences(df_consolidated)
-
-with col_inst:
-    from analysis.installments import render_installments
-    render_installments(df_consolidated)
+    st.error(f"❌ Erro ao carregar a interface: {e}")

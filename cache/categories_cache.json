@@ -1,355 +1,1514 @@
 {
-  "mercadinho artur berna": "Supermercado",
-  "99food spoleto shop": "Delivery",
-  "mercearia seiko": "Supermercado",
-  "ifd organizacao farmac": "Delivery",
-  "oba hortifruti analia": "Supermercado",
-  "99app 99app": "Transporte",
-  "ifd nine nine company": "Delivery",
-  "tia cida restaurante": "Restaurante",
-  "apple com/bill": "Serviço",
-  "uber uber trip help": "Transporte",
-  "donna cacau casa de": "Restaurante",
-  "administradora": "Outros",
-  "outback mooca": "Restaurante",
-  "dl uberrides": "Transporte",
-  "nutrisnack funcional": "Feira",
-  "droga nossa": "Saúde",
-  "99food espetaria carv": "Delivery",
-  "mp rodrigocostap": "Feira",
-  "mercadinho artur bern": "Supermercado",
-  "uber trip": "Transporte",
-  "99food mcdonald": "Delivery",
-  "drogariasaude": "Saúde",
-  "amazon": "Compras",
-  "bk crbio parcela": "Outros",
-  "andre amaro barbeiro": "Outros",
-  "amazon parcela": "Compras",
-  "mlp kabum-kabum": "Compras",
-  "ifd rafael ma": "Delivery",
-  "dl uber rides": "Transporte",
-  "conta vivo": "Moradia",
-  "may bustani": "Outros",
-  "ifd ifood club": "Delivery",
-  "ifd 51 804 665 carolin": "Delivery",
-  "nirleydatrindadeb": "Outros",
-  "mp dmotta": "Outros",
-  "bacio di latte-lj0028": "Restaurante",
-  "recarga de celular": "Outros",
-  "metro 1t-t6cw": "Transporte",
-  "ifd drogaria sao paulo": "Delivery",
-  "shopee diverland": "Compras",
-  "cortesia auto posto": "Gasolina",
-  "mp acaialegria": "Outros",
-  "mercadolivre mercadol parcela": "Supermercado",
-  "carrefour tte parcela": "Supermercado",
-  "uber one membership": "Transporte",
-  "drogaria_sp drogariasa": "Saúde",
-  "shopee decatronicltda": "Compras",
-  "farmaconde parcela": "Saúde",
-  "mercearia seiko parcela": "Supermercado",
-  "flavia tarrao cardoso": "Feira",
-  "drogaria sao paulo": "Saúde",
-  "ifd 32 269 627 rafael": "Delivery",
-  "lanchonete restauran": "Outros",
-  "metro 1t-vfjz": "Transporte",
-  "ifd lara stefany marti": "Delivery",
-  "drogaria_sp drogariasp": "Saúde",
-  "hortifruti sabor da co": "Feira",
-  "antonio metidieri net": "Outros",
-  "rodosnack lanchonete": "Outros",
-  "laparos hotel": "Viagem",
-  "99food spoleto mooc": "Delivery",
-  "iof de atraso": "Outros",
-  "multa de atraso": "Outros",
-  "carrefour guatapara": "Supermercado",
-  "ebn supercellstor": "Outros",
-  "saldo em atraso": "Outros",
-  "naconfeitarialtda": "Outros",
-  "chopp bar": "Outros",
-  "vend perto machines": "Outros",
-  "aneto food service": "Outros",
-  "panelinha restaurant": "Outros",
-  "ifd osnir hamburger": "Delivery",
-  "ifd 37 024 609 diego": "Delivery",
-  "di cunto itau": "Outros",
-  "biscoiteria carioca": "Outros",
-  "mania de churrasco pri": "Outros",
-  "kfc analia franco": "Outros",
-  "carrefour tte": "Supermercado",
-  "ifd rlt pizzaria tatua": "Delivery",
-  "99food 99food mcdon": "Delivery",
-  "sk supermercados parcela": "Supermercado",
-  "cerealista da vila": "Outros",
-  "extra farma": "Supermercado",
-  "mariaclaudiafreit": "Supermercado",
-  "99food 99food stell": "Delivery",
-  "cocs": "Outros",
-  "loja oficial": "Compras",
-  "radwanski eventos": "Lazer",
-  "99food 99food spole": "Delivery",
-  "patriciamaraneves": "Outros",
-  "gt bilheteria museu": "Outros",
-  "santuario nacional de": "Outros",
-  "tres pescadores store": "Outros",
-  "aparecida bondinhos ae": "Outros",
-  "paraiso do sorvete": "Outros",
-  "raia drogasil": "Saúde",
-  "ifd crescenza fornecim": "Delivery",
-  "mercadolivre fznjeans": "Supermercado",
-  "daez comercio de prod": "Outros",
-  "shop aricanduva": "Outros",
-  "ifd mca restaurantes": "Delivery",
-  "applecombill": "Serviço",
-  "valdecycastao": "Outros",
-  "ifd roberto da silva": "Delivery",
-  "mp rircadofruts": "Outros",
-  "legumesnovais": "Outros",
-  "jonatasgoncalvesc": "Outros",
-  "ifood club": "Delivery",
-  "ifd arcos dourados com": "Delivery",
-  "quitutesdocel": "Outros",
-  "pmbmetro 1t-j5sk": "Transporte",
-  "ventana itau ceic": "Outros",
-  "ifd carvalho espetaria": "Delivery",
-  "pmbmetro 1t-jr7h": "Transporte",
-  "ifd analia food": "Delivery",
-  "ifd droga raphael sans": "Delivery",
-  "bacio di latte-lj0022": "Restaurante",
-  "analia food": "Outros",
-  "cozinhadabaixinha": "Outros",
-  "samalux comercio se parcela": "Outros",
-  "pmbmetro 1t-vjpq": "Transporte",
-  "airbnb hmnjwj2q59 parcela": "Viagem",
-  "vinhedo plaza hotel parcela": "Viagem",
-  "pmbmetro 1t-you1": "Transporte",
-  "ifd carolina": "Delivery",
-  "posto gigante": "Gasolina",
-  "restaurante lanchone": "Restaurante",
-  "santuario sao miguel": "Outros",
-  "amazon prime parcela": "Assinaturas",
-  "leticiamiranda": "Outros",
-  "associacao catolica ni": "Outros",
-  "supermercado todo dia": "Supermercado",
-  "amazonprimebr": "Assinaturas",
-  "maria fumaca": "Outros",
-  "associacao mirim ouri": "Outros",
-  "restaurante posto cafe": "Restaurante",
-  "pdv adorei sorvetes": "Outros",
-  "mp crisdoces": "Outros",
-  "auto posto placar": "Gasolina",
-  "adiqplu vinhedo plaza": "Outros",
-  "restaurante estancia": "Restaurante",
-  "ifd parmegiana grelh": "Delivery",
-  "ifd 59 409 878 larissa": "Delivery",
-  "farma luz poa ii parcela": "Moradia",
-  "ifd zamp": "Delivery",
-  "portal de poa auto pos": "Outros",
-  "centro automotivo sele": "Outros",
-  "sk supermercados": "Supermercado",
-  "qualy farma ix": "Outros",
-  "mp hfsabordaconq": "Outros",
-  "ifd marcelo senlle mar": "Delivery",
-  "np pavanello ferraz parcela": "Outros",
-  "itau unibanco clube parcela": "Outros",
-  "grupo batistella": "Outros",
-  "rede sales": "Outros",
-  "vendify": "Outros",
-  "shopee drogariabarao parcela": "Saúde",
-  "chocolateria puro caca": "Outros",
-  "darcitrindadedo": "Outros",
-  "lili pane sapori": "Outros",
-  "sorvetes gelapapo": "Outros",
-  "espeto de ouro": "Outros",
-  "emporio vicentini": "Outros",
-  "batista alimenta": "Outros",
-  "victorhugoviana": "Outros",
-  "minas gerais ii": "Outros",
-  "bigpag res itapeva": "Supermercado",
-  "posto garitao": "Gasolina",
-  "givanildode": "Outros",
-  "pao nosso poa": "Outros",
-  "shopping aricanduva parcela": "Outros",
-  "jim com victoria gui": "Outros",
-  "oxxo fagundes pm": "Outros",
-  "mercadolivre ngdecorc": "Supermercado",
-  "drogaria wagner": "Saúde",
-  "mp vanessa": "Outros",
-  "ifd edna pereira ramal": "Delivery",
-  "99food 99food tiro": "Delivery",
-  "restaurante da villa": "Restaurante",
-  "oba hortifruti": "Supermercado",
-  "ifd ivonete goncalves": "Delivery",
-  "mp carlossilva": "Outros",
-  "ventana cto mooca": "Outros",
-  "sabor de minas": "Outros",
-  "paroquiasaopioxes": "Outros",
-  "montana grill shop": "Outros",
-  "restanaliafranco": "Outros",
-  "zul cartoes 1sfpwy": "Outros",
-  "ifd 49 804 076 ana mar": "Delivery",
-  "sp sao paulo sh analia": "Outros",
-  "ifd churrascaria piz": "Delivery",
-  "cb cto maccafe": "Outros",
-  "estapar": "Outros",
-  "leitura": "Outros",
-  "nsm shake": "Outros",
-  "mercadocar parcela": "Supermercado",
-  "jr eventos": "Lazer",
-  "fundacao itauclube": "Outros",
-  "shopee 2cpresentes": "Compras",
-  "shopee ibomecommerce": "Compras",
-  "shopee essencialbaby": "Compras",
-  "shopee belisima8013sh": "Compras",
-  "shopee resilifarma": "Compras",
-  "ifd 58 516 671 gerson": "Delivery",
-  "laser dent kids tatua": "Outros",
-  "jardeldasilva": "Outros",
-  "shopee infotechshop": "Compras",
-  "shopee nutrikidsdistr": "Compras",
-  "ifd tudo na marmita": "Delivery",
-  "shopee lujia": "Compras",
-  "apple com/br": "Serviço",
-  "egsestacionamento": "Outros",
-  "edvaldoaraujodeso": "Outros",
-  "mp emporiumsx": "Outros",
-  "ifd larissa": "Delivery",
-  "ifd dzas alimentos": "Delivery",
-  "glauber neves vieira": "Transporte",
-  "shopee rrlvariedades": "Compras",
-  "drogaria sao paulo parcela": "Saúde",
-  "tuna anotaai nupay": "Outros",
-  "ifd pizzaria alonza": "Delivery",
-  "uber uber pending": "Transporte",
-  "mp grupomultisa": "Outros",
-  "rsound": "Outros",
-  "portal poa auto posto": "Gasolina",
-  "mont ararat burger hou": "Outros",
-  "alinasorvetes": "Outros",
-  "josecarlospereira": "Outros",
-  "buraco da veia restaur": "Outros",
-  "99pay pix": "Outros",
-  "ifd sushi oito": "Delivery",
-  "auto posto oiti": "Gasolina",
-  "pop 19set 18h39min": "Outros",
-  "conceito paladar": "Outros",
-  "manchete bar restaur": "Outros",
-  "motta comercial": "Outros",
-  "motta": "Outros",
-  "lucianofernandes": "Outros",
-  "ifd serafim pizzaria": "Delivery",
-  "shopee danicapipa": "Compras",
-  "ifd raia drogasil": "Delivery",
-  "formaricagourmet": "Outros",
-  "ifd marilce postal": "Delivery",
-  "shopee alinefesta": "Compras",
-  "cpv bar restaurante": "Restaurante",
-  "51 873 657 felipe fazi": "Outros",
-  "marisa": "Outros",
-  "ifd 51 754 309 juliana": "Delivery",
-  "ifd mambooah lanchonet": "Delivery",
-  "happinessproe": "Outros",
-  "shopee drixstore": "Compras",
-  "shopee mendeswear": "Compras",
-  "neri restaurante": "Restaurante",
-  "dm temu parcela": "Outros",
-  "ifd maiorquins comerci": "Delivery",
-  "shopee mundodalidy parcela": "Compras",
-  "50 estacao de servic": "Outros",
-  "99food 56 414 975 leo": "Delivery",
-  "shopee dealbox": "Compras",
-  "shopee lojarkfart": "Compras",
-  "shopee biomedic": "Compras",
-  "shopee alegriafestas": "Compras",
-  "zig spe aws summit": "Outros",
-  "tutto in famiglia": "Outros",
-  "gaiteiro": "Outros",
-  "burger king": "Restaurante",
-  "shopee osure": "Compras",
-  "shopee spbaloes": "Compras",
-  "ifd farmanita manipula": "Delivery",
-  "shopee vaninenascimen": "Compras",
-  "shopee elybabyoficial": "Compras",
-  "shopee mimosdelaurinh": "Compras",
-  "shopee lemonseleo": "Compras",
-  "soniareginasilva": "Outros",
-  "shopee distribuidoral": "Compras",
-  "dafiti parcela": "Outros",
-  "tuna anota ai": "Outros",
-  "akeyume comercio de bo": "Outros",
-  "mercadopago ventshop parcela": "Supermercado",
-  "mercadolivre 7produtos parcela": "Supermercado",
-  "ifd delivery transform": "Delivery",
-  "pua restaurante": "Restaurante",
-  "paes doces beija flo": "Outros",
-  "ifd restaurante da vil": "Delivery",
-  "mercadopago pagament": "Supermercado",
-  "daianeterramorale": "Outros",
-  "maurokiyoshi": "Outros",
-  "lojas mel conceicao ii": "Compras",
-  "rua major paladino": "Outros",
-  "mercadolivre 7produtos": "Supermercado",
-  "monteiros car ii parcela": "Outros",
-  "ifd cleberson dos reis": "Delivery",
-  "tempero qualidade": "Outros",
-  "restaurante mana caica": "Restaurante",
-  "google one": "Serviço",
-  "shopee souzashoppingu": "Compras",
-  "bernardoemilesi": "Outros",
-  "casa do norte real": "Outros",
-  "auto pecas harada": "Outros",
-  "juros de divida encerrada": "Outros",
-  "rodosnack minasgrill": "Outros",
-  "gelateria italiana": "Outros",
-  "util parcela": "Outros",
-  "rei da tilapia": "Outros",
-  "57 141 24 eugenia mari": "Outros",
-  "rodosnack estiva lanc": "Outros",
-  "marciamatiasda": "Outros",
-  "luis": "Outros",
-  "obramax": "Assinaturas",
-  "mp guanabara": "Outros",
-  "na confeitaria": "Outros",
-  "sterna cafe aco": "Outros",
-  "ifd ifood": "Delivery",
-  "ifd das massas fas": "Delivery",
-  "ifd gran jalapeno rest": "Delivery",
-  "natalia silva queiroz": "Outros",
-  "ifd flavia silva olive": "Delivery",
-  "shopee selfridgestore": "Compras",
-  "centro automotivo mosc": "Outros",
-  "ifd pizzaria alonza ii": "Delivery",
-  "centro automotivo vene": "Outros",
-  "turbo kart": "Outros",
-  "bar33": "Outros",
-  "ifd irmaos scucuglia": "Delivery",
-  "ifd baiao de dois": "Delivery",
-  "ifd amigo salim comerc": "Delivery",
-  "mp estacionament": "Outros",
-  "ifd drogaria lecer": "Delivery",
-  "vetstecnologia": "Outros",
-  "ifd tia cida restauran": "Delivery",
-  "ifood ifd tia cida": "Delivery",
-  "ifd animax fastfood": "Delivery",
-  "99pay pix parcela": "Outros",
-  "shopee emporiosaude parcela": "Compras",
-  "oral premier parcela": "Outros",
-  "trendfoods gaf": "Outros",
-  "57 527 401 larissa fer": "Outros",
-  "viena": "Outros",
-  "shopee fniximport": "Compras",
-  "shopee lirenababy": "Compras",
-  "luiscarlosdosreis": "Outros",
-  "rainha padaria": "Outros",
-  "cea anf 179 ecpc": "Outros",
-  "kitanda de feira": "Feira",
-  "droga day": "Saúde",
-  "ifood ifd farmacia": "Delivery",
-  "ifood ifd zamp": "Delivery",
-  "cluestudio": "Outros",
-  "ifood ifd baiao de": "Delivery",
-  "ifood ifd mca resta": "Delivery",
-  "cea anf 179 ecpc parcela": "Outros",
-  "avanti palmeiras parcela": "Outros",
-  "alta-sp analia franco parcela": "Outros"
+  "mercadinho artur berna": {
+    "categoria": "Supermercado",
+    "source": "local"
+  },
+  "99food spoleto shop": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "mercearia seiko": {
+    "categoria": "Supermercado",
+    "source": "local"
+  },
+  "ifd organizacao farmac": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "oba hortifruti analia": {
+    "categoria": "Supermercado",
+    "source": "local"
+  },
+  "99app 99app": {
+    "categoria": "Transporte",
+    "source": "local"
+  },
+  "ifd nine nine company": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "tia cida restaurante": {
+    "categoria": "Restaurante",
+    "source": "local"
+  },
+  "apple com/bill": {
+    "categoria": "Serviço",
+    "source": "local"
+  },
+  "uber uber trip help": {
+    "categoria": "Transporte",
+    "source": "local"
+  },
+  "donna cacau casa de": {
+    "categoria": "Restaurante",
+    "source": "local"
+  },
+  "administradora": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "outback mooca": {
+    "categoria": "Restaurante",
+    "source": "local"
+  },
+  "dl uberrides": {
+    "categoria": "Transporte",
+    "source": "local"
+  },
+  "nutrisnack funcional": {
+    "categoria": "Feira",
+    "source": "local"
+  },
+  "droga nossa": {
+    "categoria": "Saúde",
+    "source": "local"
+  },
+  "99food espetaria carv": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "mp rodrigocostap": {
+    "categoria": "Feira",
+    "source": "local"
+  },
+  "mercadinho artur bern": {
+    "categoria": "Supermercado",
+    "source": "local"
+  },
+  "uber trip": {
+    "categoria": "Transporte",
+    "source": "local"
+  },
+  "99food mcdonald": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "drogariasaude": {
+    "categoria": "Saúde",
+    "source": "local"
+  },
+  "amazon": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "bk crbio parcela": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "andre amaro barbeiro": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "amazon parcela": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "mlp kabum-kabum": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "ifd rafael ma": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "dl uber rides": {
+    "categoria": "Transporte",
+    "source": "local"
+  },
+  "conta vivo": {
+    "categoria": "Moradia",
+    "source": "local"
+  },
+  "may bustani": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "ifd ifood club": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "ifd 51 804 665 carolin": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "nirleydatrindadeb": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "mp dmotta": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "bacio di latte-lj0028": {
+    "categoria": "Restaurante",
+    "source": "local"
+  },
+  "recarga de celular": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "metro 1t-t6cw": {
+    "categoria": "Transporte",
+    "source": "local"
+  },
+  "ifd drogaria sao paulo": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "shopee diverland": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "cortesia auto posto": {
+    "categoria": "Gasolina",
+    "source": "local"
+  },
+  "mp acaialegria": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "mercadolivre mercadol parcela": {
+    "categoria": "Supermercado",
+    "source": "local"
+  },
+  "carrefour tte parcela": {
+    "categoria": "Supermercado",
+    "source": "local"
+  },
+  "uber one membership": {
+    "categoria": "Transporte",
+    "source": "local"
+  },
+  "drogaria_sp drogariasa": {
+    "categoria": "Saúde",
+    "source": "local"
+  },
+  "shopee decatronicltda": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "farmaconde parcela": {
+    "categoria": "Saúde",
+    "source": "local"
+  },
+  "mercearia seiko parcela": {
+    "categoria": "Supermercado",
+    "source": "local"
+  },
+  "flavia tarrao cardoso": {
+    "categoria": "Feira",
+    "source": "local"
+  },
+  "drogaria sao paulo": {
+    "categoria": "Saúde",
+    "source": "local"
+  },
+  "ifd 32 269 627 rafael": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "lanchonete restauran": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "metro 1t-vfjz": {
+    "categoria": "Transporte",
+    "source": "local"
+  },
+  "ifd lara stefany marti": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "drogaria_sp drogariasp": {
+    "categoria": "Saúde",
+    "source": "local"
+  },
+  "hortifruti sabor da co": {
+    "categoria": "Feira",
+    "source": "local"
+  },
+  "antonio metidieri net": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "rodosnack lanchonete": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "laparos hotel": {
+    "categoria": "Viagem",
+    "source": "local"
+  },
+  "99food spoleto mooc": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "iof de atraso": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "multa de atraso": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "carrefour guatapara": {
+    "categoria": "Supermercado",
+    "source": "local"
+  },
+  "ebn supercellstor": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "saldo em atraso": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "naconfeitarialtda": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "chopp bar": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "vend perto machines": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "aneto food service": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "panelinha restaurant": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "ifd osnir hamburger": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "ifd 37 024 609 diego": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "di cunto itau": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "biscoiteria carioca": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "mania de churrasco pri": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "kfc analia franco": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "carrefour tte": {
+    "categoria": "Supermercado",
+    "source": "local"
+  },
+  "ifd rlt pizzaria tatua": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "99food 99food mcdon": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "sk supermercados parcela": {
+    "categoria": "Supermercado",
+    "source": "local"
+  },
+  "cerealista da vila": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "extra farma": {
+    "categoria": "Supermercado",
+    "source": "local"
+  },
+  "mariaclaudiafreit": {
+    "categoria": "Supermercado",
+    "source": "local"
+  },
+  "99food 99food stell": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "cocs": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "loja oficial": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "radwanski eventos": {
+    "categoria": "Lazer",
+    "source": "local"
+  },
+  "99food 99food spole": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "patriciamaraneves": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "gt bilheteria museu": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "santuario nacional de": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "tres pescadores store": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "aparecida bondinhos ae": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "paraiso do sorvete": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "raia drogasil": {
+    "categoria": "Saúde",
+    "source": "local"
+  },
+  "ifd crescenza fornecim": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "mercadolivre fznjeans": {
+    "categoria": "Supermercado",
+    "source": "local"
+  },
+  "daez comercio de prod": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "shop aricanduva": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "ifd mca restaurantes": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "applecombill": {
+    "categoria": "Serviço",
+    "source": "local"
+  },
+  "valdecycastao": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "ifd roberto da silva": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "mp rircadofruts": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "legumesnovais": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "jonatasgoncalvesc": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "ifood club": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "ifd arcos dourados com": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "quitutesdocel": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "pmbmetro 1t-j5sk": {
+    "categoria": "Transporte",
+    "source": "local"
+  },
+  "ventana itau ceic": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "ifd carvalho espetaria": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "pmbmetro 1t-jr7h": {
+    "categoria": "Transporte",
+    "source": "local"
+  },
+  "ifd analia food": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "ifd droga raphael sans": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "bacio di latte-lj0022": {
+    "categoria": "Restaurante",
+    "source": "local"
+  },
+  "analia food": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "cozinhadabaixinha": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "samalux comercio se parcela": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "pmbmetro 1t-vjpq": {
+    "categoria": "Transporte",
+    "source": "local"
+  },
+  "airbnb hmnjwj2q59 parcela": {
+    "categoria": "Viagem",
+    "source": "local"
+  },
+  "vinhedo plaza hotel parcela": {
+    "categoria": "Viagem",
+    "source": "local"
+  },
+  "pmbmetro 1t-you1": {
+    "categoria": "Transporte",
+    "source": "local"
+  },
+  "ifd carolina": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "posto gigante": {
+    "categoria": "Gasolina",
+    "source": "local"
+  },
+  "restaurante lanchone": {
+    "categoria": "Restaurante",
+    "source": "local"
+  },
+  "santuario sao miguel": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "amazon prime parcela": {
+    "categoria": "Assinaturas",
+    "source": "local"
+  },
+  "leticiamiranda": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "associacao catolica ni": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "supermercado todo dia": {
+    "categoria": "Supermercado",
+    "source": "local"
+  },
+  "amazonprimebr": {
+    "categoria": "Assinaturas",
+    "source": "local"
+  },
+  "maria fumaca": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "associacao mirim ouri": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "restaurante posto cafe": {
+    "categoria": "Restaurante",
+    "source": "local"
+  },
+  "pdv adorei sorvetes": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "mp crisdoces": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "auto posto placar": {
+    "categoria": "Gasolina",
+    "source": "local"
+  },
+  "adiqplu vinhedo plaza": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "restaurante estancia": {
+    "categoria": "Restaurante",
+    "source": "local"
+  },
+  "ifd parmegiana grelh": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "ifd 59 409 878 larissa": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "farma luz poa ii parcela": {
+    "categoria": "Moradia",
+    "source": "local"
+  },
+  "ifd zamp": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "portal de poa auto pos": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "centro automotivo sele": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "sk supermercados": {
+    "categoria": "Supermercado",
+    "source": "local"
+  },
+  "qualy farma ix": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "mp hfsabordaconq": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "ifd marcelo senlle mar": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "np pavanello ferraz parcela": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "itau unibanco clube parcela": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "grupo batistella": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "rede sales": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "vendify": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "shopee drogariabarao parcela": {
+    "categoria": "Saúde",
+    "source": "local"
+  },
+  "chocolateria puro caca": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "darcitrindadedo": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "lili pane sapori": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "sorvetes gelapapo": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "espeto de ouro": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "emporio vicentini": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "batista alimenta": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "victorhugoviana": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "minas gerais ii": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "bigpag res itapeva": {
+    "categoria": "Supermercado",
+    "source": "local"
+  },
+  "posto garitao": {
+    "categoria": "Gasolina",
+    "source": "local"
+  },
+  "givanildode": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "pao nosso poa": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "shopping aricanduva parcela": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "jim com victoria gui": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "oxxo fagundes pm": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "mercadolivre ngdecorc": {
+    "categoria": "Supermercado",
+    "source": "local"
+  },
+  "drogaria wagner": {
+    "categoria": "Saúde",
+    "source": "local"
+  },
+  "mp vanessa": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "ifd edna pereira ramal": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "99food 99food tiro": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "restaurante da villa": {
+    "categoria": "Restaurante",
+    "source": "local"
+  },
+  "oba hortifruti": {
+    "categoria": "Supermercado",
+    "source": "local"
+  },
+  "ifd ivonete goncalves": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "mp carlossilva": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "ventana cto mooca": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "sabor de minas": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "paroquiasaopioxes": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "montana grill shop": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "restanaliafranco": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "zul cartoes 1sfpwy": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "ifd 49 804 076 ana mar": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "sp sao paulo sh analia": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "ifd churrascaria piz": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "cb cto maccafe": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "estapar": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "leitura": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "nsm shake": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "mercadocar parcela": {
+    "categoria": "Supermercado",
+    "source": "local"
+  },
+  "jr eventos": {
+    "categoria": "Lazer",
+    "source": "local"
+  },
+  "fundacao itauclube": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "shopee 2cpresentes": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "shopee ibomecommerce": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "shopee essencialbaby": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "shopee belisima8013sh": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "shopee resilifarma": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "ifd 58 516 671 gerson": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "laser dent kids tatua": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "jardeldasilva": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "shopee infotechshop": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "shopee nutrikidsdistr": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "ifd tudo na marmita": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "shopee lujia": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "apple com/br": {
+    "categoria": "Serviço",
+    "source": "local"
+  },
+  "egsestacionamento": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "edvaldoaraujodeso": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "mp emporiumsx": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "ifd larissa": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "ifd dzas alimentos": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "glauber neves vieira": {
+    "categoria": "Transporte",
+    "source": "local"
+  },
+  "shopee rrlvariedades": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "drogaria sao paulo parcela": {
+    "categoria": "Saúde",
+    "source": "local"
+  },
+  "tuna anotaai nupay": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "ifd pizzaria alonza": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "uber uber pending": {
+    "categoria": "Transporte",
+    "source": "local"
+  },
+  "mp grupomultisa": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "rsound": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "portal poa auto posto": {
+    "categoria": "Gasolina",
+    "source": "local"
+  },
+  "mont ararat burger hou": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "alinasorvetes": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "josecarlospereira": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "buraco da veia restaur": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "99pay pix": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "ifd sushi oito": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "auto posto oiti": {
+    "categoria": "Gasolina",
+    "source": "local"
+  },
+  "pop 19set 18h39min": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "conceito paladar": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "manchete bar restaur": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "motta comercial": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "motta": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "lucianofernandes": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "ifd serafim pizzaria": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "shopee danicapipa": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "ifd raia drogasil": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "formaricagourmet": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "ifd marilce postal": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "shopee alinefesta": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "cpv bar restaurante": {
+    "categoria": "Restaurante",
+    "source": "local"
+  },
+  "51 873 657 felipe fazi": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "marisa": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "ifd 51 754 309 juliana": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "ifd mambooah lanchonet": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "happinessproe": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "shopee drixstore": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "shopee mendeswear": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "neri restaurante": {
+    "categoria": "Restaurante",
+    "source": "local"
+  },
+  "dm temu parcela": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "ifd maiorquins comerci": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "shopee mundodalidy parcela": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "50 estacao de servic": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "99food 56 414 975 leo": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "shopee dealbox": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "shopee lojarkfart": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "shopee biomedic": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "shopee alegriafestas": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "zig spe aws summit": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "tutto in famiglia": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "gaiteiro": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "burger king": {
+    "categoria": "Restaurante",
+    "source": "local"
+  },
+  "shopee osure": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "shopee spbaloes": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "ifd farmanita manipula": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "shopee vaninenascimen": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "shopee elybabyoficial": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "shopee mimosdelaurinh": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "shopee lemonseleo": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "soniareginasilva": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "shopee distribuidoral": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "dafiti parcela": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "tuna anota ai": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "akeyume comercio de bo": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "mercadopago ventshop parcela": {
+    "categoria": "Supermercado",
+    "source": "local"
+  },
+  "mercadolivre 7produtos parcela": {
+    "categoria": "Supermercado",
+    "source": "local"
+  },
+  "ifd delivery transform": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "pua restaurante": {
+    "categoria": "Restaurante",
+    "source": "local"
+  },
+  "paes doces beija flo": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "ifd restaurante da vil": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "mercadopago pagament": {
+    "categoria": "Supermercado",
+    "source": "local"
+  },
+  "daianeterramorale": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "maurokiyoshi": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "lojas mel conceicao ii": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "rua major paladino": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "mercadolivre 7produtos": {
+    "categoria": "Supermercado",
+    "source": "local"
+  },
+  "monteiros car ii parcela": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "ifd cleberson dos reis": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "tempero qualidade": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "restaurante mana caica": {
+    "categoria": "Restaurante",
+    "source": "local"
+  },
+  "google one": {
+    "categoria": "Serviço",
+    "source": "local"
+  },
+  "shopee souzashoppingu": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "bernardoemilesi": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "casa do norte real": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "auto pecas harada": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "juros de divida encerrada": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "rodosnack minasgrill": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "gelateria italiana": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "util parcela": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "rei da tilapia": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "57 141 24 eugenia mari": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "rodosnack estiva lanc": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "marciamatiasda": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "luis": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "obramax": {
+    "categoria": "Assinaturas",
+    "source": "local"
+  },
+  "mp guanabara": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "na confeitaria": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "sterna cafe aco": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "ifd ifood": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "ifd das massas fas": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "ifd gran jalapeno rest": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "natalia silva queiroz": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "ifd flavia silva olive": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "shopee selfridgestore": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "centro automotivo mosc": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "ifd pizzaria alonza ii": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "centro automotivo vene": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "turbo kart": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "bar33": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "ifd irmaos scucuglia": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "ifd baiao de dois": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "ifd amigo salim comerc": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "mp estacionament": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "ifd drogaria lecer": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "vetstecnologia": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "ifd tia cida restauran": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "ifood ifd tia cida": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "ifd animax fastfood": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "99pay pix parcela": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "shopee emporiosaude parcela": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "oral premier parcela": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "trendfoods gaf": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "57 527 401 larissa fer": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "viena": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "shopee fniximport": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "shopee lirenababy": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "luiscarlosdosreis": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "rainha padaria": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "cea anf 179 ecpc": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "kitanda de feira": {
+    "categoria": "Feira",
+    "source": "local"
+  },
+  "droga day": {
+    "categoria": "Saúde",
+    "source": "local"
+  },
+  "ifood ifd farmacia": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "ifood ifd zamp": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "cluestudio": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "ifood ifd baiao de": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "ifood ifd mca resta": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "cea anf 179 ecpc parcela": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "avanti palmeiras parcela": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "alta-sp analia franco parcela": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "desconto antecipacao farmaconde": {
+    "categoria": "Saúde",
+    "source": "local"
+  },
+  "desconto antecipacao mercearia seiko": {
+    "categoria": "Supermercado",
+    "source": "local"
+  },
+  "estorno de \"amazon prime\"": {
+    "categoria": "Assinaturas",
+    "source": "local"
+  },
+  "estorno de \"amazonprimebr\"": {
+    "categoria": "Assinaturas",
+    "source": "local"
+  },
+  "desconto antecipacao farma luz poa ii": {
+    "categoria": "Moradia",
+    "source": "local"
+  },
+  "estorno de \"shopee lujia\"": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "desconto antecipacao bk crbio": {
+    "categoria": "Outros",
+    "source": "ai"
+  },
+  "desconto antecipacao amazon": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "estorno de \"mercadolivre mercadol\" mercado livre": {
+    "categoria": "Supermercado",
+    "source": "local"
+  },
+  "desconto antecipacao samalux comercio se": {
+    "categoria": "Outros",
+    "source": "ai"
+  },
+  "desconto antecipacao airbnb hmnjwj2q59": {
+    "categoria": "Viagem",
+    "source": "local"
+  },
+  "desconto antecipacao itau unibanco clube": {
+    "categoria": "Outros",
+    "source": "ai"
+  },
+  "desconto antecipacao carrefour tte": {
+    "categoria": "Supermercado",
+    "source": "local"
+  },
+  "desconto antecipacao np pavanello ferraz": {
+    "categoria": "Outros",
+    "source": "ai"
+  },
+  "desconto antecipacao shopee drogariabarao": {
+    "categoria": "Saúde",
+    "source": "local"
+  },
+  "desconto antecipacao shopee mundodalidy": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "desconto antecipacao dm temu": {
+    "categoria": "Outros",
+    "source": "ai"
+  },
+  "desconto antecipacao dafiti": {
+    "categoria": "Outros",
+    "source": "ai"
+  },
+  "desconto antecipacao mercadopago ventshop": {
+    "categoria": "Supermercado",
+    "source": "local"
+  },
+  "desconto antecipacao mercadolivre 7produtos": {
+    "categoria": "Supermercado",
+    "source": "local"
+  },
+  "desconto antecipacao monteiros car ii": {
+    "categoria": "Outros",
+    "source": "ai"
+  },
+  "estorno de \"shopee souzashoppingu\"": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "encerramento de divida": {
+    "categoria": "Outros",
+    "source": "ai"
+  },
+  "credito de atraso": {
+    "categoria": "Outros",
+    "source": "ai"
+  },
+  "desconto antecipacao util": {
+    "categoria": "Outros",
+    "source": "ai"
+  }
 }
