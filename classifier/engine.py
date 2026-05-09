@@ -32,7 +32,11 @@ def classify(description: str) -> str:
     if normalized in cache:
         return cache[normalized]
 
-    result = classify_local(normalized) or "Outros"
+    result = classify_local(normalized)
+    
+    if not result or result == "Outros":
+        from classifier.llm_fallback import classify_with_llm
+        result = classify_with_llm(description) or "Outros"
     
     # Atualiza cache em memória e persiste
     cache[normalized] = result

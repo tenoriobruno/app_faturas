@@ -1,0 +1,66 @@
+import pandas as pd
+import streamlit as st
+import plotly.graph_objects as go
+from config.theme import PLOT_LAYOUT
+
+def calculate_future_installments(df_consolidated: pd.DataFrame):
+    if df_consolidated.empty or 'parcela_atual' not in df_consolidated.columns:
+        return pd.DataFrame()
+        
+    df = df_consolidated.copy()
+    df['date'] = pd.to_datetime(df['date'])
+    
+    # Encontra apenas compras parceladas
+    parceladas = df[df['total_parcelas'] > 1].copy()
+    
+    # Mantem a entrada mais recente para cada compra parcelada
+    # Agrupamos por title, amount e total_parcelas
+    parceladas = parceladas.sort_values('date').groupby(['title', 'amount', 'total_parcelas']).last().reset_index()
+    
+    future_data = []
+    
+    for _, row in parceladas.iterrows():
+        faltam = row['total_parcelas'] - row['parcela_atual']
+        if faltam > 0:
+            for i in range(1, int(faltam) + 1):
+                future_month = row['date'] + pd.DateOffset(months=i)
+                future_data.append({
+                    'title': row['title'],
+                    'amount': row['amount'],
+                    'future_month': future_month.to_period('M')
+                })
+                
+    if not future_data:
+        return pd.DataFrame()
+        
+    return pd.DataFrame(future_data)
+
+def render_installments(df_consolidated: pd.DataFrame):
+    st.subheader("🗓️ Dívidas Ativas e Faturas Futuras")
+    
+    future_df = calculate_future_installments(df_consolidated)
+    
+    if future_df.empty:
+        st.info("Nenhuma parcela futura detectada.")
+        return
+        
+    monthly_debt = future_df.groupby('future_month')['amount'].sum().reset_index()
+    monthly_debt['future_month_str'] = monthly_debt['future_month'].dt.strftime('%b/%Y')
+    
+    fig = go.Figure(data=[go.Bar(
+        x=monthly_debt['future_month_str'],
+        y=monthly_debt['amount'],
+        marker_color='#EF4444',
+        text=monthly_debt['amount'].apply(lambda x: f"R$ {x:,.2f}"),
+        textposition='auto'
+    )])
+    
+    fig.update_layout(
+        **PLOT_LAYOUT,
+        xaxis_title='',
+        yaxis_title='R$',
+        height=300,
+        margin=dict(t=20, b=40, l=40, r=20)
+    )
+    
+    st.plotly_chart(fig, use_container_width=True)

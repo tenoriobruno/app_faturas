@@ -53,8 +53,17 @@ def parse_nubank(filepath: str) -> pd.DataFrame:
     # Deduplicação baseada na tríade data/título/valor
     df = df.drop_duplicates(subset=['date', 'title', 'amount'], keep='first')
 
+    # Extrai informações de parcelamento (ex: "Compra xpto 02/05")
+    # Captura padrão " [número]/[número]" no final da string
+    matches = df['title'].str.extract(r'\s+(\d{1,2})/(\d{1,2})$')
+    df['parcela_atual'] = pd.to_numeric(matches[0]).fillna(1).astype(int)
+    df['total_parcelas'] = pd.to_numeric(matches[1]).fillna(1).astype(int)
+    
+    # Remove a info de parcela do título para não atrapalhar agrupamentos
+    df['title'] = df['title'].str.replace(r'\s+\d{1,2}/\d{1,2}$', '', regex=True)
+
     # Garante que a coluna categoria existe (mesmo que vazia)
     if 'categoria' not in df.columns:
         df['categoria'] = None
 
-    return df[['date', 'title', 'amount', 'categoria']].copy()
+    return df[['date', 'title', 'amount', 'categoria', 'parcela_atual', 'total_parcelas']].copy()
