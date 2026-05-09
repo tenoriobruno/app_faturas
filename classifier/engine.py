@@ -16,35 +16,6 @@ def get_cache():
         _cache = load_cache()
     return _cache
 
-def classify(description: str) -> str:
-    """
-    Pipeline de classificação para uma única descrição:
-    1. Normaliza o texto (remove ruído)
-    2. Consulta o cache persistente
-    3. Tenta classificação local (keywords/regex)
-    4. Atualiza cache e retorna resultado
-    """
-    normalized = normalize(description)
-    if not normalized:
-        return "Outros"
-
-    cache = get_cache()
-    if normalized in cache:
-        return cache[normalized]
-
-    result = classify_local(normalized)
-    
-    if not result or result == "Outros":
-        from classifier.llm_fallback import classify_with_llm
-        result = classify_with_llm(description) or "Outros"
-    
-    # Atualiza cache em memória e persiste
-    cache[normalized] = result
-    save_cache(cache)
-    
-    return result
-
-
 def classify_batch(df: pd.DataFrame) -> pd.DataFrame:
     """
     Aplica a classificação em lote a um DataFrame.
@@ -62,7 +33,42 @@ def classify_batch(df: pd.DataFrame) -> pd.DataFrame:
     # Só classifica as linhas onde a categoria está vazia ou é NaN
     mask = df["categoria"].isna() | (df["categoria"].astype(str).str.strip() == "")
     
-    if mask.any():
-        df.loc[mask, "categoria"] = df.loc[mask, desc_col].apply(classify)
+    if not mask.any():
+        return df
+
+    cache = get_cache()
+    before_len = len(cache)
+    
+    for idx, row in df[mask].iterrows():
+        desc = row[desc_col]
+        normalized = normalize(desc)
+        
+        if not normalized:
+            df.at[idx, "categoria"] = "Outros"
+            continue
+            
+        if normalized in cache:
+            df.at[idx, "categoria"] = cache[normalized]["categoria"]
+            continue
+            
+        local_cat = classify_local(normalized)
+        if local_cat and local_cat != "Outros":
+            df.at[idx, "categoria"] = local_cat
+            cache[normalized] = {"categoria": local_cat, "source": "local"}
+            continue
+            
+        # fallback LLM line-by-line (mantido simples conforme instrucao de evitar batch)
+        # O usuário solicitou deixar o ponto de LLM para depois, então vamos tratar caso a lib não exista.
+        try:
+            from classifier.llm_fallback import classify_with_llm
+            llm_cat = classify_with_llm(desc) or "Outros"
+        except ImportError:
+            llm_cat = "Outros"
+            
+        df.at[idx, "categoria"] = llm_cat
+        cache[normalized] = {"categoria": llm_cat, "source": "ai"}
+        
+    if len(cache) > before_len:
+        save_cache(cache)
 
     return df
