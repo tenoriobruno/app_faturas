@@ -1,15 +1,14 @@
-import os
 import json
-from pathlib import Path
 import google.generativeai as genai
+from config.settings import settings
 
 # Tenta configurar o genai se a chave estiver presente
-api_key = os.getenv("GEMINI_API_KEY")
+api_key = settings.GEMINI_API_KEY
 if api_key:
     genai.configure(api_key=api_key)
 
 def load_categories_schema():
-    cat_path = Path(__file__).parent.parent / "categories.json"
+    cat_path = settings.CATEGORIES_PATH
     if cat_path.exists():
         categories = json.loads(cat_path.read_text(encoding='utf-8'))
         return list(categories.keys())

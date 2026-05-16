@@ -7,7 +7,7 @@ import streamlit as st
 import pandas as pd
 from pathlib import Path
 import os
-from dotenv import load_dotenv
+from config.settings import settings
 
 from classifier.engine import classify_batch
 from parsers.nubank import parse_nubank
@@ -17,8 +17,7 @@ st.set_page_config(page_title="Finanças", layout="wide")
 st.markdown(CSS, unsafe_allow_html=True)
 st.title("💰 Finanças Pessoais")
 
-load_dotenv()
-DATA_DIR = Path(os.getenv("DATA_PATH", "."))
+DATA_DIR = settings.DATA_PATH
 
 # Sidebar Upload
 st.sidebar.header("📁 Upload de Faturas")

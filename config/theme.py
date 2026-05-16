@@ -101,6 +101,44 @@ button[data-baseweb="tab"][aria-selected="true"] {
 [data-testid="stCaptionContainer"] {
     color: #65676B !important;
 }
+
+/* === SELECT BOX STYLING (from styles.css) === */
+.stDeployButton { display: none !important; }
+
+.stSelectbox {
+  background-color: white !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  border-radius: 12px !important;
+  color: #1A1D2E !important;
+}
+
+.stSelectbox > div > div {
+  background-color: white !important;
+  color: #1A1D2E !important;
+}
+
+.stSelectbox div[role="listbox"] {
+  background-color: white !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  border-radius: 12px !important;
+}
+
+.stSelectbox div[role="option"] {
+  background-color: white !important;
+  color: #1A1D2E !important;
+  padding: 8px 12px;
+}
+
+.stSelectbox div[role="option"]:hover {
+  background-color: #F8FAFC !important;
+}
+
+.stSelectbox input {
+  background-color: white !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  border-radius: 12px !important;
+  color: #1A1D2E !important;
+}
 </style>
 """
 

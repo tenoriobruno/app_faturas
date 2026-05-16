@@ -7,12 +7,47 @@ from core.installments import calculate_future_installments
 def render_installments(df_consolidated: pd.DataFrame):
     st.subheader("🗓️ Dívidas Ativas e Faturas Futuras")
     
+    if df_consolidated.empty:
+        st.info("Nenhum dado disponível para análise de parcelas.")
+        return
+
+    # Garante que a data está em formato datetime para comparação
+    df_temp = df_consolidated.copy()
+    df_temp['date'] = pd.to_datetime(df_temp['date'])
+    last_data_date = df_temp['date'].max()
+    
     parceladas = calculate_future_installments(df_consolidated)
     
     if parceladas.empty:
         st.info("Nenhuma parcela futura detectada.")
         return
         
+    # Primeiro passamos para calcular o saldo devedor e coletar dados do gráfico
+    total_remaining_debt = 0
+    future_data = []
+    
+    for _, row in parceladas.iterrows():
+        faltam = row['total_parcelas'] - row['parcela_atual']
+        if faltam > 0:
+            for i in range(1, int(faltam) + 1):
+                # Calcula a data estimada da próxima parcela
+                future_month_date = pd.to_datetime(row['date']) + pd.DateOffset(months=i)
+                
+                # Só projeta se o mês for posterior à última data de transação conhecida (fatura corrente)
+                if future_month_date > last_data_date:
+                    total_remaining_debt += row['amount']
+                    future_data.append({
+                        'title': row['title'],
+                        'amount': row['amount'],
+                        'future_month': future_month_date.to_period('M')
+                    })
+    
+    # Exibe métrica de resumo
+    st.metric("Saldo Devedor Estimado (Futuro)", f"R$ {total_remaining_debt:,.2f}", help="Soma de todas as parcelas que ainda vencerão após a data da última fatura carregada.")
+    st.divider()
+
+    # Exibe lista de dívidas ativas
+    st.write("**Detalhamento por Item:**")
     for _, row in parceladas.iterrows():
         faltam = row['total_parcelas'] - row['parcela_atual']
         if faltam > 0:
@@ -22,19 +57,9 @@ def render_installments(df_consolidated: pd.DataFrame):
             st.write(f"**{row['title']}** (R$ {row['amount']:.2f}/mês) - {pagas}/{total} pagas")
             st.progress(pct)
             
-    future_data = []
-    for _, row in parceladas.iterrows():
-        faltam = row['total_parcelas'] - row['parcela_atual']
-        if faltam > 0:
-            for i in range(1, int(faltam) + 1):
-                future_month = row['date'] + pd.DateOffset(months=i)
-                future_data.append({
-                    'title': row['title'],
-                    'amount': row['amount'],
-                    'future_month': future_month.to_period('M')
-                })
-                
     if future_data:
+        st.write("---")
+        st.write("**Projeção de Impacto nas Próximas Faturas:**")
         future_df = pd.DataFrame(future_data)
         monthly_debt = future_df.groupby('future_month')['amount'].sum().reset_index()
         monthly_debt['future_month_str'] = monthly_debt['future_month'].dt.strftime('%b/%Y')

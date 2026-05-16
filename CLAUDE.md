@@ -11,7 +11,7 @@ Personal finance MVP inspired by Guiabolso. Not SaaS — personal use only, no s
 ## Stack
 
 - Python 3.11+, Streamlit, Pandas, Plotly, python-dotenv
-- Anthropic SDK — model `claude-haiku-3-5-20251001` as AI fallback only
+- Google Generative AI SDK — model `gemini-1.5-flash` as AI fallback only
 
 ## Running the App
 
@@ -26,17 +26,23 @@ Data flow: `Upload CSV → Parse → Normalize → Classify → Cache/Save → D
 
 ```
 app.py                   # Streamlit entry point, wires all modules
+config/
+  settings.py            # Centralized settings and env loader
+  theme.py               # Custom CSS to hide Streamlit defaults, layout, colors
 parsers/nubank.py        # CSV parsing, encoding detection (utf-8/latin-1), dedup
 classifier/
   engine.py              # Orchestrates classification pipeline
-  local_rules.py         # Keywords + regex + fuzzy matching against categories.json
-  ai_classifier.py       # Claude Haiku fallback, called only if local fails
+  local_rules.py         # Keywords + regex matching against categories.json
+  llm_fallback.py        # Gemini fallback, called only if local fails
+core/                    # Business logic (recurrences, installments)
+data/
+  repository.py          # Persistence: JSON caching and budget
+views/                   # Streamlit tabs
+components/              # Reusable UI components
 utils/
   normalize.py           # Text normalization to reduce noise before classification
-  storage.py             # Persistence: data/ and cache/
 cache/categories_cache.json  # Persistent cache keyed by normalized description
 categories.json          # Keyword/regex patterns per category
-assets/styles.css        # Custom CSS to hide Streamlit defaults, fintech-like UI
 ```
 
 ## Classification Pipeline (strict order)
@@ -47,8 +53,7 @@ Never skip steps — each step saves API cost:
 2. **Cache lookup** — if normalized description already classified, return immediately
 3. **Keyword match** — search `categories.json`
 4. **Regex match** — patterns like `UBER*`, `IFOOD*PEDIDO`, `99*`
-5. **Fuzzy token match** — simple token similarity
-6. **AI (Haiku)** — only if all above fail
+5. **AI (Gemini)** — only if all above fail
 
 ## Key Edge Cases
 

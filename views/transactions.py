@@ -1,5 +1,8 @@
 import streamlit as st
 import pandas as pd
+from data.repository import cache_repo
+from utils.normalize import normalize
+from config.settings import settings
 
 def render_transactions(df: pd.DataFrame, load_all_data_func):
     st.subheader("📋 Ver Dados Brutos")
@@ -10,12 +13,7 @@ def render_transactions(df: pd.DataFrame, load_all_data_func):
                 "Categoria",
                 help="Selecione a categoria",
                 width="medium",
-                options=[
-                    'Delivery', 'Alimentação', 'Transporte', 'Compras',
-                    'Saúde', 'Assinaturas', 'Moradia', 'Lazer',
-                    'Educação', 'Viagem', 'Restaurante', 'Supermercado',
-                    'Serviço', 'Feira', 'Gasolina', 'Outros'
-                ]
+                options=settings.get_category_names()
             )
         },
         disabled=["date", "title", "amount", "tipo_transacao", "parcela_atual", "total_parcelas"],
@@ -24,8 +22,6 @@ def render_transactions(df: pd.DataFrame, load_all_data_func):
     )
 
     if not df.equals(edited_df):
-        from data.repository import cache_repo
-        from utils.normalize import normalize
         cache = cache_repo.load()
         diff = edited_df[df['categoria'] != edited_df['categoria']]
         for _, row in diff.iterrows():

@@ -1,5 +1,4 @@
 import pandas as pd
-import streamlit as st
 
 def apply_filters(df: pd.DataFrame, search_text: str, selected_cats: list, val_range: tuple, date_range: tuple, tipos: list, hide_outros: bool, only_outros: bool) -> pd.DataFrame:
     df_filtered = df.copy()

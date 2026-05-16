@@ -1,4 +1,5 @@
 import os
+import json
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -12,5 +13,9 @@ class Settings:
     CATEGORIES_PATH = ROOT_DIR / "categories.json"
     LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
     GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+
+    def get_category_names(self):
+        with open(self.CATEGORIES_PATH, encoding='utf-8') as f:
+            return list(json.load(f).keys())
 
 settings = Settings()
