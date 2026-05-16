@@ -1,21 +1,8 @@
-import pandas as pd
 import streamlit as st
+import pandas as pd
 import plotly.graph_objects as go
 from config.theme import PLOT_LAYOUT
-
-def calculate_future_installments(df_consolidated: pd.DataFrame):
-    if df_consolidated.empty or 'parcela_atual' not in df_consolidated.columns:
-        return pd.DataFrame()
-        
-    df = df_consolidated.copy()
-    df['date'] = pd.to_datetime(df['date'])
-    
-    parceladas = df[df['total_parcelas'] > 1].copy()
-    
-    # Mantem a entrada mais recente
-    parceladas = parceladas.sort_values('date').groupby(['title', 'amount', 'total_parcelas']).last().reset_index()
-    
-    return parceladas
+from core.installments import calculate_future_installments
 
 def render_installments(df_consolidated: pd.DataFrame):
     st.subheader("🗓️ Dívidas Ativas e Faturas Futuras")

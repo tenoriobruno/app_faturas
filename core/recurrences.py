@@ -1,10 +1,10 @@
 import pandas as pd
-import streamlit as st
 
-def detect_recurrences(df_consolidated: pd.DataFrame):
+def detect_recurrences(df_consolidated: pd.DataFrame) -> pd.DataFrame:
     """
     Detecta assinaturas baseadas em transações com mesmo título ou categoria 'Assinaturas'
     que aparecem em 3 ou mais meses distintos.
+    Retorna apenas um DataFrame limpo, sem comandos de UI.
     """
     if df_consolidated.empty:
         return pd.DataFrame()
@@ -25,28 +25,3 @@ def detect_recurrences(df_consolidated: pd.DataFrame):
     fixed_costs = recurrences[mask].sort_values(by='avg_amount', ascending=False)
     
     return fixed_costs
-
-def render_recurrences(df_consolidated: pd.DataFrame):
-    st.subheader("🔁 Despesas Fixas e Assinaturas")
-    
-    fixed_costs = detect_recurrences(df_consolidated)
-    
-    if fixed_costs.empty:
-        st.info("Nenhuma despesa fixa ou assinatura detectada.")
-        return
-        
-    total_fixed = fixed_costs['avg_amount'].sum()
-    st.metric("Estimativa de Custo Fixo Mensal", f"R$ {total_fixed:,.2f}")
-    
-    st.dataframe(
-        fixed_costs[['title', 'categoria', 'avg_amount', 'months_count']].rename(
-            columns={
-                'title': 'Serviço/Conta',
-                'categoria': 'Categoria',
-                'avg_amount': 'Valor Médio (R$)',
-                'months_count': 'Meses Ativos'
-            }
-        ),
-        use_container_width=True,
-        hide_index=True
-    )

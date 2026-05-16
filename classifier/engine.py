@@ -5,7 +5,7 @@ Serve como interface principal para classificar uma ou várias transações.
 import pandas as pd
 from classifier.local_rules import classify_local
 from utils.normalize import normalize
-from utils.storage import load_cache, save_cache
+from data.repository import cache_repo
 
 
 _cache = None
@@ -13,7 +13,7 @@ _cache = None
 def get_cache():
     global _cache
     if _cache is None:
-        _cache = load_cache()
+        _cache = cache_repo.load()
     return _cache
 
 def classify_batch(df: pd.DataFrame) -> pd.DataFrame:
@@ -69,6 +69,6 @@ def classify_batch(df: pd.DataFrame) -> pd.DataFrame:
         cache[normalized] = {"categoria": llm_cat, "source": "ai"}
         
     if len(cache) > before_len:
-        save_cache(cache)
+        cache_repo.save(cache)
 
     return df

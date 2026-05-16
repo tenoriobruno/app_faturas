@@ -1,30 +1,11 @@
 import streamlit as st
 import pandas as pd
-import json
-from pathlib import Path
-from config.settings import settings
-
-def load_budgets() -> dict:
-    budget_path = Path(settings.BUDGET_PATH)
-    if budget_path.exists():
-        try:
-            return json.loads(budget_path.read_text(encoding='utf-8'))
-        except Exception:
-            return {}
-    return {}
-
-def save_budgets(b: dict):
-    budget_path = Path(settings.BUDGET_PATH)
-    try:
-        budget_path.parent.mkdir(exist_ok=True, parents=True)
-        budget_path.write_text(json.dumps(b, ensure_ascii=False, indent=2), encoding='utf-8')
-    except Exception:
-        pass
+from data.repository import budget_repo
 
 def render_budget(df: pd.DataFrame):
     st.subheader("🎯 Acompanhamento de Orçamento")
     
-    budgets = load_budgets()
+    budgets = budget_repo.load()
     if not budgets:
         st.info("Nenhum orçamento configurado. Configure no menu Editar abaixo.")
         budgets = {"global": 0, "categories": {}}
@@ -77,6 +58,6 @@ def render_budget(df: pd.DataFrame):
                 
         if st.button("Salvar Orçamento"):
             new_b = {"global": new_global, "categories": new_cats}
-            save_budgets(new_b)
+            budget_repo.save(new_b)
             st.success("Orçamento salvo com sucesso!")
             st.rerun()
