@@ -1,0 +1,11 @@
+- [X] Criar arquivos de estilo e variáveis CSS (tema claro/escuro) em config/theme.py
+- [X] Implementar toggle de modo escuro e persistência em st.session_state (components/header.py)
+- [] Atualizar componentes de sidebar e métricas para usar classe glass-card
+- [] Refatorar views para usar novos componentes e aplicar layout responsivo
+- [] Adicionar fontes Inter e variáveis CSS globais
+- [] Implementar media queries e responsividade
+- [] Testes automáticos: snapshot para modo escuro e verificação de classe `.dark-mode`
+- [] Verificação manual: toggle, responsividade, acessibilidade, performance LCP
+- [] Atualizar README com novas funcionalidades
+- [] Revisar e mesclar mudanças ao branch principal
+- [ ]

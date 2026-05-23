@@ -5,6 +5,7 @@ Consolida CSS, paleta de cores e configurações do Plotly.
 
 CSS = """
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;500;600;700&display=swap');
 
 html, body, [class*="css"] {
@@ -138,6 +139,70 @@ button[data-baseweb="tab"][aria-selected="true"] {
   border: 1px solid rgba(0, 0, 0, 0.1) !important;
   border-radius: 12px !important;
   color: #1A1D2E !important;
+}
+</style>
+"""
+
+CSS_DARK = """
+<style>
+/* ===== DARK MODE OVERRIDES ===== */
+html, body, [data-testid="stAppViewContainer"], [data-testid="stMain"],
+[data-testid="stVerticalBlock"], .main, .block-container {
+    background-color: #0E1117 !important;
+    color: #FAFAFA !important;
+}
+
+[data-testid="stSidebar"] {
+    background-color: #161B22 !important;
+}
+[data-testid="stSidebar"] * {
+    color: #FAFAFA !important;
+}
+
+h1, h2, h3, h4, h5, h6, p, label, span, div {
+    color: #FAFAFA !important;
+}
+
+[data-testid="stMetric"] {
+    background: #1C2333 !important;
+    border-color: #30363D !important;
+}
+[data-testid="stMetricLabel"] p {
+    color: #8B949E !important;
+}
+[data-testid="stMetricValue"] {
+    color: #FAFAFA !important;
+}
+
+[data-testid="stPlotlyChart"] {
+    background: #1C2333 !important;
+    border-color: #30363D !important;
+}
+
+[data-testid="stExpander"] {
+    background: #1C2333 !important;
+    border-color: #30363D !important;
+}
+
+[data-testid="stDataFrame"], [data-testid="stTable"] {
+    background: #1C2333 !important;
+}
+
+button[data-baseweb="tab"] {
+    color: #8B949E !important;
+}
+button[data-baseweb="tab"][aria-selected="true"] {
+    color: #58A6FF !important;
+}
+
+.stSelectbox > div > div, .stSelectbox input {
+    background-color: #1C2333 !important;
+    color: #FAFAFA !important;
+    border-color: #30363D !important;
+}
+
+[data-testid="stCaptionContainer"] {
+    color: #8B949E !important;
 }
 </style>
 """

@@ -11,6 +11,7 @@ class Settings:
     CACHE_PATH = ROOT_DIR / "cache" / "categories_cache.json"
     BUDGET_PATH = ROOT_DIR / "config" / "budget.json"
     CATEGORIES_PATH = ROOT_DIR / "categories.json"
+    DEFAULT_DARK_MODE = False
     LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
     GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
