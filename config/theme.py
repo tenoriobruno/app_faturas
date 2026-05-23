@@ -179,6 +179,47 @@ button[data-baseweb="tab"][aria-selected="true"] {
   border-radius: 12px !important;
   color: var(--text-primary) !important;
 }
+
+/* === RESPONSIVE: tablet (≤1024px) === */
+@media (max-width: 1024px) {
+    .block-container {
+        padding: 1.5rem 1.25rem !important;
+    }
+
+    .glass-card {
+        padding: 16px 18px;
+    }
+}
+
+/* === RESPONSIVE: mobile (≤768px) === */
+@media (max-width: 768px) {
+    .block-container {
+        padding: 1rem 0.75rem !important;
+    }
+
+    .glass-card {
+        padding: 14px 14px;
+        border-radius: 10px;
+    }
+
+    h1 {
+        font-size: 1.4rem !important;
+    }
+
+    [data-testid=\"stMetricValue\"] {
+        font-size: 1.4rem !important;
+    }
+
+    /* Empilha colunas do Streamlit verticalmente */
+    [data-testid=\"stHorizontalBlock\"] {
+        flex-direction: column !important;
+    }
+
+    [data-testid=\"stHorizontalBlock\"] > [data-testid=\"stVerticalBlock\"] {
+        width: 100% !important;
+        min-width: 100% !important;
+    }
+}
 </style>
 """
 

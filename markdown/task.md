@@ -3,7 +3,7 @@
 - [X] Atualizar componentes de sidebar e métricas para usar classe glass-card
 - [X] Refatorar views para usar novos componentes e aplicar layout responsivo
 - [X] Adicionar fontes Inter e variáveis CSS globais
-- [] Implementar media queries e responsividade
+- [X] Implementar media queries e responsividade
 - [] Testes automáticos: snapshot para modo escuro e verificação de classe `.dark-mode`
 - [] Verificação manual: toggle, responsividade, acessibilidade, performance LCP
 - [] Atualizar README com novas funcionalidades
