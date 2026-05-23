@@ -6,10 +6,21 @@ Consolida CSS, paleta de cores e configurações do Plotly.
 CSS = """
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;500;600;700&display=swap');
+
+:root {
+    --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+    --bg-page: #F0F2F5;
+    --bg-card: rgba(255, 255, 255, 0.72);
+    --bg-card-solid: #FFFFFF;
+    --border-card: rgba(206, 208, 212, 0.6);
+    --text-primary: #1C1E21;
+    --text-secondary: #65676B;
+    --accent: #0866FF;
+    --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.06);
+}
 
 html, body, [class*="css"] {
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-family: var(--font-main);
 }
 
 #MainMenu, footer, header {
@@ -27,70 +38,98 @@ html, body, [class*="css"] {
 
 /* === TITLE === */
 h1 {
-    font-family: 'Segoe UI', sans-serif !important;
+    font-family: var(--font-main) !important;
     font-weight: 700 !important;
     margin-bottom: 0.25rem !important;
-    color: #1C1E21 !important;
+    color: var(--text-primary) !important;
 }
 
 /* === SECTION HEADERS === */
 h2, h3 {
-    font-family: 'Segoe UI', sans-serif !important;
+    font-family: var(--font-main) !important;
     font-weight: 600 !important;
     margin-bottom: 0.75rem !important;
     margin-top: 0 !important;
-    color: #1C1E21 !important;
+    color: var(--text-primary) !important;
+}
+
+/* === GLASS CARD === */
+.glass-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 14px;
+    border: 1px solid var(--border-card);
+    box-shadow: var(--shadow-card);
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 /* === CARDS (st.metric) === */
 [data-testid="stMetric"] {
-    background: #FFFFFF;
-    border-radius: 8px;
+    background: var(--bg-card-solid);
+    border-radius: 12px;
     padding: 16px 20px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-    border: 1px solid #CED0D4;
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--border-card);
     margin-bottom: 12px;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+[data-testid="stMetric"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
 }
 
 [data-testid="stMetricLabel"] p {
-    font-size: 0.85rem !important;
+    font-size: 0.82rem !important;
     font-weight: 600 !important;
-    color: #65676B !important;
+    color: var(--text-secondary) !important;
     margin: 0 !important;
+    letter-spacing: 0.02em !important;
+    text-transform: uppercase !important;
 }
 
 [data-testid="stMetricValue"] {
     font-size: 1.8rem !important;
     font-weight: 700 !important;
-    color: #1C1E21 !important;
+    color: var(--text-primary) !important;
     line-height: 1.1 !important;
+    font-family: var(--font-main) !important;
 }
 
 /* === CHART CONTAINERS === */
 [data-testid="stPlotlyChart"] {
-    background: #FFFFFF;
-    border-radius: 8px;
+    background: var(--bg-card-solid);
+    border-radius: 12px;
     padding: 16px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-    border: 1px solid #CED0D4;
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--border-card);
 }
 
 /* === EXPANDER === */
 [data-testid="stExpander"] {
-    background: #FFFFFF;
-    border-radius: 8px !important;
-    border: 1px solid #CED0D4 !important;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    background: var(--bg-card-solid);
+    border-radius: 12px !important;
+    border: 1px solid var(--border-card) !important;
+    box-shadow: var(--shadow-card);
     overflow: hidden;
 }
 
 /* === TABS === */
 button[data-baseweb="tab"] {
-    color: #65676B !important;
+    color: var(--text-secondary) !important;
     font-weight: 600 !important;
+    font-family: var(--font-main) !important;
 }
 button[data-baseweb="tab"][aria-selected="true"] {
-    color: #0866FF !important;
+    color: var(--accent) !important;
 }
 
 /* === DIVIDER SPACING === */
@@ -100,22 +139,22 @@ button[data-baseweb="tab"][aria-selected="true"] {
 
 /* === CAPTION === */
 [data-testid="stCaptionContainer"] {
-    color: #65676B !important;
+    color: var(--text-secondary) !important;
 }
 
-/* === SELECT BOX STYLING (from styles.css) === */
+/* === SELECT BOX STYLING === */
 .stDeployButton { display: none !important; }
 
 .stSelectbox {
   background-color: white !important;
   border: 1px solid rgba(0, 0, 0, 0.1) !important;
   border-radius: 12px !important;
-  color: #1A1D2E !important;
+  color: var(--text-primary) !important;
 }
 
 .stSelectbox > div > div {
   background-color: white !important;
-  color: #1A1D2E !important;
+  color: var(--text-primary) !important;
 }
 
 .stSelectbox div[role="listbox"] {
@@ -126,7 +165,7 @@ button[data-baseweb="tab"][aria-selected="true"] {
 
 .stSelectbox div[role="option"] {
   background-color: white !important;
-  color: #1A1D2E !important;
+  color: var(--text-primary) !important;
   padding: 8px 12px;
 }
 
@@ -138,14 +177,25 @@ button[data-baseweb="tab"][aria-selected="true"] {
   background-color: white !important;
   border: 1px solid rgba(0, 0, 0, 0.1) !important;
   border-radius: 12px !important;
-  color: #1A1D2E !important;
+  color: var(--text-primary) !important;
 }
 </style>
 """
 
 CSS_DARK = """
 <style>
-/* ===== DARK MODE OVERRIDES ===== */
+/* ===== DARK MODE: variáveis e overrides ===== */
+:root {
+    --bg-page: #0E1117;
+    --bg-card: rgba(28, 35, 51, 0.8);
+    --bg-card-solid: #1C2333;
+    --border-card: rgba(48, 54, 61, 0.7);
+    --text-primary: #FAFAFA;
+    --text-secondary: #8B949E;
+    --accent: #58A6FF;
+    --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.3), 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
 html, body, [data-testid="stAppViewContainer"], [data-testid="stMain"],
 [data-testid="stVerticalBlock"], .main, .block-container {
     background-color: #0E1117 !important;
@@ -204,6 +254,11 @@ button[data-baseweb="tab"][aria-selected="true"] {
 [data-testid="stCaptionContainer"] {
     color: #8B949E !important;
 }
+
+.glass-card {
+    background: rgba(28, 35, 51, 0.8) !important;
+    border-color: rgba(48, 54, 61, 0.7) !important;
+}
 </style>
 """
 
@@ -231,10 +286,10 @@ CATEGORY_COLORS = {
 PLOT_LAYOUT = dict(
     paper_bgcolor='rgba(0,0,0,0)',
     plot_bgcolor='rgba(0,0,0,0)',
-    font=dict(color='#65676B', family='Segoe UI, sans-serif', size=12),
+    font=dict(color='#65676B', family='Inter, system-ui, sans-serif', size=12),
     hoverlabel=dict(
         bgcolor='#FFFFFF',
         bordercolor='#CED0D4',
-        font=dict(color='#1C1E21', size=13, family='Segoe UI, sans-serif')
+        font=dict(color='#1C1E21', size=13, family='Inter, system-ui, sans-serif')
     )
 )

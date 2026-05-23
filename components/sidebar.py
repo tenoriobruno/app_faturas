@@ -4,7 +4,12 @@ from typing import List
 
 def render_sidebar(df: pd.DataFrame, categories: List[str]) -> pd.DataFrame:
     """Renderiza os filtros na sidebar e retorna o DataFrame filtrado."""
-    st.sidebar.header("🔍 Filtros")
+    st.sidebar.markdown(
+        '<div class="glass-card" style="margin-bottom:12px;padding:12px 16px;">'
+        '<span style="font-weight:700;font-size:1rem;letter-spacing:0.03em;">🔍 Filtros</span>'
+        '</div>',
+        unsafe_allow_html=True,
+    )
     
     # Busca textual
     search_text = st.sidebar.text_input("Buscar transação", "")

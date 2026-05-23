@@ -8,7 +8,12 @@ def render_overview(df: pd.DataFrame, df_consolidated: pd.DataFrame, csv_files: 
     col_left, col_right = st.columns([0.6, 0.4], gap="large")
 
     with col_right:
-        st.subheader("📊 Resumo do Período")
+        st.markdown(
+            '<div class="glass-card" style="margin-bottom:0;">'
+            '<span style="font-weight:700;font-size:1.05rem;">📊 Resumo do Período</span>'
+            '</div>',
+            unsafe_allow_html=True,
+        )
 
         # Busca o CSV anterior cronologicamente para calcular o Delta
         prev_df = None
@@ -32,7 +37,7 @@ def render_overview(df: pd.DataFrame, df_consolidated: pd.DataFrame, csv_files: 
             prev_tx = len(prev_gastos)
             prev_valor = prev_gastos['amount'].sum() if prev_tx > 0 else 0
             prev_ticket = prev_gastos['amount'].mean() if prev_tx > 0 else 0
-            
+
             delta_tx = total_tx - prev_tx
             delta_valor = valor_total - prev_valor
             delta_ticket = ticket_medio - prev_ticket
@@ -41,12 +46,17 @@ def render_overview(df: pd.DataFrame, df_consolidated: pd.DataFrame, csv_files: 
         st.metric("Valor Total", f"R$ {valor_total:,.2f}", delta=f"R$ {delta_valor:,.2f}" if delta_valor is not None else None, delta_color="inverse")
         st.metric("Ticket Médio", f"R$ {ticket_medio:,.2f}", delta=f"R$ {delta_ticket:,.2f}" if delta_ticket is not None else None, delta_color="inverse")
         st.metric("Maior Categoria", top_cat)
-        
+
         outros_pct = (df['categoria'] == 'Outros').sum() / len(df) * 100 if len(df) > 0 else 0
         st.metric("% Não-classificado", f"{outros_pct:.1f}%")
 
     with col_left:
-        st.subheader("💸 Gastos por Categoria")
+        st.markdown(
+            '<div class="glass-card" style="margin-bottom:0;">'
+            '<span style="font-weight:700;font-size:1.05rem;">💸 Gastos por Categoria</span>'
+            '</div>',
+            unsafe_allow_html=True,
+        )
         render_donut(df_gastos)
 
     st.divider()

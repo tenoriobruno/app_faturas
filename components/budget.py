@@ -18,10 +18,13 @@ def render_budget(df: pd.DataFrame):
     if global_budget > 0:
         pct_global = min(total_spent / global_budget, 1.0)
         color = "#E74C3C" if pct_global >= 1.0 else "#F39C12" if pct_global >= 0.8 else "#2ECC71"
-        st.write(f"**Global:** R$ {total_spent:,.2f} / R$ {global_budget:,.2f} ({pct_global*100:.1f}%)")
         st.markdown(
-            f'<div style="background:#e0e0e0;border-radius:10px">'
-            f'<div style="width:{pct_global*100}%;background:{color};height:14px;border-radius:10px"></div></div><br>',
+            f'<div class="glass-card" style="padding:16px 20px;">'
+            f'<span style="font-weight:600;">Global</span> &nbsp;'
+            f'<span style="color:var(--text-secondary);">R$ {total_spent:,.2f} / R$ {global_budget:,.2f} ({pct_global*100:.1f}%)</span>'
+            f'<div style="background:rgba(0,0,0,0.08);border-radius:10px;margin-top:10px;">'
+            f'<div style="width:{pct_global*100}%;background:{color};height:10px;border-radius:10px;transition:width 0.4s ease;"></div>'
+            f'</div></div>',
             unsafe_allow_html=True
         )
             
@@ -33,10 +36,13 @@ def render_budget(df: pd.DataFrame):
             if limit > 0:
                 pct_cat = min(spent / limit, 1.0)
                 color_cat = "#E74C3C" if pct_cat >= 1.0 else "#2ECC71"
-                st.write(f"*{cat}:* R$ {spent:,.2f} / R$ {limit:,.2f}")
                 st.markdown(
-                    f'<div style="background:#e0e0e0;border-radius:10px">'
-                    f'<div style="width:{pct_cat*100}%;background:{color_cat};height:8px;border-radius:10px"></div></div><br>',
+                    f'<div class="glass-card" style="padding:12px 16px;margin-bottom:8px;">'
+                    f'<span style="font-weight:600;">{cat}</span> &nbsp;'
+                    f'<span style="color:var(--text-secondary);font-size:0.88rem;">R$ {spent:,.2f} / R$ {limit:,.2f}</span>'
+                    f'<div style="background:rgba(0,0,0,0.08);border-radius:8px;margin-top:8px;">'
+                    f'<div style="width:{pct_cat*100}%;background:{color_cat};height:8px;border-radius:8px;transition:width 0.4s ease;"></div>'
+                    f'</div></div>',
                     unsafe_allow_html=True
                 )
                 
