@@ -4,7 +4,10 @@ def apply_filters(df: pd.DataFrame, search_text: str, selected_cats: list, val_r
     df_filtered = df.copy()
     
     if search_text:
-        mask = df_filtered['title'].str.contains(search_text, case=False, na=False)
+        mask = (
+            df_filtered['title'].str.contains(search_text, case=False, na=False) |
+            df_filtered['categoria'].str.contains(search_text, case=False, na=False)
+        )
         df_filtered = df_filtered[mask]
         
     if selected_cats:

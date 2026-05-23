@@ -1,9 +1,209 @@
 {
+  "nutrisnack funcional": {
+    "categoria": "Feira",
+    "source": "local"
+  },
+  "biscoiteria carioca": {
+    "categoria": "Supermercado",
+    "source": "local"
+  },
+  "dl uberrides": {
+    "categoria": "Transporte",
+    "source": "local"
+  },
+  "bebe moda infantil": {
+    "categoria": "Compras",
+    "source": "local"
+  },
   "mercadinho artur berna": {
     "categoria": "Supermercado",
     "source": "local"
   },
+  "jose da cruz pereira": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "mp rodrigocostap": {
+    "categoria": "Feira",
+    "source": "local"
+  },
+  "restaurante miranda": {
+    "categoria": "Restaurante",
+    "source": "local"
+  },
+  "desconto antecipacao ig myprofit": {
+    "categoria": "Serviço",
+    "source": "local"
+  },
+  "ig myprofit parcela": {
+    "categoria": "Serviço",
+    "source": "local"
+  },
+  "metro 1t-cq4n": {
+    "categoria": "Transporte",
+    "source": "local"
+  },
+  "metro 1t-pb54": {
+    "categoria": "Transporte",
+    "source": "local"
+  },
+  "99app 99app": {
+    "categoria": "Transporte",
+    "source": "local"
+  },
+  "tia cida restaurante": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "cozinhadabaixinha": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "carrefour tte": {
+    "categoria": "Supermercado",
+    "source": "local"
+  },
   "99food spoleto shop": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "espaco 10 grill": {
+    "categoria": "Restaurante",
+    "source": "local"
+  },
+  "metro 1t-2em2": {
+    "categoria": "Transporte",
+    "source": "local"
+  },
+  "ifd nine nine company": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "metro 1t-az7w": {
+    "categoria": "Transporte",
+    "source": "local"
+  },
+  "motta": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "estorno de \"apple com/bill apple": {
+    "categoria": "Serviço",
+    "source": "local"
+  },
+  "cerealista da vila": {
+    "categoria": "Supermercado",
+    "source": "local"
+  },
+  "ifd analia food": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "gastronomia brasileir": {
+    "categoria": "Moradia",
+    "source": "local"
+  },
+  "promolivros": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "shop suzano": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "shopee planetadobebe": {
+    "categoria": "Serviço",
+    "source": "local"
+  },
+  "marciasoaresbezer": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "ifd rafael ma": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "mercadinho artur bern": {
+    "categoria": "Supermercado",
+    "source": "local"
+  },
+  "ifd farmanita manipula": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "flavia tarrao cardoso": {
+    "categoria": "Feira",
+    "source": "local"
+  },
+  "ifd ifood club": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "ifd mvr refeicoes": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "conta vivo": {
+    "categoria": "Moradia",
+    "source": "local"
+  },
+  "99inapppaymentcapture": {
+    "categoria": "Transporte",
+    "source": "local"
+  },
+  "ifd droga raphael sans": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "mercadolivre mercadol": {
+    "categoria": "Supermercado",
+    "source": "local"
+  },
+  "edvaldoaraujodeso": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "blenz cafe": {
+    "categoria": "Restaurante",
+    "source": "local"
+  },
+  "naconfeitarialtda": {
+    "categoria": "Restaurante",
+    "source": "local"
+  },
+  "apple com/bill": {
+    "categoria": "Serviço",
+    "source": "local"
+  },
+  "aneto food service": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "rm cto itau maccafe": {
+    "categoria": "Restaurante",
+    "source": "local"
+  },
+  "ifd osnir hamburger": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "vend perto machines": {
+    "categoria": "Supermercado",
+    "source": "local"
+  },
+  "amazon": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "99food montana grill": {
+    "categoria": "Delivery",
+    "source": "local"
+  },
+  "uber one membership": {
+    "categoria": "Transporte",
+    "source": "local"
+  },
+  "99food 99food": {
     "categoria": "Delivery",
     "source": "local"
   },
@@ -17,22 +217,6 @@
   },
   "oba hortifruti analia": {
     "categoria": "Supermercado",
-    "source": "local"
-  },
-  "99app 99app": {
-    "categoria": "Transporte",
-    "source": "local"
-  },
-  "ifd nine nine company": {
-    "categoria": "Delivery",
-    "source": "local"
-  },
-  "tia cida restaurante": {
-    "categoria": "Restaurante",
-    "source": "local"
-  },
-  "apple com/bill": {
-    "categoria": "Serviço",
     "source": "local"
   },
   "uber uber trip help": {
@@ -51,28 +235,12 @@
     "categoria": "Restaurante",
     "source": "local"
   },
-  "dl uberrides": {
-    "categoria": "Transporte",
-    "source": "local"
-  },
-  "nutrisnack funcional": {
-    "categoria": "Feira",
-    "source": "local"
-  },
   "droga nossa": {
     "categoria": "Saúde",
     "source": "local"
   },
   "99food espetaria carv": {
     "categoria": "Delivery",
-    "source": "local"
-  },
-  "mp rodrigocostap": {
-    "categoria": "Feira",
-    "source": "local"
-  },
-  "mercadinho artur bern": {
-    "categoria": "Supermercado",
     "source": "local"
   },
   "uber trip": {
@@ -87,16 +255,20 @@
     "categoria": "Saúde",
     "source": "local"
   },
-  "amazon": {
-    "categoria": "Compras",
+  "bk crbio parcela": {
+    "categoria": "Outros",
     "source": "local"
   },
-  "bk crbio parcela": {
+  "desconto antecipacao bk crbio": {
     "categoria": "Outros",
     "source": "local"
   },
   "andre amaro barbeiro": {
     "categoria": "Outros",
+    "source": "local"
+  },
+  "desconto antecipacao amazon": {
+    "categoria": "Compras",
     "source": "local"
   },
   "amazon parcela": {
@@ -107,24 +279,12 @@
     "categoria": "Compras",
     "source": "local"
   },
-  "ifd rafael ma": {
-    "categoria": "Delivery",
-    "source": "local"
-  },
   "dl uber rides": {
     "categoria": "Transporte",
     "source": "local"
   },
-  "conta vivo": {
-    "categoria": "Moradia",
-    "source": "local"
-  },
   "may bustani": {
     "categoria": "Outros",
-    "source": "local"
-  },
-  "ifd ifood club": {
-    "categoria": "Delivery",
     "source": "local"
   },
   "ifd 51 804 665 carolin": {
@@ -151,6 +311,10 @@
     "categoria": "Transporte",
     "source": "local"
   },
+  "estorno de \"mercadolivre mercadol\" mercado livre": {
+    "categoria": "Supermercado",
+    "source": "local"
+  },
   "ifd drogaria sao paulo": {
     "categoria": "Delivery",
     "source": "local"
@@ -160,7 +324,7 @@
     "source": "local"
   },
   "cortesia auto posto": {
-    "categoria": "Gasolina",
+    "categoria": "Carro",
     "source": "local"
   },
   "mp acaialegria": {
@@ -173,10 +337,6 @@
   },
   "carrefour tte parcela": {
     "categoria": "Supermercado",
-    "source": "local"
-  },
-  "uber one membership": {
-    "categoria": "Transporte",
     "source": "local"
   },
   "drogaria_sp drogariasa": {
@@ -195,8 +355,12 @@
     "categoria": "Supermercado",
     "source": "local"
   },
-  "flavia tarrao cardoso": {
-    "categoria": "Feira",
+  "desconto antecipacao farmaconde": {
+    "categoria": "Saúde",
+    "source": "local"
+  },
+  "desconto antecipacao mercearia seiko": {
+    "categoria": "Supermercado",
     "source": "local"
   },
   "drogaria sao paulo": {
@@ -259,32 +423,12 @@
     "categoria": "Outros",
     "source": "local"
   },
-  "saldo em atraso": {
-    "categoria": "Outros",
-    "source": "local"
-  },
-  "naconfeitarialtda": {
-    "categoria": "Outros",
-    "source": "local"
-  },
   "chopp bar": {
-    "categoria": "Outros",
-    "source": "local"
-  },
-  "vend perto machines": {
-    "categoria": "Outros",
-    "source": "local"
-  },
-  "aneto food service": {
     "categoria": "Outros",
     "source": "local"
   },
   "panelinha restaurant": {
     "categoria": "Outros",
-    "source": "local"
-  },
-  "ifd osnir hamburger": {
-    "categoria": "Delivery",
     "source": "local"
   },
   "ifd 37 024 609 diego": {
@@ -295,20 +439,12 @@
     "categoria": "Outros",
     "source": "local"
   },
-  "biscoiteria carioca": {
-    "categoria": "Outros",
-    "source": "local"
-  },
   "mania de churrasco pri": {
     "categoria": "Outros",
     "source": "local"
   },
   "kfc analia franco": {
     "categoria": "Outros",
-    "source": "local"
-  },
-  "carrefour tte": {
-    "categoria": "Supermercado",
     "source": "local"
   },
   "ifd rlt pizzaria tatua": {
@@ -321,10 +457,6 @@
   },
   "sk supermercados parcela": {
     "categoria": "Supermercado",
-    "source": "local"
-  },
-  "cerealista da vila": {
-    "categoria": "Outros",
     "source": "local"
   },
   "extra farma": {
@@ -455,23 +587,11 @@
     "categoria": "Transporte",
     "source": "local"
   },
-  "ifd analia food": {
-    "categoria": "Delivery",
-    "source": "local"
-  },
-  "ifd droga raphael sans": {
-    "categoria": "Delivery",
-    "source": "local"
-  },
   "bacio di latte-lj0022": {
     "categoria": "Restaurante",
     "source": "local"
   },
   "analia food": {
-    "categoria": "Outros",
-    "source": "local"
-  },
-  "cozinhadabaixinha": {
     "categoria": "Outros",
     "source": "local"
   },
@@ -491,8 +611,16 @@
     "categoria": "Viagem",
     "source": "local"
   },
+  "desconto antecipacao samalux comercio se": {
+    "categoria": "Outros",
+    "source": "local"
+  },
   "pmbmetro 1t-you1": {
     "categoria": "Transporte",
+    "source": "local"
+  },
+  "desconto antecipacao airbnb hmnjwj2q59": {
+    "categoria": "Viagem",
     "source": "local"
   },
   "ifd carolina": {
@@ -500,11 +628,15 @@
     "source": "local"
   },
   "posto gigante": {
-    "categoria": "Gasolina",
+    "categoria": "Carro",
     "source": "local"
   },
   "restaurante lanchone": {
     "categoria": "Restaurante",
+    "source": "local"
+  },
+  "estorno de \"amazon prime\"": {
+    "categoria": "Assinaturas",
     "source": "local"
   },
   "santuario sao miguel": {
@@ -531,6 +663,10 @@
     "categoria": "Assinaturas",
     "source": "local"
   },
+  "estorno de \"amazonprimebr\"": {
+    "categoria": "Assinaturas",
+    "source": "local"
+  },
   "maria fumaca": {
     "categoria": "Outros",
     "source": "local"
@@ -552,7 +688,7 @@
     "source": "local"
   },
   "auto posto placar": {
-    "categoria": "Gasolina",
+    "categoria": "Carro",
     "source": "local"
   },
   "adiqplu vinhedo plaza": {
@@ -572,6 +708,10 @@
     "source": "local"
   },
   "farma luz poa ii parcela": {
+    "categoria": "Moradia",
+    "source": "local"
+  },
+  "desconto antecipacao farma luz poa ii": {
     "categoria": "Moradia",
     "source": "local"
   },
@@ -607,16 +747,32 @@
     "categoria": "Outros",
     "source": "local"
   },
+  "desconto antecipacao itau unibanco clube": {
+    "categoria": "Outros",
+    "source": "local"
+  },
   "itau unibanco clube parcela": {
     "categoria": "Outros",
+    "source": "local"
+  },
+  "desconto antecipacao carrefour tte": {
+    "categoria": "Supermercado",
     "source": "local"
   },
   "grupo batistella": {
     "categoria": "Outros",
     "source": "local"
   },
+  "desconto antecipacao np pavanello ferraz": {
+    "categoria": "Outros",
+    "source": "local"
+  },
   "rede sales": {
     "categoria": "Outros",
+    "source": "local"
+  },
+  "desconto antecipacao shopee drogariabarao": {
+    "categoria": "Saúde",
     "source": "local"
   },
   "vendify": {
@@ -668,7 +824,7 @@
     "source": "local"
   },
   "posto garitao": {
-    "categoria": "Gasolina",
+    "categoria": "Carro",
     "source": "local"
   },
   "givanildode": {
@@ -759,12 +915,16 @@
     "categoria": "Outros",
     "source": "local"
   },
+  "estorno de \"shopee lujia\"": {
+    "categoria": "Compras",
+    "source": "local"
+  },
   "ifd churrascaria piz": {
     "categoria": "Delivery",
     "source": "local"
   },
   "cb cto maccafe": {
-    "categoria": "Outros",
+    "categoria": "Restaurante",
     "source": "local"
   },
   "estapar": {
@@ -847,10 +1007,6 @@
     "categoria": "Outros",
     "source": "local"
   },
-  "edvaldoaraujodeso": {
-    "categoria": "Outros",
-    "source": "local"
-  },
   "mp emporiumsx": {
     "categoria": "Outros",
     "source": "local"
@@ -896,7 +1052,7 @@
     "source": "local"
   },
   "portal poa auto posto": {
-    "categoria": "Gasolina",
+    "categoria": "Carro",
     "source": "local"
   },
   "mont ararat burger hou": {
@@ -924,7 +1080,7 @@
     "source": "local"
   },
   "auto posto oiti": {
-    "categoria": "Gasolina",
+    "categoria": "Carro",
     "source": "local"
   },
   "pop 19set 18h39min": {
@@ -940,10 +1096,6 @@
     "source": "local"
   },
   "motta comercial": {
-    "categoria": "Outros",
-    "source": "local"
-  },
-  "motta": {
     "categoria": "Outros",
     "source": "local"
   },
@@ -1019,6 +1171,14 @@
     "categoria": "Delivery",
     "source": "local"
   },
+  "desconto antecipacao shopee mundodalidy": {
+    "categoria": "Compras",
+    "source": "local"
+  },
+  "desconto antecipacao dm temu": {
+    "categoria": "Outros",
+    "source": "local"
+  },
   "shopee mundodalidy parcela": {
     "categoria": "Compras",
     "source": "local"
@@ -1071,10 +1231,6 @@
     "categoria": "Compras",
     "source": "local"
   },
-  "ifd farmanita manipula": {
-    "categoria": "Delivery",
-    "source": "local"
-  },
   "shopee vaninenascimen": {
     "categoria": "Compras",
     "source": "local"
@@ -1103,6 +1259,10 @@
     "categoria": "Outros",
     "source": "local"
   },
+  "desconto antecipacao dafiti": {
+    "categoria": "Outros",
+    "source": "local"
+  },
   "tuna anota ai": {
     "categoria": "Outros",
     "source": "local"
@@ -1112,6 +1272,14 @@
     "source": "local"
   },
   "mercadopago ventshop parcela": {
+    "categoria": "Supermercado",
+    "source": "local"
+  },
+  "desconto antecipacao mercadopago ventshop": {
+    "categoria": "Supermercado",
+    "source": "local"
+  },
+  "desconto antecipacao mercadolivre 7produtos": {
     "categoria": "Supermercado",
     "source": "local"
   },
@@ -1155,6 +1323,10 @@
     "categoria": "Outros",
     "source": "local"
   },
+  "desconto antecipacao monteiros car ii": {
+    "categoria": "Outros",
+    "source": "local"
+  },
   "mercadolivre 7produtos": {
     "categoria": "Supermercado",
     "source": "local"
@@ -1169,6 +1341,10 @@
   },
   "tempero qualidade": {
     "categoria": "Outros",
+    "source": "local"
+  },
+  "estorno de \"shopee souzashoppingu\"": {
+    "categoria": "Compras",
     "source": "local"
   },
   "restaurante mana caica": {
@@ -1195,6 +1371,10 @@
     "categoria": "Outros",
     "source": "local"
   },
+  "encerramento de divida": {
+    "categoria": "Outros",
+    "source": "local"
+  },
   "juros de divida encerrada": {
     "categoria": "Outros",
     "source": "local"
@@ -1203,7 +1383,15 @@
     "categoria": "Outros",
     "source": "local"
   },
+  "credito de atraso": {
+    "categoria": "Outros",
+    "source": "local"
+  },
   "gelateria italiana": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "desconto antecipacao util": {
     "categoria": "Outros",
     "source": "local"
   },
@@ -1240,11 +1428,11 @@
     "source": "local"
   },
   "na confeitaria": {
-    "categoria": "Outros",
+    "categoria": "Restaurante",
     "source": "local"
   },
   "sterna cafe aco": {
-    "categoria": "Outros",
+    "categoria": "Restaurante",
     "source": "local"
   },
   "ifd ifood": {
@@ -1364,7 +1552,7 @@
     "source": "local"
   },
   "rainha padaria": {
-    "categoria": "Outros",
+    "categoria": "Restaurante",
     "source": "local"
   },
   "cea anf 179 ecpc": {
@@ -1410,105 +1598,5 @@
   "alta-sp analia franco parcela": {
     "categoria": "Outros",
     "source": "local"
-  },
-  "desconto antecipacao farmaconde": {
-    "categoria": "Saúde",
-    "source": "local"
-  },
-  "desconto antecipacao mercearia seiko": {
-    "categoria": "Supermercado",
-    "source": "local"
-  },
-  "estorno de \"amazon prime\"": {
-    "categoria": "Assinaturas",
-    "source": "local"
-  },
-  "estorno de \"amazonprimebr\"": {
-    "categoria": "Assinaturas",
-    "source": "local"
-  },
-  "desconto antecipacao farma luz poa ii": {
-    "categoria": "Moradia",
-    "source": "local"
-  },
-  "estorno de \"shopee lujia\"": {
-    "categoria": "Compras",
-    "source": "local"
-  },
-  "desconto antecipacao bk crbio": {
-    "categoria": "Outros",
-    "source": "ai"
-  },
-  "desconto antecipacao amazon": {
-    "categoria": "Compras",
-    "source": "local"
-  },
-  "estorno de \"mercadolivre mercadol\" mercado livre": {
-    "categoria": "Supermercado",
-    "source": "local"
-  },
-  "desconto antecipacao samalux comercio se": {
-    "categoria": "Outros",
-    "source": "ai"
-  },
-  "desconto antecipacao airbnb hmnjwj2q59": {
-    "categoria": "Viagem",
-    "source": "local"
-  },
-  "desconto antecipacao itau unibanco clube": {
-    "categoria": "Outros",
-    "source": "ai"
-  },
-  "desconto antecipacao carrefour tte": {
-    "categoria": "Supermercado",
-    "source": "local"
-  },
-  "desconto antecipacao np pavanello ferraz": {
-    "categoria": "Outros",
-    "source": "ai"
-  },
-  "desconto antecipacao shopee drogariabarao": {
-    "categoria": "Saúde",
-    "source": "local"
-  },
-  "desconto antecipacao shopee mundodalidy": {
-    "categoria": "Compras",
-    "source": "local"
-  },
-  "desconto antecipacao dm temu": {
-    "categoria": "Outros",
-    "source": "ai"
-  },
-  "desconto antecipacao dafiti": {
-    "categoria": "Outros",
-    "source": "ai"
-  },
-  "desconto antecipacao mercadopago ventshop": {
-    "categoria": "Supermercado",
-    "source": "local"
-  },
-  "desconto antecipacao mercadolivre 7produtos": {
-    "categoria": "Supermercado",
-    "source": "local"
-  },
-  "desconto antecipacao monteiros car ii": {
-    "categoria": "Outros",
-    "source": "ai"
-  },
-  "estorno de \"shopee souzashoppingu\"": {
-    "categoria": "Compras",
-    "source": "local"
-  },
-  "encerramento de divida": {
-    "categoria": "Outros",
-    "source": "ai"
-  },
-  "credito de atraso": {
-    "categoria": "Outros",
-    "source": "ai"
-  },
-  "desconto antecipacao util": {
-    "categoria": "Outros",
-    "source": "ai"
   }
 }

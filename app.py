@@ -9,6 +9,10 @@ from pathlib import Path
 import os
 from config.settings import settings
 
+# Diretório onde os CSVs são armazenados – usado em todo o app
+DATA_DIR = Path(settings.DATA_PATH)
+
+
 from classifier.engine import classify_batch
 from parsers.nubank import parse_nubank
 from config.theme import CSS, CATEGORY_COLORS
@@ -17,7 +21,16 @@ st.set_page_config(page_title="Finanças", layout="wide")
 st.markdown(CSS, unsafe_allow_html=True)
 st.title("💰 Finanças Pessoais")
 
-DATA_DIR = settings.DATA_PATH
+
+
+# Verifica se o arquivo de categorias foi alterado após o cache
+categories_path = settings.CATEGORIES_PATH
+cache_path = settings.CACHE_PATH
+if not cache_path.exists() or categories_path.stat().st_mtime > cache_path.stat().st_mtime:
+    # Remove o cache antigo para forçar a reclassificação usando o novo categories.json
+    cache_path.parent.mkdir(exist_ok=True, parents=True)
+    cache_path.write_text("{}", encoding="utf-8")
+    st.info("⚙️ Cache de categorias atualizado por mudanças no categories.json.")
 
 # Sidebar Upload
 st.sidebar.header("📁 Upload de Faturas")
