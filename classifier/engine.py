@@ -57,16 +57,10 @@ def classify_batch(df: pd.DataFrame) -> pd.DataFrame:
             cache[normalized] = {"categoria": local_cat, "source": "local"}
             continue
             
-        # fallback LLM line-by-line (mantido simples conforme instrucao de evitar batch)
-        # O usuário solicitou deixar o ponto de LLM para depois, então vamos tratar caso a lib não exista.
-        try:
-            from classifier.llm_fallback import classify_with_llm
-            llm_cat = classify_with_llm(desc) or "Outros"
-        except ImportError:
-            llm_cat = "Outros"
-            
-        df.at[idx, "categoria"] = llm_cat
-        cache[normalized] = {"categoria": llm_cat, "source": "ai"}
+        # Fallback para categoria indeterminada (LLM desativado)
+        fallback_cat = "Outros"
+        df.at[idx, "categoria"] = fallback_cat
+        cache[normalized] = {"categoria": fallback_cat, "source": "local"}
         
     if len(cache) > before_len:
         cache_repo.save(cache)
