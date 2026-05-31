@@ -5,7 +5,7 @@ Serve como interface principal para classificar uma ou várias transações.
 import pandas as pd
 from classifier.local_rules import classify_local
 from utils.normalize import normalize
-from utils.storage import load_cache, save_cache
+from data.repository import cache_repo
 
 
 _cache = None
@@ -13,33 +13,8 @@ _cache = None
 def get_cache():
     global _cache
     if _cache is None:
-        _cache = load_cache()
+        _cache = cache_repo.load()
     return _cache
-
-def classify(description: str) -> str:
-    """
-    Pipeline de classificação para uma única descrição:
-    1. Normaliza o texto (remove ruído)
-    2. Consulta o cache persistente
-    3. Tenta classificação local (keywords/regex)
-    4. Atualiza cache e retorna resultado
-    """
-    normalized = normalize(description)
-    if not normalized:
-        return "Outros"
-
-    cache = get_cache()
-    if normalized in cache:
-        return cache[normalized]
-
-    result = classify_local(normalized) or "Outros"
-    
-    # Atualiza cache em memória e persiste
-    cache[normalized] = result
-    save_cache(cache)
-    
-    return result
-
 
 def classify_batch(df: pd.DataFrame) -> pd.DataFrame:
     """
@@ -58,7 +33,36 @@ def classify_batch(df: pd.DataFrame) -> pd.DataFrame:
     # Só classifica as linhas onde a categoria está vazia ou é NaN
     mask = df["categoria"].isna() | (df["categoria"].astype(str).str.strip() == "")
     
-    if mask.any():
-        df.loc[mask, "categoria"] = df.loc[mask, desc_col].apply(classify)
+    if not mask.any():
+        return df
+
+    cache = get_cache()
+    before_len = len(cache)
+    
+    for idx, row in df[mask].iterrows():
+        desc = row[desc_col]
+        normalized = normalize(desc)
+        
+        if not normalized:
+            df.at[idx, "categoria"] = "Outros"
+            continue
+            
+        if normalized in cache:
+            df.at[idx, "categoria"] = cache[normalized]["categoria"]
+            continue
+            
+        local_cat = classify_local(normalized)
+        if local_cat and local_cat != "Outros":
+            df.at[idx, "categoria"] = local_cat
+            cache[normalized] = {"categoria": local_cat, "source": "local"}
+            continue
+            
+        # Fallback para categoria indeterminada (LLM desativado)
+        fallback_cat = "Outros"
+        df.at[idx, "categoria"] = fallback_cat
+        cache[normalized] = {"categoria": fallback_cat, "source": "local"}
+        
+    if len(cache) > before_len:
+        cache_repo.save(cache)
 
     return df

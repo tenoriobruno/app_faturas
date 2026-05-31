@@ -42,6 +42,7 @@ def render_donut(df: pd.DataFrame):
 def render_bar_history(df_consolidated: pd.DataFrame):
     """Renderiza o gráfico de barras empilhadas para histórico mensal."""
     df = df_consolidated.copy()
+    df = df[df['tipo_transacao'] == 'gasto']
     df['date'] = pd.to_datetime(df['date'])
     df['month_year'] = df['date'].dt.strftime('%b/%y').str.lower()
 
@@ -84,6 +85,16 @@ def render_bar_history(df_consolidated: pd.DataFrame):
                 textfont=dict(size=10, color='white', family='Inter'),
                 hovertemplate='<b>%{fullData.name}</b><br>%{x}<br>R$ %{y:,.2f}<extra></extra>'
             ))
+
+    rolling = monthly_totals.rolling(3, min_periods=1).mean()
+    fig_bar.add_trace(go.Scatter(
+        x=monthly_pivot.index,
+        y=rolling,
+        name='Média Móvel 3m',
+        mode='lines+markers',
+        line=dict(color='#1A1D23', width=2, dash='dot'),
+        marker=dict(size=6)
+    ))
 
     fig_bar.update_layout(
         **PLOT_LAYOUT,

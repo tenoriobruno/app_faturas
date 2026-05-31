@@ -4,13 +4,12 @@ Consome o arquivo categories.json e aplica lógica de prioridade.
 """
 import json
 import re
-from pathlib import Path
 from typing import Optional
+from config.settings import settings
 
 def load_categories():
     """Carrega as definições de categorias do arquivo JSON na raiz do projeto."""
-    cat_path = Path(__file__).parent.parent / "categories.json"
-    with open(cat_path, encoding='utf-8') as f:
+    with open(settings.CATEGORIES_PATH, encoding='utf-8') as f:
         return json.load(f)
 
 

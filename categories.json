@@ -6,7 +6,9 @@
       "ifd",
       "rappi",
       "ze delivery",
-      "aiqfome"
+      "aiqfome",
+      "Tia Cida Restaurante",
+      "cozinhadabaixinha"
     ],
     "regex": []
   },
@@ -21,22 +23,28 @@
       "spoleto",
       "tia cida",
       "donna cacau",
-      "bacio"
+      "bacio",
+      "Espaco 10 Grill",
+      "cafe",
+      "confeit",
+      "padaria"
     ],
     "regex": []
   },
   "Transporte": {
     "keywords": [
       "uber",
-      "99app",
       "metro",
       "dl *uber",
       "transporte",
       "99 taxi",
       "cabify",
-      "onibus"
+      "onibus",
+      "99inapp"
     ],
-    "regex": []
+    "regex": [
+      "99*app"
+    ]
   },
   "Supermercado": {
     "keywords": [
@@ -51,7 +59,10 @@
       "assai",
       "big",
       "dia",
-      "natural da terra"
+      "natural da terra",
+      "cereal",
+      "biscoit",
+      "Vend Perto"
     ],
     "regex": []
   },
@@ -90,7 +101,8 @@
       "apple",
       "microsoft",
       "adobe",
-      "google"
+      "google",
+      "myprofit"
     ],
     "regex": [
       ".*\\.com/bill.*"
@@ -111,8 +123,11 @@
       "renner",
       "c&a",
       "riachuelo",
-      "shoppe",
-      "kabum"
+      "kabum",
+      "moda",
+      "livro",
+      "livraria",
+      "madeiramadeira"
     ],
     "regex": []
   },
@@ -185,14 +200,15 @@
     ],
     "regex": []
   },
-  "Gasolina": {
+  "Carro": {
     "keywords": [
       "posto",
       "shell",
       "ipiranga",
       "gasolina",
       "combustivel",
-      "petrobras"
+      "petrobras",
+      "porto"
     ],
     "regex": []
   },

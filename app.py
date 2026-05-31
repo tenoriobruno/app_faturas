@@ -1,130 +1,104 @@
 """
 Entry point do Dashboard Financeiro.
 Orquestra o carregamento de múltiplos CSVs do Nubank, classificação automática
-e renderização de visualizações interativas usando Streamlit e Plotly.
+e roteia as visualizações para as abas (views).
 """
 import streamlit as st
 import pandas as pd
 from pathlib import Path
-import plotly.graph_objects as go
 import os
-from dotenv import load_dotenv
+from config.settings import settings
+
+# Diretório onde os CSVs são armazenados – usado em todo o app
+DATA_DIR = Path(settings.DATA_PATH)
+
+
 from classifier.engine import classify_batch
 from parsers.nubank import parse_nubank
-from config.theme import CSS, CATEGORY_COLORS
-from components.charts import render_donut, render_bar_history
+from config.theme import CSS, CSS_DARK, CATEGORY_COLORS
+from components.header import render_header
 
 st.set_page_config(page_title="Finanças", layout="wide")
 st.markdown(CSS, unsafe_allow_html=True)
-st.title("💰 Finanças Pessoais")
+render_header()
+# Injeta CSS de modo escuro se ativo
+if st.session_state.get("dark_mode", False):
+    st.markdown(CSS_DARK, unsafe_allow_html=True)
 
-# === CARREGAMENTO DE DADOS ===
-load_dotenv()
-DATA_PATH = os.getenv("DATA_PATH")
-if not DATA_PATH:
-    raise ValueError("DATA_PATH não definido no .env")
-# Buscamos todos os arquivos .csv na pasta configurada
-DATA_DIR = Path(DATA_PATH)
+
+
+# Verifica se o arquivo de categorias foi alterado após o cache
+categories_path = settings.CATEGORIES_PATH
+cache_path = settings.CACHE_PATH
+if not cache_path.exists() or categories_path.stat().st_mtime > cache_path.stat().st_mtime:
+    # Remove o cache antigo para forçar a reclassificação usando o novo categories.json
+    cache_path.parent.mkdir(exist_ok=True, parents=True)
+    cache_path.write_text("{}", encoding="utf-8")
+    st.info("⚙️ Cache de categorias atualizado por mudanças no categories.json.")
+
+# Sidebar Upload
+st.sidebar.header("📁 Upload de Faturas")
+uploaded_file = st.sidebar.file_uploader("Novo arquivo Nubank (.csv)", type=["csv"])
+if uploaded_file is not None:
+    (DATA_DIR / uploaded_file.name).write_bytes(uploaded_file.getbuffer())
+    st.sidebar.success(f"Arquivo {uploaded_file.name} salvo!")
+    st.cache_data.clear()
+    st.rerun()
+
 csv_files = sorted(list(DATA_DIR.glob("*.csv")), reverse=True)
-
 if not csv_files:
-    st.info(f"📁 Nenhum arquivo CSV encontrado na pasta `{DATA_PATH}`")
+    st.info(f"📁 Nenhum arquivo CSV encontrado na pasta `{DATA_DIR}`")
     st.stop()
 
 @st.cache_data
-def load_all_data(csv_files):
-    """Carrega e classifica todos os CSVs, retornando um dicionário de DataFrames."""
+def load_all_data(files):
     frames = {}
-    for f in csv_files:
+    for f in files:
         try:
-            df_temp = parse_nubank(str(f))
-            df_temp = classify_batch(df_temp)
-            # Filtramos transações de ajuste de saldo ou pagamento de fatura
-            df_temp = df_temp[~df_temp['title'].str.lower().str.contains('saldo|pagamento', na=False)]
-            frames[f.name] = df_temp
-        except Exception:
-            pass
+            df = classify_batch(parse_nubank(str(f)))
+            frames[f.name] = df
+        except Exception as e:
+            from utils.logger import get_logger
+            get_logger(__name__).error(f"Erro ao carregar {f.name}: {e}")
     return frames
 
-# Carregamento otimizado
 all_data = load_all_data(tuple(csv_files))
-
 if not all_data:
     st.error("Nenhum CSV válido encontrado")
     st.stop()
 
-# Visão completa de todos os períodos
 df_consolidated = pd.concat(all_data.values(), ignore_index=True)
 
-# === FILE SELECTOR (Quick Fix 1: moved to top) ===
-if len(csv_files) > 1:
-    selected_file = st.selectbox(
-        "Selecione o arquivo CSV:",
-        csv_files,
-        format_func=lambda x: x.name
-    )
+selected_file = st.sidebar.selectbox("Selecione o arquivo CSV:", csv_files, format_func=lambda x: x.name) if len(csv_files) > 1 else csv_files[0]
+df = all_data[selected_file.name].copy()
+df['date'] = pd.to_datetime(df['date'])
+
+from components.sidebar import render_sidebar
+from utils.export import render_export_button
+
+df_filtered = render_sidebar(df, list(CATEGORY_COLORS.keys()))
+st.sidebar.divider()
+render_export_button(df_filtered, filename=f"faturas_{selected_file.name}")
+
+if len(df_filtered) > 0:
+    st.caption(f"📅 {df_filtered['date'].min().strftime('%d/%m/%Y')} a {df_filtered['date'].max().strftime('%d/%m/%Y')} · {len(df_filtered)} transações · {selected_file.name}")
 else:
-    selected_file = csv_files[0]
+    st.caption("Nenhuma transação encontrada.")
 
-try:
-    # Recupera o DataFrame já processado do dicionário all_data
-    df = all_data[selected_file.name]
+tabs = st.tabs(["Visão Geral", "Transações", "Recorrências", "Parcelas Futuras"])
 
-    # Caption discreta com metadados do arquivo em vez de banner de sucesso (Quick Fix 3)
-    df['date'] = pd.to_datetime(df['date'])
-    min_date = df['date'].min().strftime('%d/%m/%Y')
-    max_date = df['date'].max().strftime('%d/%m/%Y')
-    st.caption(f"📅 {min_date} a {max_date} · {len(df)} transações · {selected_file.name}")
+with tabs[0]:
+    from views.overview import render_overview
+    render_overview(df_filtered, df_consolidated, csv_files, selected_file, all_data)
 
-    # Layout de duas colunas: Esquerda (Gráfico de Composição), Direita (Métricas)
-    col_left, col_right = st.columns([0.6, 0.4], gap="large")
+with tabs[1]:
+    from views.transactions import render_transactions
+    render_transactions(df_filtered, load_all_data)
 
-    with col_right:
-        st.subheader("📊 Resumo do Período")
+with tabs[2]:
+    from views.recurrences import render_recurrences
+    render_recurrences(df_consolidated)
 
-        total_tx = len(df)
-        valor_total = df['amount'].sum()
-        ticket_medio = df['amount'].mean()
-        top_cat = df.groupby('categoria')['amount'].sum().idxmax()
-
-        st.metric("Transações", f"{total_tx}")
-        st.metric("Valor Total", f"R$ {valor_total:,.2f}")
-        st.metric("Ticket Médio", f"R$ {ticket_medio:,.2f}")
-        st.metric("Maior Categoria", top_cat)
-        
-        outros_pct = (df['categoria'] == 'Outros').sum() / total_tx * 100 if total_tx > 0 else 0
-        st.metric("% Outros", f"{outros_pct:.1f}%")
-
-    with col_left:
-        st.subheader("💸 Gastos por Categoria")
-        render_donut(df)
-
-    with st.expander("📋 Ver Dados"):
-        edited_df = st.data_editor(
-            df,
-            column_config={
-                "categoria": st.column_config.SelectboxColumn(
-                    options=list(CATEGORY_COLORS.keys())
-                )
-            },
-            use_container_width=True
-        )
-
-        changed_mask = df["categoria"] != edited_df["categoria"]
-        if changed_mask.any():
-            from classifier.engine import get_cache
-            from utils.storage import save_cache
-            from utils.normalize import normalize
-            cache = get_cache()
-            for _, row in edited_df[changed_mask].iterrows():
-                desc = row.get('title', '') or row.get('description', '')
-                normalized = normalize(str(desc))
-                cache[normalized] = row["categoria"]
-            save_cache(cache)
-            load_all_data.clear()
-            st.rerun()
-
-except Exception as e:
-    st.error(f"❌ Erro ao carregar o arquivo: {e}")
-
-render_bar_history(df_consolidated)
+with tabs[3]:
+    from views.installments import render_installments
+    render_installments(df_consolidated)

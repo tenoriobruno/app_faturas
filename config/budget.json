@@ -1,0 +1,8 @@
+{
+  "global": 5000,
+  "categories": {
+    "Delivery": 400,
+    "Supermercado": 1500,
+    "Transporte": 500
+  }
+}
