@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 from components.charts import render_donut, render_bar_history
 from components.budget import render_budget
+from components.metrics import metric_card
 
 def render_overview(df: pd.DataFrame, df_consolidated: pd.DataFrame, csv_files: list, selected_file, all_data: dict):
     # Layout de duas colunas: Esquerda (Gráfico de Composição), Direita (Métricas)
@@ -9,7 +10,7 @@ def render_overview(df: pd.DataFrame, df_consolidated: pd.DataFrame, csv_files: 
 
     with col_right:
         st.markdown(
-            '<div class="glass-card" style="margin-bottom:0;">'
+            '<div style="margin-bottom:12px;">'
             '<span style="font-weight:700;font-size:1.05rem;">📊 Resumo do Período</span>'
             '</div>',
             unsafe_allow_html=True,
@@ -42,24 +43,32 @@ def render_overview(df: pd.DataFrame, df_consolidated: pd.DataFrame, csv_files: 
             delta_valor = valor_total - prev_valor
             delta_ticket = ticket_medio - prev_ticket
 
-        st.metric("Transações (Gastos)", f"{total_tx}", delta=f"{delta_tx}" if delta_tx is not None else None, delta_color="normal")
-        st.metric("Valor Total", f"R$ {valor_total:,.2f}", delta=f"R$ {delta_valor:,.2f}" if delta_valor is not None else None, delta_color="inverse")
-        st.metric("Ticket Médio", f"R$ {ticket_medio:,.2f}", delta=f"R$ {delta_ticket:,.2f}" if delta_ticket is not None else None, delta_color="inverse")
-        st.metric("Maior Categoria", top_cat)
+        # Renderiza métricas usando o novo componente de métricas customizadas estilizadas
+        metric_card("Transações (Gastos)", f"{total_tx}", delta=f"{delta_tx:+d}" if delta_tx is not None else None, delta_color="normal")
+        metric_card("Valor Total", f"R$ {valor_total:,.2f}", delta=f"R$ {delta_valor:+,.2f}" if delta_valor is not None else None, delta_color="inverse")
+        metric_card("Ticket Médio", f"R$ {ticket_medio:,.2f}", delta=f"R$ {delta_ticket:+,.2f}" if delta_ticket is not None else None, delta_color="inverse")
+        metric_card("Maior Categoria", top_cat)
 
         outros_pct = (df['categoria'] == 'Outros').sum() / len(df) * 100 if len(df) > 0 else 0
-        st.metric("% Não-classificado", f"{outros_pct:.1f}%")
+        metric_card("% Não-classificado", f"{outros_pct:.1f}%")
 
     with col_left:
         st.markdown(
-            '<div class="glass-card" style="margin-bottom:0;">'
+            '<div style="margin-bottom:12px;">'
             '<span style="font-weight:700;font-size:1.05rem;">💸 Gastos por Categoria</span>'
             '</div>',
             unsafe_allow_html=True,
         )
+        # O gráfico de donut já renderiza dentro de st.plotly_chart com bordas/sombras, mas vamos envolvê-lo em um container glass-card
+        st.markdown('<div class="glass-card">', unsafe_allow_html=True)
         render_donut(df_gastos)
+        st.markdown('</div>', unsafe_allow_html=True)
 
     st.divider()
     render_budget(df)
     st.divider()
+    st.markdown('<div class="glass-card">', unsafe_allow_html=True)
+    st.markdown('<div style="font-weight:700;font-size:1.05rem;margin-bottom:16px;">📈 Histórico Mensal de Gastos</div>', unsafe_allow_html=True)
     render_bar_history(df_consolidated)
+    st.markdown('</div>', unsafe_allow_html=True)
+
