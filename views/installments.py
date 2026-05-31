@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
-from config.theme import PLOT_LAYOUT
+from config.theme import get_plotly_layout
 from core.installments import calculate_future_installments
 
 def render_installments(df_consolidated: pd.DataFrame):
@@ -64,6 +64,9 @@ def render_installments(df_consolidated: pd.DataFrame):
         monthly_debt = future_df.groupby('future_month')['amount'].sum().reset_index()
         monthly_debt['future_month_str'] = monthly_debt['future_month'].dt.strftime('%b/%Y')
         
+        is_dark = st.session_state.get('dark_mode', False)
+        plot_layout = get_plotly_layout(is_dark)
+        
         fig = go.Figure(data=[go.Bar(
             x=monthly_debt['future_month_str'],
             y=monthly_debt['amount'],
@@ -73,7 +76,7 @@ def render_installments(df_consolidated: pd.DataFrame):
         )])
         
         fig.update_layout(
-            **PLOT_LAYOUT,
+            **plot_layout,
             xaxis_title='',
             yaxis_title='R$',
             height=300,

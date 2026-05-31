@@ -1,12 +1,15 @@
 import streamlit as st
 import plotly.graph_objects as go
 import pandas as pd
-from config.theme import CATEGORY_COLORS, PLOT_LAYOUT
+from config.theme import CATEGORY_COLORS, get_plotly_layout
 
 def render_donut(df: pd.DataFrame):
     """Renderiza o gráfico de donut para distribuição de gastos por categoria."""
     category_spend = df.groupby('categoria')['amount'].sum().sort_values(ascending=False)
     pie_colors = [CATEGORY_COLORS.get(cat, '#94A3B8') for cat in category_spend.index]
+    
+    is_dark = st.session_state.get('dark_mode', False)
+    plot_layout = get_plotly_layout(is_dark)
 
     fig_pie = go.Figure(data=[go.Pie(
         labels=category_spend.index,
@@ -18,13 +21,13 @@ def render_donut(df: pd.DataFrame):
         hovertemplate='<b>%{label}</b><br>R$ %{value:,.2f}<br>%{percent}<extra></extra>',
         marker=dict(
             colors=pie_colors,
-            line=dict(color='#FFFFFF', width=2)
+            line=dict(color='#1C2333' if is_dark else '#FFFFFF', width=2)
         ),
         hole=0.45
     )])
 
     fig_pie.update_layout(
-        **PLOT_LAYOUT,
+        **plot_layout,
         margin=dict(t=16, b=16, l=16, r=120),
         height=400,
         showlegend=True,
@@ -33,7 +36,7 @@ def render_donut(df: pd.DataFrame):
             x=1.02,
             y=0.5,
             bgcolor='rgba(0,0,0,0)',
-            font=dict(size=11, color='#64748B')
+            font=dict(size=11, color='#8B949E' if is_dark else '#64748B')
         )
     )
 
@@ -55,6 +58,9 @@ def render_bar_history(df_consolidated: pd.DataFrame):
     monthly_pivot = monthly_pivot.reindex(month_order)
 
     monthly_totals = monthly_pivot.sum(axis=1)
+
+    is_dark = st.session_state.get('dark_mode', False)
+    plot_layout = get_plotly_layout(is_dark)
 
     fig_bar = go.Figure()
     seen_legend = set()
@@ -92,24 +98,35 @@ def render_bar_history(df_consolidated: pd.DataFrame):
         y=rolling,
         name='Média Móvel 3m',
         mode='lines+markers',
-        line=dict(color='#1A1D23', width=2, dash='dot'),
+        line=dict(color='#FAFAFA' if is_dark else '#1A1D23', width=2, dash='dot'),
         marker=dict(size=6)
     ))
 
+    # Atualiza layouts mantendo algumas particularidades de eixo
+    custom_layout = plot_layout.copy()
+    
+    # Remove as configs padrao para re-aplicar o que precisamos no eixo específico
+    custom_layout.pop('xaxis', None)
+    custom_layout.pop('yaxis', None)
+    
+    xaxis_gridcolor = 'rgba(255,255,255,0)' if is_dark else 'rgba(0,0,0,0)'
+    yaxis_gridcolor = 'rgba(255,255,255,0.06)' if is_dark else 'rgba(0,0,0,0.06)'
+    tick_color = '#8B949E' if is_dark else '#94A3B8'
+
     fig_bar.update_layout(
-        **PLOT_LAYOUT,
+        **custom_layout,
         barmode='stack',
         xaxis_title='',
         yaxis_title='R$',
         xaxis=dict(
-            gridcolor='rgba(0,0,0,0)',
+            gridcolor=xaxis_gridcolor,
             linecolor='rgba(0,0,0,0)',
-            tickfont=dict(color='#94A3B8', size=12)
+            tickfont=dict(color=tick_color, size=12)
         ),
         yaxis=dict(
-            gridcolor='rgba(0,0,0,0.06)',
+            gridcolor=yaxis_gridcolor,
             linecolor='rgba(0,0,0,0)',
-            tickfont=dict(color='#94A3B8', size=12),
+            tickfont=dict(color=tick_color, size=12),
             tickprefix='R$ '
         ),
         hovermode='x unified',
@@ -120,7 +137,7 @@ def render_bar_history(df_consolidated: pd.DataFrame):
             y=-0.22,
             bgcolor='rgba(0,0,0,0)',
             bordercolor='rgba(0,0,0,0)',
-            font=dict(size=11, color='#64748B')
+            font=dict(size=11, color=tick_color)
         ),
         margin=dict(t=16, b=60, l=50, r=16),
         bargap=0.25,
@@ -128,3 +145,4 @@ def render_bar_history(df_consolidated: pd.DataFrame):
     )
 
     st.plotly_chart(fig_bar, use_container_width=True, key="bar_chart")
+

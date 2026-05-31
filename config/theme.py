@@ -17,6 +17,8 @@ CSS = """
     --text-secondary: #65676B;
     --accent: #0866FF;
     --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.06);
+    --track-bg: rgba(0, 0, 0, 0.08);
+    --input-bg: #FFFFFF;
 }
 
 html, body, [class*="css"] {
@@ -142,42 +144,49 @@ button[data-baseweb="tab"][aria-selected="true"] {
     color: var(--text-secondary) !important;
 }
 
-/* === SELECT BOX STYLING === */
+/* === INPUTS STYLING === */
 .stDeployButton { display: none !important; }
 
-.stSelectbox {
-  background-color: white !important;
-  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+.stSelectbox > div > div, .stSelectbox input, .stTextInput input, .stNumberInput input {
+  background-color: var(--input-bg) !important;
+  border: 1px solid var(--border-card) !important;
   border-radius: 12px !important;
-  color: var(--text-primary) !important;
-}
-
-.stSelectbox > div > div {
-  background-color: white !important;
   color: var(--text-primary) !important;
 }
 
 .stSelectbox div[role="listbox"] {
-  background-color: white !important;
-  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  background-color: var(--input-bg) !important;
+  border: 1px solid var(--border-card) !important;
   border-radius: 12px !important;
 }
 
 .stSelectbox div[role="option"] {
-  background-color: white !important;
+  background-color: var(--input-bg) !important;
   color: var(--text-primary) !important;
   padding: 8px 12px;
 }
 
 .stSelectbox div[role="option"]:hover {
-  background-color: #F8FAFC !important;
+  background-color: var(--track-bg) !important;
 }
 
-.stSelectbox input {
-  background-color: white !important;
-  border: 1px solid rgba(0, 0, 0, 0.1) !important;
-  border-radius: 12px !important;
-  color: var(--text-primary) !important;
+/* SLIDER */
+.stSlider [data-baseweb="slider"] div[data-testid="stTickBar"] > div {
+    background-color: var(--track-bg) !important;
+}
+.stSlider [data-baseweb="slider"] div[role="slider"] {
+    background-color: var(--accent) !important;
+    border-color: var(--accent) !important;
+}
+
+/* FILE UPLOADER */
+[data-testid="stFileUploader"] {
+    background-color: var(--input-bg) !important;
+    border: 1px dashed var(--border-card) !important;
+    border-radius: 12px;
+}
+[data-testid="stFileUploader"] section {
+    color: var(--text-primary) !important;
 }
 
 /* === RESPONSIVE: tablet (≤1024px) === */
@@ -206,16 +215,16 @@ button[data-baseweb="tab"][aria-selected="true"] {
         font-size: 1.4rem !important;
     }
 
-    [data-testid=\"stMetricValue\"] {
+    [data-testid="stMetricValue"] {
         font-size: 1.4rem !important;
     }
 
     /* Empilha colunas do Streamlit verticalmente */
-    [data-testid=\"stHorizontalBlock\"] {
+    [data-testid="stHorizontalBlock"] {
         flex-direction: column !important;
     }
 
-    [data-testid=\"stHorizontalBlock\"] > [data-testid=\"stVerticalBlock\"] {
+    [data-testid="stHorizontalBlock"] > [data-testid="stVerticalBlock"] {
         width: 100% !important;
         min-width: 100% !important;
     }
@@ -235,70 +244,66 @@ CSS_DARK = """
     --text-secondary: #8B949E;
     --accent: #58A6FF;
     --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.3), 0 1px 4px rgba(0, 0, 0, 0.2);
+    --track-bg: rgba(255, 255, 255, 0.12);
+    --input-bg: #161B22;
 }
 
 html, body, [data-testid="stAppViewContainer"], [data-testid="stMain"],
 [data-testid="stVerticalBlock"], .main, .block-container {
-    background-color: #0E1117 !important;
-    color: #FAFAFA !important;
+    background-color: var(--bg-page) !important;
+    color: var(--text-primary) !important;
 }
 
 [data-testid="stSidebar"] {
-    background-color: #161B22 !important;
+    background-color: var(--input-bg) !important;
 }
 [data-testid="stSidebar"] * {
-    color: #FAFAFA !important;
+    color: var(--text-primary) !important;
 }
 
 h1, h2, h3, h4, h5, h6, p, label, span, div {
-    color: #FAFAFA !important;
+    color: var(--text-primary) !important;
 }
 
 [data-testid="stMetric"] {
-    background: #1C2333 !important;
-    border-color: #30363D !important;
+    background: var(--bg-card-solid) !important;
+    border-color: var(--border-card) !important;
 }
 [data-testid="stMetricLabel"] p {
-    color: #8B949E !important;
+    color: var(--text-secondary) !important;
 }
 [data-testid="stMetricValue"] {
-    color: #FAFAFA !important;
+    color: var(--text-primary) !important;
 }
 
 [data-testid="stPlotlyChart"] {
-    background: #1C2333 !important;
-    border-color: #30363D !important;
+    background: var(--bg-card-solid) !important;
+    border-color: var(--border-card) !important;
 }
 
 [data-testid="stExpander"] {
-    background: #1C2333 !important;
-    border-color: #30363D !important;
+    background: var(--bg-card-solid) !important;
+    border-color: var(--border-card) !important;
 }
 
 [data-testid="stDataFrame"], [data-testid="stTable"] {
-    background: #1C2333 !important;
+    background: var(--bg-card-solid) !important;
 }
 
 button[data-baseweb="tab"] {
-    color: #8B949E !important;
+    color: var(--text-secondary) !important;
 }
 button[data-baseweb="tab"][aria-selected="true"] {
-    color: #58A6FF !important;
-}
-
-.stSelectbox > div > div, .stSelectbox input {
-    background-color: #1C2333 !important;
-    color: #FAFAFA !important;
-    border-color: #30363D !important;
+    color: var(--accent) !important;
 }
 
 [data-testid="stCaptionContainer"] {
-    color: #8B949E !important;
+    color: var(--text-secondary) !important;
 }
 
 .glass-card {
-    background: rgba(28, 35, 51, 0.8) !important;
-    border-color: rgba(48, 54, 61, 0.7) !important;
+    background: var(--bg-card) !important;
+    border-color: var(--border-card) !important;
 }
 </style>
 """
@@ -324,13 +329,50 @@ CATEGORY_COLORS = {
     'Outros': '#8D949E'          
 }
 
-PLOT_LAYOUT = dict(
-    paper_bgcolor='rgba(0,0,0,0)',
-    plot_bgcolor='rgba(0,0,0,0)',
-    font=dict(color='#65676B', family='Inter, system-ui, sans-serif', size=12),
-    hoverlabel=dict(
-        bgcolor='#FFFFFF',
-        bordercolor='#CED0D4',
-        font=dict(color='#1C1E21', size=13, family='Inter, system-ui, sans-serif')
-    )
-)
+def get_plotly_layout(dark_mode: bool = False):
+    """
+    Retorna o dicionário de layout base para os gráficos do Plotly.
+    Adapta cores e fundos com base no tema selecionado.
+    """
+    if dark_mode:
+        return dict(
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor='rgba(0,0,0,0)',
+            font=dict(color='#8B949E', family='Inter, system-ui, sans-serif', size=12),
+            hoverlabel=dict(
+                bgcolor='#1C2333',
+                bordercolor='#30363D',
+                font=dict(color='#FAFAFA', size=13, family='Inter, system-ui, sans-serif')
+            ),
+            xaxis=dict(
+                gridcolor='rgba(255,255,255,0.06)',
+                linecolor='rgba(0,0,0,0)',
+                tickfont=dict(color='#8B949E', size=12)
+            ),
+            yaxis=dict(
+                gridcolor='rgba(255,255,255,0.06)',
+                linecolor='rgba(0,0,0,0)',
+                tickfont=dict(color='#8B949E', size=12)
+            )
+        )
+    else:
+        return dict(
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor='rgba(0,0,0,0)',
+            font=dict(color='#65676B', family='Inter, system-ui, sans-serif', size=12),
+            hoverlabel=dict(
+                bgcolor='#FFFFFF',
+                bordercolor='#CED0D4',
+                font=dict(color='#1C1E21', size=13, family='Inter, system-ui, sans-serif')
+            ),
+            xaxis=dict(
+                gridcolor='rgba(0,0,0,0.06)',
+                linecolor='rgba(0,0,0,0)',
+                tickfont=dict(color='#65676B', size=12)
+            ),
+            yaxis=dict(
+                gridcolor='rgba(0,0,0,0.06)',
+                linecolor='rgba(0,0,0,0)',
+                tickfont=dict(color='#65676B', size=12)
+            )
+        )

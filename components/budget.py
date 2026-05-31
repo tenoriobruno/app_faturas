@@ -22,7 +22,7 @@ def render_budget(df: pd.DataFrame):
             f'<div class="glass-card" style="padding:16px 20px;">'
             f'<span style="font-weight:600;">Global</span> &nbsp;'
             f'<span style="color:var(--text-secondary);">R$ {total_spent:,.2f} / R$ {global_budget:,.2f} ({pct_global*100:.1f}%)</span>'
-            f'<div style="background:rgba(0,0,0,0.08);border-radius:10px;margin-top:10px;">'
+            f'<div style="background:var(--track-bg);border-radius:10px;margin-top:10px;">'
             f'<div style="width:{pct_global*100}%;background:{color};height:10px;border-radius:10px;transition:width 0.4s ease;"></div>'
             f'</div></div>',
             unsafe_allow_html=True
@@ -40,7 +40,7 @@ def render_budget(df: pd.DataFrame):
                     f'<div class="glass-card" style="padding:12px 16px;margin-bottom:8px;">'
                     f'<span style="font-weight:600;">{cat}</span> &nbsp;'
                     f'<span style="color:var(--text-secondary);font-size:0.88rem;">R$ {spent:,.2f} / R$ {limit:,.2f}</span>'
-                    f'<div style="background:rgba(0,0,0,0.08);border-radius:8px;margin-top:8px;">'
+                    f'<div style="background:var(--track-bg);border-radius:8px;margin-top:8px;">'
                     f'<div style="width:{pct_cat*100}%;background:{color_cat};height:8px;border-radius:8px;transition:width 0.4s ease;"></div>'
                     f'</div></div>',
                     unsafe_allow_html=True
