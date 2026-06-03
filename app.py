@@ -15,15 +15,12 @@ DATA_DIR = Path(settings.DATA_PATH)
 
 from classifier.engine import classify_batch
 from parsers.nubank import parse_nubank
-from config.theme import CSS, CSS_DARK, CATEGORY_COLORS
+from config.theme import apply_theme, CATEGORY_COLORS
 from components.header import render_header
 
 st.set_page_config(page_title="Finanças", layout="wide")
-st.markdown(CSS, unsafe_allow_html=True)
+apply_theme()
 render_header()
-# Injeta CSS de modo escuro se ativo
-if st.session_state.get("dark_mode", False):
-    st.markdown(CSS_DARK, unsafe_allow_html=True)
 
 
 

@@ -16,7 +16,7 @@ def render_header():
     col1, col2 = st.columns([5, 1])
     with col1:
         st.markdown("""
-        <h1 style='margin: 0; font-size: 2rem; color: var(--text-color);'>Finanças Pessoais</h1>
+        <h1 style='margin:0;'>Finanças Pessoais</h1>
         """, unsafe_allow_html=True)
     with col2:
         # Use a simple button to act as toggle, showing sun/moon based on state

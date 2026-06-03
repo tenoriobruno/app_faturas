@@ -1,173 +1,285 @@
 """
 Configurações visuais e de estilo para o dashboard.
-Consolida CSS, paleta de cores e configurações do Plotly.
+Editorial‑finance aesthetic, glassmorphism, font imports, CSS variables, apply_theme().
 """
+def apply_theme():
+    import streamlit as st
+    st.markdown(CSS, unsafe_allow_html=True)
+    if st.session_state.get("dark_mode", False):
+        st.markdown(CSS_DARK, unsafe_allow_html=True)
+
 
 CSS = """
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Merriweather:wght@300;400;700&display=swap');
 
 :root {
-    --font-main: 'Inter', system-ui, -apple-system, sans-serif;
-    --bg-page: #F0F2F5;
-    --bg-card: rgba(255, 255, 255, 0.72);
+    --font-heading: 'Merriweather', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+    --bg-page: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(8,102,255,0.06), transparent),
+               radial-gradient(ellipse 50% 40% at 80% 100%, rgba(8,102,255,0.04), transparent),
+               #F0F2F5;
+    --bg-card: rgba(255, 255, 255, 0.78);
     --bg-card-solid: #FFFFFF;
-    --border-card: rgba(206, 208, 212, 0.6);
+    --border-card: rgba(206, 208, 212, 0.45);
+    --border-card-accent: rgba(8, 102, 255, 0.15);
     --text-primary: #1C1E21;
     --text-secondary: #65676B;
     --accent: #0866FF;
-    --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.06);
-    --track-bg: rgba(0, 0, 0, 0.08);
+    --accent-soft: rgba(8, 102, 255, 0.08);
+    --accent-glow: rgba(8, 102, 255, 0.15);
+    --shadow-card: 0 1px 3px rgba(0,0,0,0.04), 0 8px 32px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.02);
+    --shadow-elevated: 0 1px 3px rgba(0,0,0,0.04), 0 16px 48px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.04);
+    --track-bg: rgba(0, 0, 0, 0.06);
     --input-bg: #FFFFFF;
+    --divider: rgba(0, 0, 0, 0.06);
+    --tab-inactive: rgba(0,0,0,0.04);
+    --success: #2E7D32;
+    --warning: #E65100;
+    --danger: #C62828;
+    --sidebar-bg: rgba(255,255,255,0.85);
 }
 
-html, body, [class*="css"] {
-    font-family: var(--font-main);
+/* ===================== RESET / BASE ===================== */
+html, body, [data-testid="stAppViewContainer"],
+[data-testid="stMain"], [data-testid="stVerticalBlock"] {
+    background: var(--bg-page) !important;
+    color: var(--text-primary) !important;
+    font-family: var(--font-body) !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-#MainMenu, footer, header {
-    visibility: hidden;
+/* Every Streamlit block wrapper inherits the background */
+[data-testid="stAppViewContainer"] > .main,
+[data-testid="stAppViewContainer"] > section,
+[data-testid="stMain"] > .block-container,
+.main > div, section > div {
+    background: transparent !important;
 }
 
-[data-testid="stHeader"] {
-    background: transparent;
-}
+#MainMenu, footer, header { visibility: hidden; }
+[data-testid="stHeader"] { background: transparent !important; }
 
 .block-container {
-    padding: 2rem 2.5rem;
-    max-width: 1400px;
+    padding: 1.75rem 2.5rem !important;
+    max-width: 1440px;
+    background: transparent !important;
 }
 
-/* === TITLE === */
+/* ===================== TYPOGRAPHY ===================== */
+h1, h2, h3 {
+    font-family: var(--font-heading) !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.01em;
+    color: var(--text-primary) !important;
+}
 h1 {
-    font-family: var(--font-main) !important;
-    font-weight: 700 !important;
-    margin-bottom: 0.25rem !important;
+    font-size: 2rem !important;
+    font-weight: 300 !important;
+    letter-spacing: -0.02em;
+}
+h2 { font-size: 1.35rem !important; }
+h3 { font-size: 1.1rem !important; }
+
+p, label, span, li, .stCaptionContainer, .stMarkdown {
+    font-family: var(--font-body) !important;
     color: var(--text-primary) !important;
 }
 
-/* === SECTION HEADERS === */
-h2, h3 {
-    font-family: var(--font-main) !important;
-    font-weight: 600 !important;
-    margin-bottom: 0.75rem !important;
-    margin-top: 0 !important;
-    color: var(--text-primary) !important;
-}
-
-/* === GLASS CARD === */
+/* ===================== GLASS CARD ===================== */
 .glass-card {
     background: var(--bg-card);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-radius: 14px;
+    backdrop-filter: blur(16px) saturate(1.4);
+    -webkit-backdrop-filter: blur(16px) saturate(1.4);
+    border-radius: 16px;
     border: 1px solid var(--border-card);
     box-shadow: var(--shadow-card);
-    padding: 20px 24px;
-    margin-bottom: 16px;
-    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    padding: 22px 26px;
+    margin-bottom: 18px;
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+                background 0.3s ease, border 0.3s ease;
 }
-
 .glass-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-elevated);
+    border-color: var(--border-card-accent);
+}
+.glass-card h1, .glass-card h2, .glass-card h3,
+.glass-card p, .glass-card span {
+    margin: 0;
 }
 
-/* === CARDS (st.metric) === */
+/* ===================== METRIC CARDS ===================== */
 [data-testid="stMetric"] {
-    background: var(--bg-card-solid);
-    border-radius: 12px;
-    padding: 16px 20px;
-    box-shadow: var(--shadow-card);
-    border: 1px solid var(--border-card);
-    margin-bottom: 12px;
-    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    background: var(--bg-card-solid) !important;
+    border-radius: 14px !important;
+    padding: 16px 20px !important;
+    box-shadow: var(--shadow-card) !important;
+    border: 1px solid var(--border-card) !important;
+    margin-bottom: 10px !important;
+    transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    position: relative !important;
+    overflow: hidden !important;
 }
-
+[data-testid="stMetric"]::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--accent);
+    border-radius: 0 2px 2px 0;
+    opacity: 0.6;
+}
 [data-testid="stMetric"]:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px) !important;
+    box-shadow: var(--shadow-elevated) !important;
+    border-color: var(--border-card-accent) !important;
 }
-
 [data-testid="stMetricLabel"] p {
-    font-size: 0.82rem !important;
+    font-size: 0.72rem !important;
     font-weight: 600 !important;
     color: var(--text-secondary) !important;
     margin: 0 !important;
-    letter-spacing: 0.02em !important;
+    letter-spacing: 0.05em !important;
     text-transform: uppercase !important;
+    font-family: var(--font-body) !important;
 }
-
 [data-testid="stMetricValue"] {
-    font-size: 1.8rem !important;
-    font-weight: 700 !important;
+    font-size: 1.65rem !important;
+    font-weight: 600 !important;
     color: var(--text-primary) !important;
-    line-height: 1.1 !important;
-    font-family: var(--font-main) !important;
+    line-height: 1.15 !important;
+    font-family: var(--font-body) !important;
+}
+[data-testid="stMetricDelta"] svg { display: none; }
+[data-testid="stMetricDelta"] {
+    font-size: 0.78rem !important;
+    font-weight: 500 !important;
 }
 
-/* === CHART CONTAINERS === */
+/* ===================== CHARTS ===================== */
 [data-testid="stPlotlyChart"] {
-    background: var(--bg-card-solid);
+    background: transparent !important;
     border-radius: 12px;
-    padding: 16px;
-    box-shadow: var(--shadow-card);
-    border: 1px solid var(--border-card);
+    padding: 4px;
+    box-shadow: none;
+    border: none;
+}
+.js-plotly-plot .plot-container {
+    border-radius: 12px;
 }
 
-/* === EXPANDER === */
+/* ===================== EXPANDER ===================== */
 [data-testid="stExpander"] {
-    background: var(--bg-card-solid);
-    border-radius: 12px !important;
+    background: var(--bg-card) !important;
+    backdrop-filter: blur(12px);
+    border-radius: 14px !important;
     border: 1px solid var(--border-card) !important;
-    box-shadow: var(--shadow-card);
+    box-shadow: var(--shadow-card) !important;
     overflow: hidden;
+    transition: all 0.22s ease !important;
+}
+[data-testid="stExpander"]:hover {
+    border-color: var(--border-card-accent) !important;
 }
 
-/* === TABS === */
+/* ===================== TABS ===================== */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 6px;
+    background: var(--tab-inactive);
+    border-radius: 12px;
+    padding: 4px;
+    margin-bottom: 1.25rem;
+}
 button[data-baseweb="tab"] {
     color: var(--text-secondary) !important;
-    font-weight: 600 !important;
-    font-family: var(--font-main) !important;
+    font-weight: 500 !important;
+    font-size: 0.84rem !important;
+    font-family: var(--font-body) !important;
+    border-radius: 10px !important;
+    padding: 6px 16px !important;
+    transition: all 0.18s ease;
+    border: none !important;
+    background: transparent !important;
+}
+button[data-baseweb="tab"]:hover {
+    background: rgba(0,0,0,0.04) !important;
+    color: var(--text-primary) !important;
 }
 button[data-baseweb="tab"][aria-selected="true"] {
+    background: var(--accent-soft) !important;
     color: var(--accent) !important;
+    font-weight: 600 !important;
+}
+[data-testid="stTabs"] [role="tabpanel"] {
+    padding-top: 0.5rem;
 }
 
-/* === DIVIDER SPACING === */
-[data-testid="stVerticalBlock"] > [data-testid="stVerticalBlock"] {
-    gap: 0.5rem;
+/* ===================== DIVIDER ===================== */
+.stMarkdown hr, [data-testid="stVerticalBlockBorder"] {
+    border-color: var(--divider) !important;
+    margin: 1.25rem 0 !important;
 }
 
-/* === CAPTION === */
-[data-testid="stCaptionContainer"] {
-    color: var(--text-secondary) !important;
+/* ===================== SIDEBAR ===================== */
+[data-testid="stSidebar"] {
+    background: var(--sidebar-bg) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-right: 1px solid var(--border-card);
+}
+[data-testid="stSidebar"] > div {
+    background: transparent !important;
+}
+[data-testid="stSidebar"] .block-container {
+    padding: 1.5rem 1.25rem !important;
+}
+[data-testid="stSidebar"] * {
+    color: var(--text-primary) !important;
 }
 
-/* === INPUTS STYLING === */
-.stDeployButton { display: none !important; }
-
-.stSelectbox > div > div, .stSelectbox input, .stTextInput input, .stNumberInput input {
-  background-color: var(--input-bg) !important;
-  border: 1px solid var(--border-card) !important;
-  border-radius: 12px !important;
-  color: var(--text-primary) !important;
+/* ===================== INPUTS ===================== */
+.stSelectbox > div > div,
+.stSelectbox input,
+.stTextInput input,
+.stNumberInput input,
+.stDateInput input {
+    background-color: var(--input-bg) !important;
+    border: 1px solid var(--border-card) !important;
+    border-radius: 10px !important;
+    color: var(--text-primary) !important;
+    font-family: var(--font-body) !important;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease !important;
 }
-
+.stSelectbox > div > div:focus-within,
+.stTextInput input:focus,
+.stNumberInput input:focus,
+.stDateInput input:focus {
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 3px var(--accent-soft) !important;
+}
 .stSelectbox div[role="listbox"] {
-  background-color: var(--input-bg) !important;
-  border: 1px solid var(--border-card) !important;
-  border-radius: 12px !important;
+    background-color: var(--input-bg) !important;
+    border: 1px solid var(--border-card) !important;
+    border-radius: 10px !important;
+    box-shadow: var(--shadow-elevated) !important;
 }
-
 .stSelectbox div[role="option"] {
-  background-color: var(--input-bg) !important;
-  color: var(--text-primary) !important;
-  padding: 8px 12px;
+    background-color: transparent !important;
+    color: var(--text-primary) !important;
+    padding: 8px 12px;
+    transition: background 0.12s ease;
 }
-
 .stSelectbox div[role="option"]:hover {
-  background-color: var(--track-bg) !important;
+    background-color: var(--accent-soft) !important;
+}
+.stSelectbox div[role="option"][aria-selected="true"] {
+    background-color: var(--accent-soft) !important;
+    color: var(--accent) !important;
+    font-weight: 600;
 }
 
 /* SLIDER */
@@ -179,170 +291,311 @@ button[data-baseweb="tab"][aria-selected="true"] {
     border-color: var(--accent) !important;
 }
 
+/* CHECKBOX */
+.stCheckbox label {
+    font-family: var(--font-body) !important;
+}
+.stCheckbox input:checked ~ div {
+    background-color: var(--accent) !important;
+    border-color: var(--accent) !important;
+}
+
 /* FILE UPLOADER */
 [data-testid="stFileUploader"] {
     background-color: var(--input-bg) !important;
     border: 1px dashed var(--border-card) !important;
     border-radius: 12px;
+    transition: border-color 0.18s ease;
+}
+[data-testid="stFileUploader"]:hover {
+    border-color: var(--accent) !important;
 }
 [data-testid="stFileUploader"] section {
     color: var(--text-primary) !important;
 }
 
-/* === RESPONSIVE: tablet (≤1024px) === */
-@media (max-width: 1024px) {
-    .block-container {
-        padding: 1.5rem 1.25rem !important;
-    }
-
-    .glass-card {
-        padding: 16px 18px;
-    }
+/* BUTTON */
+.stButton button {
+    border-radius: 10px !important;
+    font-family: var(--font-body) !important;
+    font-weight: 600 !important;
+    transition: all 0.18s ease !important;
+    border: 1px solid var(--border-card) !important;
+}
+.stButton button:hover {
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 3px var(--accent-soft) !important;
 }
 
-/* === RESPONSIVE: mobile (≤768px) === */
+/* DATA TABLE / EDITOR */
+[data-testid="stDataFrame"], [data-testid="stTable"] {
+    background: transparent !important;
+}
+[data-testid="stDataFrame"] [data-testid="stDataFrameContainer"] {
+    border-radius: 12px !important;
+    border: 1px solid var(--border-card) !important;
+    overflow: hidden;
+    background: var(--bg-card-solid) !important;
+}
+[data-testid="stDataFrame"] th {
+    font-family: var(--font-body) !important;
+    font-weight: 600 !important;
+    font-size: 0.78rem !important;
+    color: var(--text-secondary) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.04em !important;
+    background: var(--tab-inactive) !important;
+}
+[data-testid="stDataFrame"] td {
+    font-family: var(--font-body) !important;
+    font-size: 0.84rem !important;
+}
+
+/* CAPTION */
+[data-testid="stCaptionContainer"] {
+    color: var(--text-secondary) !important;
+    font-size: 0.82rem !important;
+}
+
+.stDeployButton { display: none !important; }
+
+/* ===================== PROGRESS ===================== */
+.stProgress > div > div > div {
+    background-color: var(--accent) !important;
+}
+.stProgress > div > div {
+    background-color: var(--track-bg) !important;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 1024px) {
+    .block-container { padding: 1.25rem 1rem !important; }
+    .glass-card { padding: 18px 20px; }
+}
 @media (max-width: 768px) {
-    .block-container {
-        padding: 1rem 0.75rem !important;
-    }
-
-    .glass-card {
-        padding: 14px 14px;
-        border-radius: 10px;
-    }
-
-    h1 {
-        font-size: 1.4rem !important;
-    }
-
-    [data-testid="stMetricValue"] {
-        font-size: 1.4rem !important;
-    }
-
-    /* Empilha colunas do Streamlit verticalmente */
-    [data-testid="stHorizontalBlock"] {
-        flex-direction: column !important;
-    }
-
+    .block-container { padding: 1rem 0.75rem !important; }
+    .glass-card { padding: 14px 14px; border-radius: 12px; }
+    h1 { font-size: 1.4rem !important; }
+    [data-testid="stMetricValue"] { font-size: 1.35rem !important; }
+    [data-testid="stHorizontalBlock"] { flex-direction: column !important; }
     [data-testid="stHorizontalBlock"] > [data-testid="stVerticalBlock"] {
-        width: 100% !important;
-        min-width: 100% !important;
+        width: 100% !important; min-width: 100% !important;
     }
+    .stTabs [data-baseweb="tab-list"] { flex-wrap: wrap; }
 }
 </style>
 """
 
 CSS_DARK = """
 <style>
-/* ===== DARK MODE: variáveis e overrides ===== */
 :root {
-    --bg-page: #0E1117;
-    --bg-card: rgba(28, 35, 51, 0.8);
-    --bg-card-solid: #1C2333;
-    --border-card: rgba(48, 54, 61, 0.7);
-    --text-primary: #FAFAFA;
+    --bg-page: radial-gradient(ellipse 90% 55% at 50% -10%, rgba(8,102,255,0.08), transparent),
+               radial-gradient(ellipse 60% 40% at 80% 90%, rgba(88,166,255,0.04), transparent),
+               #0B0F1A;
+    --bg-card: rgba(22, 28, 45, 0.82);
+    --bg-card-solid: #181E2E;
+    --border-card: rgba(48, 54, 75, 0.55);
+    --border-card-accent: rgba(88, 166, 255, 0.2);
+    --text-primary: #F0F2F5;
     --text-secondary: #8B949E;
     --accent: #58A6FF;
-    --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.3), 0 1px 4px rgba(0, 0, 0, 0.2);
-    --track-bg: rgba(255, 255, 255, 0.12);
-    --input-bg: #161B22;
+    --accent-soft: rgba(88, 166, 255, 0.1);
+    --accent-glow: rgba(88, 166, 255, 0.18);
+    --shadow-card: 0 1px 3px rgba(0,0,0,0.2), 0 8px 32px rgba(0,0,0,0.35);
+    --shadow-elevated: 0 1px 3px rgba(0,0,0,0.2), 0 16px 48px rgba(0,0,0,0.45), 0 8px 24px rgba(0,0,0,0.2);
+    --track-bg: rgba(255, 255, 255, 0.08);
+    --input-bg: #1A2035;
+    --divider: rgba(255, 255, 255, 0.06);
+    --tab-inactive: rgba(255,255,255,0.04);
+    --success: #66BB6A;
+    --warning: #FFA726;
+    --danger: #EF5350;
+    --sidebar-bg: rgba(13, 17, 28, 0.92);
 }
 
-html, body, [data-testid="stAppViewContainer"], [data-testid="stMain"],
-[data-testid="stVerticalBlock"], .main, .block-container {
-    background-color: var(--bg-page) !important;
+html, body, [data-testid="stAppViewContainer"],
+[data-testid="stMain"], [data-testid="stVerticalBlock"] {
+    background: var(--bg-page) !important;
     color: var(--text-primary) !important;
 }
 
+h1, h2, h3, h4, h5, h6, p, label, span, div, li, .stMarkdown, .stCaptionContainer {
+    color: var(--text-primary) !important;
+}
+
+/* DARK SIDEBAR */
 [data-testid="stSidebar"] {
-    background-color: var(--input-bg) !important;
+    background: var(--sidebar-bg) !important;
+    border-right-color: var(--border-card) !important;
 }
-[data-testid="stSidebar"] * {
-    color: var(--text-primary) !important;
-}
+[data-testid="stSidebar"] * { color: var(--text-primary) !important; }
 
-h1, h2, h3, h4, h5, h6, p, label, span, div {
-    color: var(--text-primary) !important;
-}
-
+/* DARK METRIC */
 [data-testid="stMetric"] {
     background: var(--bg-card-solid) !important;
     border-color: var(--border-card) !important;
+    box-shadow: var(--shadow-card) !important;
 }
-[data-testid="stMetricLabel"] p {
-    color: var(--text-secondary) !important;
-}
-[data-testid="stMetricValue"] {
-    color: var(--text-primary) !important;
-}
+[data-testid="stMetric"]::before { background: var(--accent) !important; }
+[data-testid="stMetricLabel"] p { color: var(--text-secondary) !important; }
+[data-testid="stMetricValue"] { color: var(--text-primary) !important; }
 
+/* DARK CHARTS */
 [data-testid="stPlotlyChart"] {
-    background: var(--bg-card-solid) !important;
-    border-color: var(--border-card) !important;
+    background: transparent !important;
 }
 
+/* DARK GLASS CARD */
+.glass-card {
+    background: var(--bg-card) !important;
+    border-color: var(--border-card) !important;
+    box-shadow: var(--shadow-card) !important;
+}
+.glass-card:hover {
+    border-color: var(--border-card-accent) !important;
+    box-shadow: var(--shadow-elevated) !important;
+}
+
+/* DARK EXPANDER */
 [data-testid="stExpander"] {
-    background: var(--bg-card-solid) !important;
+    background: var(--bg-card) !important;
     border-color: var(--border-card) !important;
 }
 
-[data-testid="stDataFrame"], [data-testid="stTable"] {
-    background: var(--bg-card-solid) !important;
+/* DARK TABS */
+.stTabs [data-baseweb="tab-list"] {
+    background: var(--tab-inactive) !important;
 }
-
 button[data-baseweb="tab"] {
     color: var(--text-secondary) !important;
 }
+button[data-baseweb="tab"]:hover {
+    background: rgba(255,255,255,0.05) !important;
+    color: var(--text-primary) !important;
+}
 button[data-baseweb="tab"][aria-selected="true"] {
+    background: var(--accent-soft) !important;
     color: var(--accent) !important;
 }
 
+/* DARK INPUTS */
+.stSelectbox > div > div,
+.stSelectbox input,
+.stTextInput input,
+.stNumberInput input,
+.stDateInput input {
+    background-color: var(--input-bg) !important;
+    border-color: var(--border-card) !important;
+    color: var(--text-primary) !important;
+}
+.stSelectbox > div > div:focus-within,
+.stTextInput input:focus,
+.stNumberInput input:focus {
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 3px var(--accent-soft) !important;
+}
+.stSelectbox div[role="listbox"] {
+    background-color: var(--input-bg) !important;
+}
+.stSelectbox div[role="option"] {
+    color: var(--text-primary) !important;
+}
+.stSelectbox div[role="option"]:hover,
+.stSelectbox div[role="option"][aria-selected="true"] {
+    background-color: var(--accent-soft) !important;
+    color: var(--accent) !important;
+}
+
+/* DARK DATA FRAME */
+[data-testid="stDataFrame"] [data-testid="stDataFrameContainer"] {
+    background: var(--bg-card-solid) !important;
+    border-color: var(--border-card) !important;
+}
+[data-testid="stDataFrame"] th {
+    color: var(--text-secondary) !important;
+    background: var(--tab-inactive) !important;
+}
+[data-testid="stDataFrame"] td {
+    color: var(--text-primary) !important;
+}
+[data-testid="stDataFrame"] [data-testid="stDataFrameDataCell"] {
+    background: transparent !important;
+}
+
+/* DARK FILE UPLOADER */
+[data-testid="stFileUploader"] {
+    background-color: var(--input-bg) !important;
+    border-color: var(--border-card) !important;
+}
+
+/* DARK BUTTON */
+.stButton button {
+    color: var(--text-primary) !important;
+    background: var(--input-bg) !important;
+    border-color: var(--border-card) !important;
+}
+.stButton button:hover {
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 3px var(--accent-soft) !important;
+}
+
+/* DARK CHECKBOX */
+.stCheckbox input:checked ~ div {
+    background-color: var(--accent) !important;
+    border-color: var(--accent) !important;
+}
+
+/* DARK DIVIDER */
+.stMarkdown hr, [data-testid="stVerticalBlockBorder"] {
+    border-color: var(--divider) !important;
+}
+
+/* DARK CAPTION */
 [data-testid="stCaptionContainer"] {
     color: var(--text-secondary) !important;
 }
 
-.glass-card {
-    background: var(--bg-card) !important;
-    border-color: var(--border-card) !important;
+/* DARK PROGRESS */
+.stProgress > div > div > div {
+    background-color: var(--accent) !important;
+}
+.stProgress > div > div {
+    background-color: var(--track-bg) !important;
 }
 </style>
 """
 
-# Paleta Refinada Premium
 CATEGORY_COLORS = {
-    'Delivery': '#4B4F56',       
-    'Alimentação': '#8B5CF6',    
-    'Transporte': '#00A400',     # FB WhatsApp Green
-    'Compras': '#FA383E',        # FB Notification Red
-    'Saúde': '#F59E0B',          
-    'Assinaturas': '#0866FF',    # FB Blue
-    'Moradia': '#E1306C',        # Instagram Pink
-    'Lazer': '#14B8A6',          
-    'Educação': '#6366F1',       
-    'Viagem': '#F97316',         
-    'Restaurante': '#A855F7',    
-    'Supermercado': '#06B6D4',   
-    'Serviço': '#0EA5E9',        
-    'Feira': '#EAB308',          
-    'Gasolina': '#F43F5E',       
-    'Estorno': '#84CC16',        
-    'Outros': '#8D949E'          
+    'Delivery': '#4B4F56',
+    'Alimentação': '#FF7F50',
+    'Transporte': '#00A400',
+    'Compras': '#FA383E',
+    'Saúde': '#F59E0B',
+    'Assinaturas': '#0866FF',
+    'Moradia': '#E1306C',
+    'Lazer': '#14B8A6',
+    'Educação': '#6366F1',
+    'Viagem': '#F97316',
+    'Restaurante': '#A855F7',
+    'Supermercado': '#06B6D4',
+    'Serviço': '#0EA5E9',
+    'Feira': '#EAB308',
+    'Gasolina': '#F43F5E',
+    'Estorno': '#84CC16',
+    'Outros': '#8D949E'
 }
 
 def get_plotly_layout(dark_mode: bool = False):
-    """
-    Retorna o dicionário de layout base para os gráficos do Plotly.
-    Adapta cores e fundos com base no tema selecionado.
-    """
+    """Return base Plotly layout dict adapted to theme."""
     if dark_mode:
         return dict(
             paper_bgcolor='rgba(0,0,0,0)',
             plot_bgcolor='rgba(0,0,0,0)',
-            font=dict(color='#8B949E', family='Inter, system-ui, sans-serif', size=12),
+            font=dict(color='#8B949E', family='DM Sans, system-ui, sans-serif', size=12),
             hoverlabel=dict(
-                bgcolor='#1C2333',
-                bordercolor='#30363D',
-                font=dict(color='#FAFAFA', size=13, family='Inter, system-ui, sans-serif')
+                bgcolor='#181E2E',
+                bordercolor='#30364B',
+                font=dict(color='#F0F2F5', size=13, family='DM Sans, system-ui, sans-serif')
             ),
             xaxis=dict(
                 gridcolor='rgba(255,255,255,0.06)',
@@ -353,17 +606,17 @@ def get_plotly_layout(dark_mode: bool = False):
                 gridcolor='rgba(255,255,255,0.06)',
                 linecolor='rgba(0,0,0,0)',
                 tickfont=dict(color='#8B949E', size=12)
+            ),
             )
-        )
     else:
         return dict(
             paper_bgcolor='rgba(0,0,0,0)',
             plot_bgcolor='rgba(0,0,0,0)',
-            font=dict(color='#65676B', family='Inter, system-ui, sans-serif', size=12),
+            font=dict(color='#65676B', family='DM Sans, system-ui, sans-serif', size=12),
             hoverlabel=dict(
                 bgcolor='#FFFFFF',
                 bordercolor='#CED0D4',
-                font=dict(color='#1C1E21', size=13, family='Inter, system-ui, sans-serif')
+                font=dict(color='#1C1E21', size=13, family='DM Sans, system-ui, sans-serif')
             ),
             xaxis=dict(
                 gridcolor='rgba(0,0,0,0.06)',
@@ -374,5 +627,5 @@ def get_plotly_layout(dark_mode: bool = False):
                 gridcolor='rgba(0,0,0,0.06)',
                 linecolor='rgba(0,0,0,0)',
                 tickfont=dict(color='#65676B', size=12)
-            )
+            ),
         )

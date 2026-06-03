@@ -6,8 +6,11 @@ from config.theme import CATEGORY_COLORS, get_plotly_layout
 def render_donut(df: pd.DataFrame):
     """Renderiza o gráfico de donut para distribuição de gastos por categoria."""
     category_spend = df.groupby('categoria')['amount'].sum().sort_values(ascending=False)
-    pie_colors = [CATEGORY_COLORS.get(cat, '#94A3B8') for cat in category_spend.index]
-    
+    import plotly.express as px
+    # fallback colors from Plotly qualitative palette
+    fallback_palette = px.colors.qualitative.Plotly
+    pie_colors = [CATEGORY_COLORS.get(cat, fallback_palette[i % len(fallback_palette)]) for i, cat in enumerate(category_spend.index)]
+
     is_dark = st.session_state.get('dark_mode', False)
     plot_layout = get_plotly_layout(is_dark)
 
