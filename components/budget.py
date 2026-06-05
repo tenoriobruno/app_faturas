@@ -58,8 +58,8 @@ def render_budget(df: pd.DataFrame):
         
         for c in all_cats:
             val = float(cat_budgets.get(c, 0.0))
-            new_val = st.number_input(f"Orçamento - {c}", min_value=0.0, value=val, step=50.0, key=f"b_{c}")
-            if new_val > 0:
+            new_val = st.number_input(f"Orçamento - {c}", min_value=0.0, value=val, step=50.0, key=f"b_{c}".replace(" ", "_"))
+            if new_val >= 0:
                 new_cats[c] = new_val
                 
         if st.button("Salvar Orçamento"):
