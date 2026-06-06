@@ -20,6 +20,7 @@ from parsers.nubank import parse_nubank
 from config.theme import apply_theme
 from config.categories import CATEGORY_COLORS
 from components.header import render_header
+from views.comparison import create_month_comparison
 
 st.set_page_config(page_title="App Faturas", page_icon="💰", layout="wide")
 
@@ -81,7 +82,7 @@ if len(df_filtered) > 0:
 else:
     st.caption("Nenhuma transação encontrada.")
 
-tabs = st.tabs(["Visão Geral", "Transações", "Recorrências", "Parcelas Futuras"])
+tabs = st.tabs(["Visão Geral", "Transações", "Comparação Mês a Mês", "Recorrências", "Parcelas Futuras"])
 
 with tabs[0]:
     from views.overview import render_overview
@@ -92,9 +93,13 @@ with tabs[1]:
     render_transactions(df_filtered, load_all_data)
 
 with tabs[2]:
+    from views.comparison import create_month_comparison
+    create_month_comparison(df_consolidated)
+
+with tabs[3]:
     from views.recurrences import render_recurrences
     render_recurrences(df_consolidated)
 
-with tabs[3]:
+with tabs[4]:
     from views.installments import render_installments
     render_installments(df_consolidated)

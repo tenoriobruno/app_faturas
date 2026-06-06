@@ -8,7 +8,7 @@ load_dotenv()
 class Settings:
     ROOT_DIR = Path(__file__).parent.parent
     DATA_PATH = Path(os.getenv("DATA_PATH", "."))
-    CACHE_PATH = ROOT_DIR / "cache" / "categories_cache.json"
+    CACHE_PATH = ROOT_DIR / "cache"
     BUDGET_PATH = ROOT_DIR / "config" / "budget.json"
     CATEGORIES_PATH = ROOT_DIR / "categories.json"
     DEFAULT_DARK_MODE = False

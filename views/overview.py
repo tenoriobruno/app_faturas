@@ -38,6 +38,7 @@ def render_overview(df: pd.DataFrame, df_consolidated: pd.DataFrame, csv_files: 
         metric_card("% Não-classificado", f"{metrics['outros_pct']:.1f}%")
 
     with col_left:
+        df_gastos = df[df['tipo_transacao'] == 'gasto']
         st.markdown(
             '<div style="margin-bottom:12px;">'
             '<span style="font-weight:700;font-size:1.05rem;">💸 Gastos por Categoria</span>'

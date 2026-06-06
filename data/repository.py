@@ -44,5 +44,27 @@ class CacheRepository(JSONRepository):
             return True
         return False
 
-cache_repo = CacheRepository(settings.CACHE_PATH)
-budget_repo = JSONRepository(settings.BUDGET_PATH)
+
+
+class IgnoredRecurrencesRepository(JSONRepository):
+    def __init__(self):
+        super().__init__(settings.CACHE_PATH / "ignored_recurrences.json")
+
+    def add_recurrence(self, recurrence):
+        data = super().load()
+        if recurrence not in data.get("ignored_recurrences", []):
+            data.setdefault("ignored_recurrences", []).append(recurrence)
+            super().save(data)
+
+    def get_ignored_recurrences(self):
+        data = super().load()
+        return data.get("ignored_recurrences", [])
+
+    def __contains__(self, recurrence):
+        data = super().load()
+        return recurrence in data.get("ignored_recurrences", [])
+
+
+# Singletons
+cache_repo = CacheRepository(settings.CACHE_PATH / "categories_cache.json")
+budget_repo = JSONRepository(settings.BUDGET_PATH / "budget.json")
