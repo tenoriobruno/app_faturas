@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
 from config.theme import get_plotly_layout
-from core.installments import calculate_future_installments
+from core.installments import calculate_future_installments, calculate_projection
 
 def render_installments(df_consolidated: pd.DataFrame):
     st.subheader("🗓️ Dívidas Ativas e Faturas Futuras")
@@ -23,24 +23,7 @@ def render_installments(df_consolidated: pd.DataFrame):
         return
         
     # Primeiro passamos para calcular o saldo devedor e coletar dados do gráfico
-    total_remaining_debt = 0
-    future_data = []
-    
-    for _, row in parceladas.iterrows():
-        faltam = row['total_parcelas'] - row['parcela_atual']
-        if faltam > 0:
-            for i in range(1, int(faltam) + 1):
-                # Calcula a data estimada da próxima parcela
-                future_month_date = pd.to_datetime(row['date']) + pd.DateOffset(months=i)
-                
-                # Só projeta se o mês for posterior à última data de transação conhecida (fatura corrente)
-                if future_month_date > last_data_date:
-                    total_remaining_debt += row['amount']
-                    future_data.append({
-                        'title': row['title'],
-                        'amount': row['amount'],
-                        'future_month': future_month_date.to_period('M')
-                    })
+    total_remaining_debt, future_data = calculate_projection(parceladas, last_data_date)
     
     # Exibe métrica de resumo
     st.metric("Saldo Devedor Estimado (Futuro)", f"R$ {total_remaining_debt:,.2f}", help="Soma de todas as parcelas que ainda vencerão após a data da última fatura carregada.")

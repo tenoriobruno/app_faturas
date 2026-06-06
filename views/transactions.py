@@ -34,13 +34,9 @@ def render_transactions(df: pd.DataFrame, load_all_data_func):
     )
 
     if not df_display.equals(edited_df):
-        cache = cache_repo.load()
+        from services.classification import save_manual_corrections
         diff = edited_df[df_display['categoria'] != edited_df['categoria']]
-        for _, row in diff.iterrows():
-            norm_title = normalize(row['title'])
-            if norm_title:
-                cache[norm_title] = {"categoria": row['categoria'], "source": "user"}
-        cache_repo.save(cache)
+        save_manual_corrections(diff)
         st.success("✅ Classificações manuais salvas com sucesso!")
         load_all_data_func.clear()
         st.rerun()

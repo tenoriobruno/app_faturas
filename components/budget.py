@@ -46,7 +46,13 @@ def render_budget(df: pd.DataFrame):
                     unsafe_allow_html=True
                 )
                 
+    render_budget_editor(df, budgets)
+
+def render_budget_editor(df: pd.DataFrame, budgets: dict):
     with st.expander("✏️ Editar Orçamento"):
+        global_budget = budgets.get("global", 0)
+        cat_budgets = budgets.get("categories", {})
+        
         new_global = st.number_input("Orçamento Global", min_value=0.0, value=float(global_budget), step=100.0)
         
         st.write("Orçamentos por Categoria:")
