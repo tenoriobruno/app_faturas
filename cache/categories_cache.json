@@ -107,10 +107,6 @@
     "categoria": "Compras",
     "source": "local"
   },
-  "shop suzano": {
-    "categoria": "Outros",
-    "source": "local"
-  },
   "shopee planetadobebe": {
     "categoria": "Serviço",
     "source": "local"
@@ -173,10 +169,6 @@
   },
   "apple com/bill": {
     "categoria": "Serviço",
-    "source": "local"
-  },
-  "aneto food service": {
-    "categoria": "Outros",
     "source": "local"
   },
   "rm cto itau maccafe": {
@@ -424,6 +416,10 @@
     "source": "local"
   },
   "chopp bar": {
+    "categoria": "Outros",
+    "source": "local"
+  },
+  "aneto food service": {
     "categoria": "Outros",
     "source": "local"
   },
