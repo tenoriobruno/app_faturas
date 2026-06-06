@@ -3,18 +3,9 @@ Motor de classificação que orquestra a normalização e as regras de negócio.
 Serve como interface principal para classificar uma ou várias transações.
 """
 import pandas as pd
-from classifier.local_rules import classify_local
+from classifier.local_rules import classify_local, load_categories
 from utils.normalize import normalize
 from data.repository import cache_repo
-
-
-_cache = None
-
-def get_cache():
-    global _cache
-    if _cache is None:
-        _cache = cache_repo.load()
-    return _cache
 
 def classify_batch(df: pd.DataFrame) -> pd.DataFrame:
     """
@@ -36,8 +27,9 @@ def classify_batch(df: pd.DataFrame) -> pd.DataFrame:
     if not mask.any():
         return df
 
-    cache = get_cache()
+    cache = cache_repo.load()
     before_len = len(cache)
+    categories = load_categories()
     
     for idx, row in df[mask].iterrows():
         desc = row[desc_col]
@@ -51,7 +43,7 @@ def classify_batch(df: pd.DataFrame) -> pd.DataFrame:
             df.at[idx, "categoria"] = cache[normalized]["categoria"]
             continue
             
-        local_cat = classify_local(normalized)
+        local_cat = classify_local(normalized, categories=categories)
         if local_cat and local_cat != "Outros":
             df.at[idx, "categoria"] = local_cat
             cache[normalized] = {"categoria": local_cat, "source": "local"}

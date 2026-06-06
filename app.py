@@ -9,6 +9,7 @@ from pathlib import Path
 import os
 from config.settings import settings
 from utils.logger import get_logger
+from data.repository import cache_repo
 
 # Diretório onde os CSVs são armazenados – usado em todo o app
 DATA_DIR = Path(settings.DATA_PATH)
@@ -16,7 +17,8 @@ DATA_DIR = Path(settings.DATA_PATH)
 
 from classifier.engine import classify_batch
 from parsers.nubank import parse_nubank
-from config.theme import apply_theme, CATEGORY_COLORS
+from config.theme import apply_theme
+from config.categories import CATEGORY_COLORS
 from components.header import render_header
 
 st.set_page_config(page_title="App Faturas", page_icon="💰", layout="wide")
@@ -28,12 +30,7 @@ apply_theme()
 render_header()
 
 # Verifica se o arquivo de categorias foi alterado após o cache
-categories_path = settings.CATEGORIES_PATH
-cache_path = settings.CACHE_PATH
-if not cache_path.exists() or categories_path.stat().st_mtime > cache_path.stat().st_mtime:
-    # Remove o cache antigo para forçar a reclassificação usando o novo categories.json
-    cache_path.parent.mkdir(exist_ok=True, parents=True)
-    cache_path.write_text("{}", encoding="utf-8")
+if cache_repo.invalidate_if_stale(settings.CATEGORIES_PATH):
     st.info("⚙️ Cache de categorias atualizado por mudanças no categories.json.")
 
 # Sidebar Upload

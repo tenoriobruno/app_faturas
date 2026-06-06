@@ -36,5 +36,13 @@ class CacheRepository(JSONRepository):
                 migrated[k] = v
         return migrated
 
+    def invalidate_if_stale(self, reference_path: Path) -> bool:
+        """Invalidates cache if reference_path is newer than cache."""
+        if not self.filepath.exists() or reference_path.stat().st_mtime > self.filepath.stat().st_mtime:
+            self.filepath.parent.mkdir(exist_ok=True, parents=True)
+            self.filepath.write_text("{}", encoding="utf-8")
+            return True
+        return False
+
 cache_repo = CacheRepository(settings.CACHE_PATH)
 budget_repo = JSONRepository(settings.BUDGET_PATH)

@@ -1,7 +1,8 @@
 import streamlit as st
 import plotly.graph_objects as go
 import pandas as pd
-from config.theme import CATEGORY_COLORS, get_plotly_layout
+from config.theme import get_plotly_layout
+from config.categories import CATEGORY_COLORS
 
 def render_donut(df: pd.DataFrame):
     """Renderiza o gráfico de donut para distribuição de gastos por categoria."""

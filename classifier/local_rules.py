@@ -5,15 +5,17 @@ Consome o arquivo categories.json e aplica lógica de prioridade.
 import json
 import re
 from typing import Optional
+import streamlit as st
 from config.settings import settings
 
+@st.cache_data
 def load_categories():
     """Carrega as definições de categorias do arquivo JSON na raiz do projeto."""
     with open(settings.CATEGORIES_PATH, encoding='utf-8') as f:
         return json.load(f)
 
 
-def classify_local(description: str) -> Optional[str]:
+def classify_local(description: str, categories: dict = None) -> Optional[str]:
     """
     Classifica uma descrição baseada em keywords e regex.
     
@@ -24,7 +26,8 @@ def classify_local(description: str) -> Optional[str]:
     Isso garante que matches exatos de texto (ex: '99food') tenham prioridade 
     sobre matches genéricos (ex: 'restaurante').
     """
-    categories = load_categories()
+    if categories is None:
+        categories = load_categories()
     desc_lower = description.lower()
 
     # 1. PASSA 1: Verifica todas as keywords de todas as categorias na ordem do JSON
