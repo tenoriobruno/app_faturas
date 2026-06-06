@@ -8,6 +8,7 @@ import pandas as pd
 from pathlib import Path
 import os
 from config.settings import settings
+from utils.logger import get_logger
 
 # Diretório onde os CSVs são armazenados – usado em todo o app
 DATA_DIR = Path(settings.DATA_PATH)
@@ -18,11 +19,13 @@ from parsers.nubank import parse_nubank
 from config.theme import apply_theme, CATEGORY_COLORS
 from components.header import render_header
 
-st.set_page_config(page_title="Finanças", layout="wide")
+st.set_page_config(page_title="App Faturas", page_icon="💰", layout="wide")
+
+if "dark_mode" not in st.session_state:
+    st.session_state.dark_mode = settings.DEFAULT_DARK_MODE
+
 apply_theme()
 render_header()
-
-
 
 # Verifica se o arquivo de categorias foi alterado após o cache
 categories_path = settings.CATEGORIES_PATH
@@ -55,7 +58,6 @@ def load_all_data(files):
             df = classify_batch(parse_nubank(str(f)))
             frames[f.name] = df
         except Exception as e:
-            from utils.logger import get_logger
             get_logger(__name__).error(f"Erro ao carregar {f.name}: {e}")
     return frames
 

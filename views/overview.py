@@ -59,10 +59,8 @@ def render_overview(df: pd.DataFrame, df_consolidated: pd.DataFrame, csv_files: 
             '</div>',
             unsafe_allow_html=True,
         )
-        # O gráfico de donut já renderiza dentro de st.plotly_chart com bordas/sombras, mas vamos envolvê-lo em um container glass-card
-        st.markdown('<div class="glass-card">', unsafe_allow_html=True)
+        # O gráfico de donut já renderiza dentro de st.plotly_chart com bordas/sombras
         render_donut(df_gastos)
-        st.markdown('</div>', unsafe_allow_html=True)
 
     st.divider()
     render_budget(df)

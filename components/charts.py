@@ -19,7 +19,7 @@ def render_donut(df: pd.DataFrame):
         values=category_spend.values,
         textposition='auto',
         textinfo='label+percent',
-        textfont=dict(size=11, family='Inter'),
+        textfont=dict(size=11, family='DM Sans'),
         insidetextfont=dict(color='white'),
         hovertemplate='<b>%{label}</b><br>R$ %{value:,.2f}<br>%{percent}<extra></extra>',
         marker=dict(
@@ -91,7 +91,7 @@ def render_bar_history(df_consolidated: pd.DataFrame):
                 marker_line_width=0,
                 text=[text_label],
                 textposition='inside',
-                textfont=dict(size=10, color='white', family='Inter'),
+                textfont=dict(size=10, color='white', family='DM Sans'),
                 hovertemplate='<b>%{fullData.name}</b><br>%{x}<br>R$ %{y:,.2f}<extra></extra>'
             ))
 

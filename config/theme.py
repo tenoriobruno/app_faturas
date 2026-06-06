@@ -562,6 +562,13 @@ button[data-baseweb="tab"][aria-selected="true"] {
 .stProgress > div > div {
     background-color: var(--track-bg) !important;
 }
+
+/* DARK MOBILE RESPONSIVENESS */
+@media (max-width: 768px) {
+    [data-testid="stHorizontalBlock"] {
+        flex-direction: column !important;
+    }
+}
 </style>
 """
 

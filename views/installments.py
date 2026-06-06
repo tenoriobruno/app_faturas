@@ -70,7 +70,7 @@ def render_installments(df_consolidated: pd.DataFrame):
         fig = go.Figure(data=[go.Bar(
             x=monthly_debt['future_month_str'],
             y=monthly_debt['amount'],
-            marker_color='#EF4444',
+            marker_color='#F87171' if is_dark else '#EF4444',
             text=monthly_debt['amount'].apply(lambda x: f"R$ {x:,.2f}"),
             textposition='auto'
         )])

@@ -8,9 +8,7 @@ def render_header():
 
     The toggle updates ``st.session_state.dark_mode`` and triggers a rerun.
     """
-    # Ensure dark_mode default is set
-    if "dark_mode" not in st.session_state:
-        st.session_state.dark_mode = settings.DEFAULT_DARK_MODE
+    # Ensure dark_mode default is set (handled in app.py now)
 
     # Layout: title on the left, toggle on the right
     col1, col2 = st.columns([5, 1])
