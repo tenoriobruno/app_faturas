@@ -16,7 +16,7 @@ DATA_DIR = Path(settings.DATA_PATH)
 
 
 from classifier.engine import classify_batch
-from parsers.nubank import parse_nubank
+from parsers import parse_csv
 from config.theme import apply_theme
 from config.categories import CATEGORY_COLORS
 from components.header import render_header
@@ -36,7 +36,7 @@ if cache_repo.invalidate_if_stale(settings.CATEGORIES_PATH):
 
 # Sidebar Upload
 st.sidebar.header("📁 Upload de Faturas")
-uploaded_file = st.sidebar.file_uploader("Novo arquivo Nubank (.csv)", type=["csv"])
+uploaded_file = st.sidebar.file_uploader("Novo arquivo (.csv)", type=["csv"])
 if uploaded_file is not None:
     (DATA_DIR / uploaded_file.name).write_bytes(uploaded_file.getbuffer())
     st.sidebar.success(f"Arquivo {uploaded_file.name} salvo!")
@@ -53,7 +53,7 @@ def load_all_data(files):
     frames = {}
     for f in files:
         try:
-            df = classify_batch(parse_nubank(str(f)))
+            df = classify_batch(parse_csv(str(f)))
             frames[f.name] = df
         except Exception as e:
             get_logger(__name__).error(f"Erro ao carregar {f.name}: {e}")

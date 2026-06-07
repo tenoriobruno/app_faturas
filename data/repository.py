@@ -65,6 +65,29 @@ class IgnoredRecurrencesRepository(JSONRepository):
         return recurrence in data.get("ignored_recurrences", [])
 
 
+class AuditLogRepository(JSONRepository):
+    def __init__(self):
+        super().__init__(settings.CACHE_PATH / "audit_log.json")
+
+    def add_entry(self, timestamp: str, description: str, old_category, new_category: str, source: str):
+        data = self.load()
+        entries = data.get("entries", [])
+        entries.append({
+            "timestamp": timestamp,
+            "description": description,
+            "old_category": old_category,
+            "new_category": new_category,
+            "source": source
+        })
+        data["entries"] = entries
+        self.save(data)
+
+    def get_entries(self) -> list:
+        data = self.load()
+        return data.get("entries", [])
+
+
 # Singletons
 cache_repo = CacheRepository(settings.CACHE_PATH / "categories_cache.json")
 budget_repo = JSONRepository(settings.BUDGET_PATH / "budget.json")
+audit_repo = AuditLogRepository()

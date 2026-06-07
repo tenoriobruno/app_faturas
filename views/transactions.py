@@ -36,7 +36,7 @@ def render_transactions(df: pd.DataFrame, load_all_data_func):
     if not df_display.equals(edited_df):
         from services.classification import save_manual_corrections
         diff = edited_df[df_display['categoria'] != edited_df['categoria']]
-        save_manual_corrections(diff)
+        save_manual_corrections(diff, df_display)
         st.success("✅ Classificações manuais salvas com sucesso!")
         load_all_data_func.clear()
         st.rerun()
