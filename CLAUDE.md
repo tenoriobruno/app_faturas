@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working in this
 
 ## Project Overview
 
-Personal finance MVP inspired by Guiabolso. Not SaaS — personal use only, no scalability requirements. Processes Nubank CSV exports and categorizes transactions using local rules with AI fallback.
+Personal finance MVP inspired by Guiabolso. Not SaaS — personal use only, no scalability requirements. Processes bank CSV exports (Nubank, Itau) and categorizes transactions using local rules with AI fallback. Includes anomaly detection and end-of-month spending projections.
 
 **Budget constraint**: < $1 total development cost, < $0.05 per 100 classified transactions. AI must be called for fewer than 15% of transactions.
 
@@ -50,7 +50,9 @@ config/
   settings.py                 # Centralized settings + env loader (Settings class)
   theme.py                    # Custom CSS, dark/light mode, category colors
   categories.py               # CATEGORY_COLORS dict (17 categories, hex palette)
-parsers/nubank.py             # CSV parsing, encoding detection, dedup, installments
+parsers/
+  nubank.py                   # Nubank CSV parser — encoding detection, dedup, installments
+  itau.py                     # Itau CSV parser — similar logic, different column names
 classifier/
   engine.py                   # Orchestrates classification pipeline (classify_batch)
   local_rules.py              # Keyword + regex matching against categories.json
@@ -58,6 +60,8 @@ core/
   metrics.py                  # Overview metrics (total, avg, deltas vs prev month)
   installments.py             # Groups installment purchases, keeps most recent entry
   recurrences.py              # Detects subscriptions (3+ months or "Assinaturas" cat)
+  anomalies.py                # Detects spending anomalies (mean + N*sigma) vs historical
+  projections.py              # Projects end-of-month spending based on day-of-month progress
 services/
   classification.py           # save_manual_corrections — persists user reclassifications to cache
 data/
@@ -115,7 +119,9 @@ Preserves pre-existing categories from CSV. Saves new cache entries in bulk at e
 - `load_categories()` — cached with `@st.cache_data`, reads `categories.json`
 - `classify_local(description, categories)` — iterates ALL keywords first, then ALL regex. First match wins per pass. Returns `None` if no match.
 
-### `parsers/nubank.py`
+### `parsers/nubank.py` & `parsers/itau.py`
+
+Both parsers follow the same logic with bank-specific column mappings:
 
 - Handles UTF-8/Latin-1 encoding detection
 - Renames columns to `date`, `title`, `amount`, `categoria`
@@ -124,6 +130,8 @@ Preserves pre-existing categories from CSV. Saves new cache entries in bulk at e
 - Dedup by `(date, title, amount)`
 - Extracts installment info: `parcela_atual`/`total_parcelas` from trailing `DD/DD` pattern
 - Guards against false positives (clothing sizes, street numbers): validates `total > 1`, `total <= 24`, `atual <= total`
+
+Itau parser maps: `Data` → `date`, `Lançamento`/`Descrição`/`Estabelecimento` → `title`, `Valor` → `amount`, `Categoria` → `categoria`
 
 ### `services/classification.py`
 
@@ -209,6 +217,14 @@ Returns aggregated stats: months_count, avg_amount, last_date.
 ### Budget (`components/budget.py`)
 
 Global + per-category spending tracking with progress bars. Editor in expandable section. Persists to `budget.json`.
+
+### Anomalies (`core/anomalies.py`)
+
+`detect_anomalies(df, df_consolidated, sigma_threshold=2.0)` — identifies spending spikes in current month. Compares per-category totals against historical monthly averages using standard deviation. Returns list of anomalies with current spend, historical avg, and excess percentage. Flags categories exceeding `mean + N*sigma`.
+
+### Projections (`core/projections.py`)
+
+`calculate_linear_projection(df, global_budget, cat_budgets)` — projects end-of-month spending based on day-of-month progress. Returns day-of-month progress ratio, per-category projections, and warning flags if projected spending ≥ 90% of budget.
 
 ## Key Edge Cases
 
