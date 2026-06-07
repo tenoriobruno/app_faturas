@@ -33,6 +33,11 @@ def render_overview(df: pd.DataFrame, df_consolidated: pd.DataFrame, csv_files: 
         metric_card("Valor Total", f"R$ {metrics['valor_total']:,.2f}", delta=f"R$ {metrics['delta_valor']:+,.2f}" if metrics['delta_valor'] is not None else None, delta_color="inverse")
         metric_card("Ticket Médio", f"R$ {metrics['ticket_medio']:,.2f}", delta=f"R$ {metrics['delta_ticket']:+,.2f}" if metrics['delta_ticket'] is not None else None, delta_color="inverse")
         metric_card("Maior Categoria", metrics['top_cat'])
+        if metrics['top_cat'] != "N/A":
+            if st.button(f"🔍 Ver transações de {metrics['top_cat']}", key="quick_filter_top_cat"):
+                st.session_state['quick_filter_category'] = metrics['top_cat']
+                st.toast(f"Filtro aplicado! Abra a aba 'Transações' para ver os resultados.", icon="🔍")
+                st.rerun()
 
         metric_card("% Não-classificado", f"{metrics['outros_pct']:.1f}%")
 
@@ -48,21 +53,23 @@ def render_overview(df: pd.DataFrame, df_consolidated: pd.DataFrame, csv_files: 
 
     st.divider()
 
-    anomalies = detect_anomalies(df, df_consolidated)
-    if anomalies:
-        st.markdown(
-            '<div style="font-weight:700;font-size:1.05rem;margin-bottom:12px;">⚠️ Alertas de Anomalias</div>',
-            unsafe_allow_html=True,
-        )
-        for a in anomalies:
-            st.warning(
-                f"⚠️ O gasto com **{a['category']}** este mês está **{a['excess_pct']:.0f}%** "
-                f"acima da média histórica (R$ {a['current_spend']:,.2f} vs R$ {a['avg_spend']:,.2f})"
-            )
-
-    render_budget(df)
-    st.divider()
     st.markdown('<div class="glass-card">', unsafe_allow_html=True)
     st.markdown('<div style="font-weight:700;font-size:1.05rem;margin-bottom:16px;">📈 Histórico Mensal de Gastos</div>', unsafe_allow_html=True)
     render_bar_history(df_consolidated)
     st.markdown('</div>', unsafe_allow_html=True)
+
+    st.divider()
+
+    anomalies = detect_anomalies(df, df_consolidated)
+    if anomalies:
+        with st.expander(f"⚠️ Alertas de Anomalias ({len(anomalies)} categoria(s) fora do padrão)", expanded=True):
+            for a in anomalies:
+                st.warning(
+                    f"⚠️ O gasto com **{a['category']}** este mês está **{a['excess_pct']:.0f}%** "
+                    f"acima da média histórica (R$ {a['current_spend']:,.2f} vs R$ {a['avg_spend']:,.2f})"
+                )
+    else:
+        with st.expander("✅ Alertas de Anomalias — tudo certo", expanded=False):
+            st.caption("Nenhum gasto fora do padrão detectado neste período.")
+
+    render_budget(df)

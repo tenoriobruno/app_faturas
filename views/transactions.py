@@ -6,9 +6,21 @@ from config.settings import settings
 
 def render_transactions(df: pd.DataFrame, load_all_data_func):
     st.subheader("📋 Ver Dados Brutos")
+
+    quick_cat = st.session_state.get('quick_filter_category')
+    if quick_cat:
+        col_info, col_clear = st.columns([0.85, 0.15])
+        with col_info:
+            st.info(f"🔍 Filtrado rapidamente pela categoria **{quick_cat}** (clique vindo da Visão Geral).")
+        with col_clear:
+            if st.button("✖️ Limpar filtro", key="clear_quick_filter"):
+                del st.session_state['quick_filter_category']
+                st.rerun()
+        df = df[df['categoria'] == quick_cat]
+
     # Campo de busca para filtrar por categoria ou descrição
     search_query = st.text_input("🔍 Filtrar tabela (por descrição ou categoria):", "", key="table_search_query")
-    
+
     if search_query:
         mask = (
             df['title'].str.contains(search_query, case=False, na=False) |
@@ -17,6 +29,8 @@ def render_transactions(df: pd.DataFrame, load_all_data_func):
         df_display = df[mask]
     else:
         df_display = df
+
+    st.caption(f"Mostrando {len(df_display)} de {len(df)} transações")
 
     edited_df = st.data_editor(
         df_display,

@@ -6,7 +6,7 @@ Este documento explica, em linguagem simples, cada melhoria proposta para o dash
 
 ## 1. Cards de resumo no topo da página
 
-**O que muda:** Ao abrir o app, antes mesmo de clicar em qualquer aba, você já veria cards com o essencial: quanto gastou no total, qual o saldo e se há algum alerta importante.
+**O que muda:** Ao abrir o app, antes mesmo de clicar em qualquer aba, você já veria cards com o essencial: quanto gastou no total no período, como esse valor se compara ao mês anterior, e se há algum alerta de anomalia importante.
 
 **Por que ajuda:** Hoje é preciso entrar na aba "Visão Geral" para ter essa noção. Com o resumo logo na entrada, você sabe "como está o mês" em um olhar, sem cliques.
 

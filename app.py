@@ -78,9 +78,50 @@ st.sidebar.divider()
 render_export_button(df_filtered, filename=f"faturas_{selected_file.name}")
 
 if len(df_filtered) > 0:
-    st.caption(f"📅 {df_filtered['date'].min().strftime('%d/%m/%Y')} a {df_filtered['date'].max().strftime('%d/%m/%Y')} · {len(df_filtered)} transações · {selected_file.name}")
+    periodo_txt = (
+        f"📅 <strong>{df_filtered['date'].min().strftime('%d/%m/%Y')} a {df_filtered['date'].max().strftime('%d/%m/%Y')}</strong>"
+        f" &nbsp;·&nbsp; 📄 {selected_file.name} &nbsp;·&nbsp; {len(df_filtered)} transações"
+    )
 else:
-    st.caption("Nenhuma transação encontrada.")
+    periodo_txt = f"📄 {selected_file.name} &nbsp;·&nbsp; Nenhuma transação encontrada."
+
+st.markdown(
+    f'<div class="glass-card" style="padding:10px 16px;margin-bottom:16px;font-size:0.92rem;">{periodo_txt}</div>',
+    unsafe_allow_html=True,
+)
+
+# Resumo rápido — visível antes de entrar em qualquer aba
+from core.metrics import calculate_overview_metrics
+from core.anomalies import detect_anomalies
+from components.metrics import metric_card
+
+_prev_df = None
+try:
+    _idx = csv_files.index(selected_file)
+    if _idx + 1 < len(csv_files):
+        _prev_df = all_data[csv_files[_idx + 1].name]
+except ValueError:
+    pass
+
+_summary = calculate_overview_metrics(df_filtered, _prev_df)
+_anomalies = detect_anomalies(df_filtered, df_consolidated)
+
+col_s1, col_s2, col_s3 = st.columns(3)
+with col_s1:
+    metric_card(
+        "Gasto no Período",
+        f"R$ {_summary['valor_total']:,.2f}",
+        delta=f"R$ {_summary['delta_valor']:+,.2f}" if _summary['delta_valor'] is not None else None,
+        delta_color="inverse",
+        help_text="Comparado ao mês/fatura anterior",
+    )
+with col_s2:
+    metric_card("Maior Categoria", _summary['top_cat'])
+with col_s3:
+    if _anomalies:
+        metric_card("Alertas de Anomalia", f"⚠️ {len(_anomalies)} categoria(s)")
+    else:
+        metric_card("Alertas de Anomalia", "✅ Tudo certo")
 
 tabs = st.tabs(["Visão Geral", "Transações", "Comparação Mês a Mês", "Recorrências", "Parcelas Futuras"])
 
