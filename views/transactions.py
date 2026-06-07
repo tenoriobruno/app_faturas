@@ -19,8 +19,19 @@ def render_transactions(df: pd.DataFrame, load_all_data_func):
         df = df[df['categoria'] == quick_cat]
 
     # Busca/filtros unificados na barra lateral (evita dois campos fazendo a mesma coisa)
-    df_display = df
+    df_display = df.copy()
     st.caption(f"📋 {len(df_display)} transações · Use os filtros na barra lateral para refinar (texto, categoria, valor, data, tipo).")
+
+    # Selo indicando se a categoria veio de classificação automática ou correção manual
+    cache = cache_repo.load()
+
+    def _origem(title):
+        entry = cache.get(normalize(title))
+        if entry is None:
+            return "—"
+        return "✍️ Manual" if entry.get("source") == "user" else "🤖 Automático"
+
+    df_display["origem"] = df_display["title"].apply(_origem)
 
     edited_df = st.data_editor(
         df_display,
@@ -30,9 +41,14 @@ def render_transactions(df: pd.DataFrame, load_all_data_func):
                 help="Selecione a categoria",
                 width="medium",
                 options=settings.get_category_names()
-            )
+            ),
+            "origem": st.column_config.TextColumn(
+                "Origem",
+                help="🤖 Automático = classificado pelo sistema · ✍️ Manual = corrigido por você",
+                width="small",
+            ),
         },
-        disabled=["date", "title", "amount", "tipo_transacao", "parcela_atual", "total_parcelas"],
+        disabled=["date", "title", "amount", "tipo_transacao", "parcela_atual", "total_parcelas", "origem"],
         hide_index=True,
         use_container_width=True
     )
