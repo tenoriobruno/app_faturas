@@ -326,6 +326,12 @@ button[data-baseweb="tab"][aria-selected="true"] {
     border-color: var(--accent) !important;
     box-shadow: 0 0 0 3px var(--accent-soft) !important;
 }
+.stButton button:focus-visible,
+button[data-baseweb="tab"]:focus-visible {
+    outline: none !important;
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 3px var(--accent-soft) !important;
+}
 
 /* DATA TABLE / EDITOR */
 [data-testid="stDataFrame"], [data-testid="stTable"] {
@@ -490,7 +496,8 @@ button[data-baseweb="tab"][aria-selected="true"] {
 }
 .stSelectbox > div > div:focus-within,
 .stTextInput input:focus,
-.stNumberInput input:focus {
+.stNumberInput input:focus,
+.stDateInput input:focus {
     border-color: var(--accent) !important;
     box-shadow: 0 0 0 3px var(--accent-soft) !important;
 }

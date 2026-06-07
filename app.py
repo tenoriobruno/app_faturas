@@ -45,23 +45,42 @@ if uploaded_file is not None:
 
 csv_files = sorted(list(DATA_DIR.glob("*.csv")), reverse=True)
 if not csv_files:
-    st.info(f"📁 Nenhum arquivo CSV encontrado na pasta `{DATA_DIR}`")
+    st.info(
+        f"📁 **Nenhum arquivo CSV encontrado em `{DATA_DIR}`.**\n\n"
+        "Use o campo **'Novo arquivo (.csv)'** na barra lateral, acima, para enviar "
+        "uma fatura exportada do Nubank ou Itaú."
+    )
     st.stop()
 
 @st.cache_data
 def load_all_data(files):
     frames = {}
+    errors = {}
     for f in files:
         try:
             df = classify_batch(parse_csv(str(f)))
             frames[f.name] = df
         except Exception as e:
             get_logger(__name__).error(f"Erro ao carregar {f.name}: {e}")
-    return frames
+            errors[f.name] = str(e)
+    return frames, errors
 
-all_data = load_all_data(tuple(csv_files))
+all_data, load_errors = load_all_data(tuple(csv_files))
+
+if load_errors:
+    nomes = ", ".join(f"`{n}`" for n in load_errors)
+    st.warning(
+        f"⚠️ Não consegui ler {len(load_errors)} arquivo(s): {nomes}.\n\n"
+        "Verifique se são exports de fatura do Nubank/Itaú em CSV (encoding UTF-8 ou Latin-1) "
+        "e não, por exemplo, planilhas com outro layout. Detalhes no log da aplicação."
+    )
+
 if not all_data:
-    st.error("Nenhum CSV válido encontrado")
+    st.error(
+        "❌ **Nenhum arquivo CSV válido encontrado.**\n\n"
+        "Os arquivos da pasta não puderam ser processados — confira o formato "
+        "(deve ser export de fatura Nubank ou Itaú) e tente enviar novamente."
+    )
     st.stop()
 
 df_consolidated = pd.concat(all_data.values(), ignore_index=True)
@@ -71,11 +90,8 @@ df = all_data[selected_file.name].copy()
 df['date'] = pd.to_datetime(df['date'])
 
 from components.sidebar import render_sidebar
-from utils.export import render_export_button
 
 df_filtered = render_sidebar(df, list(CATEGORY_COLORS.keys()))
-st.sidebar.divider()
-render_export_button(df_filtered, filename=f"faturas_{selected_file.name}")
 
 if len(df_filtered) > 0:
     periodo_txt = (
@@ -131,7 +147,7 @@ with tabs[0]:
 
 with tabs[1]:
     from views.transactions import render_transactions
-    render_transactions(df_filtered, load_all_data)
+    render_transactions(df_filtered, load_all_data, export_filename=f"faturas_{selected_file.name}")
 
 with tabs[2]:
     from views.comparison import create_month_comparison

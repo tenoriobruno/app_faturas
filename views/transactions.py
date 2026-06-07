@@ -4,7 +4,7 @@ from data.repository import cache_repo
 from utils.normalize import normalize
 from config.settings import settings
 
-def render_transactions(df: pd.DataFrame, load_all_data_func):
+def render_transactions(df: pd.DataFrame, load_all_data_func, export_filename: str = "exportacao.csv"):
     st.subheader("📋 Ver Dados Brutos")
 
     quick_cat = st.session_state.get('quick_filter_category')
@@ -60,3 +60,9 @@ def render_transactions(df: pd.DataFrame, load_all_data_func):
         st.success("✅ Classificações manuais salvas com sucesso!")
         load_all_data_func.clear()
         st.rerun()
+
+    # Exporta exatamente o que está sendo exibido (após filtros + busca rápida)
+    from utils.export import render_export_button
+    col_spacer, col_export = st.columns([0.7, 0.3])
+    with col_export:
+        render_export_button(df_display.drop(columns=["origem"]), filename=export_filename)
