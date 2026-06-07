@@ -18,19 +18,9 @@ def render_transactions(df: pd.DataFrame, load_all_data_func):
                 st.rerun()
         df = df[df['categoria'] == quick_cat]
 
-    # Campo de busca para filtrar por categoria ou descrição
-    search_query = st.text_input("🔍 Filtrar tabela (por descrição ou categoria):", "", key="table_search_query")
-
-    if search_query:
-        mask = (
-            df['title'].str.contains(search_query, case=False, na=False) |
-            df['categoria'].str.contains(search_query, case=False, na=False)
-        )
-        df_display = df[mask]
-    else:
-        df_display = df
-
-    st.caption(f"Mostrando {len(df_display)} de {len(df)} transações")
+    # Busca/filtros unificados na barra lateral (evita dois campos fazendo a mesma coisa)
+    df_display = df
+    st.caption(f"📋 {len(df_display)} transações · Use os filtros na barra lateral para refinar (texto, categoria, valor, data, tipo).")
 
     edited_df = st.data_editor(
         df_display,
