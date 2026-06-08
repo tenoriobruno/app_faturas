@@ -90,11 +90,29 @@ def render_budget_editor(df: pd.DataFrame, budgets: dict):
                 all_cats.append(c)
         all_cats = [c for c in all_cats if c and c != "Outros"]
 
-        for c in all_cats:
+        configured = [c for c in all_cats if c in cat_budgets and cat_budgets[c] > 0]
+        unconfigured = [c for c in all_cats if c not in configured]
+
+        search = st.text_input("Filtrar categoria", key="budget_editor_filter")
+        search_lower = search.strip().lower()
+
+        def render_field(c):
             val = float(cat_budgets.get(c, 0.0))
             new_val = st.number_input(f"Orçamento - {c}", min_value=0.0, value=val, step=50.0, key=f"b_{c}".replace(" ", "_"))
             if new_val >= 0:
                 new_cats[c] = new_val
+
+        if configured:
+            st.write("**Já configuradas:**")
+            for c in configured:
+                if not search_lower or search_lower in c.lower():
+                    render_field(c)
+
+        if unconfigured:
+            st.write("**Sem limite definido:**")
+            for c in unconfigured:
+                if not search_lower or search_lower in c.lower():
+                    render_field(c)
 
         if st.button("Salvar Orçamento"):
             new_b = {"global": new_global, "categories": new_cats}

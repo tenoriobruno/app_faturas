@@ -30,9 +30,13 @@ def create_month_comparison(df):
         st.info("É preciso de pelo menos 2 meses de dados para comparar.")
         return
 
-    # Calculate variations (R$ and %)
-    last_month = monthly_totals.columns[-1]
-    prev_month = monthly_totals.columns[-2]
+    # Let user choose which two months to compare (default: two most recent)
+    months = list(monthly_totals.columns)
+    col_a, col_b = st.columns(2)
+    with col_a:
+        prev_month = st.selectbox("Mês base", months, index=len(months) - 2, key="comparison_prev_month")
+    with col_b:
+        last_month = st.selectbox("Mês comparado", months, index=len(months) - 1, key="comparison_last_month")
 
     comparison_data = []
     for cat in monthly_totals.index:
@@ -80,14 +84,18 @@ def create_month_comparison(df):
         'Variação (%)': '{:+.1f}%'
     })
 
-    # Color negative variations in red, positive in green
+    # Color negative variations in red, positive in green (theme-aware)
+    dark_mode = st.session_state.get('dark_mode', False)
+    color_up = '#EF5350' if dark_mode else '#C62828'
+    color_down = '#66BB6A' if dark_mode else '#2E7D32'
+
     def highlight_variation(val):
         if isinstance(val, str) and ('R$' in val or '%' in val):
             return ''
         if val > 0:
-            return 'color: #e74c3c'
+            return f'color: {color_up}'
         elif val < 0:
-            return 'color: #27ae60'
+            return f'color: {color_down}'
         return ''
 
     styled_df = styled_df.applymap(highlight_variation, subset=['Variação (R$)', 'Variação (%)'])
