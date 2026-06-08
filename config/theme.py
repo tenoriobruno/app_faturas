@@ -11,10 +11,10 @@ def apply_theme():
 
 CSS = """
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Merriweather:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap');
 
 :root {
-    --font-heading: 'Merriweather', Georgia, serif;
+    --font-heading: 'DM Sans', system-ui, -apple-system, sans-serif;
     --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
     --bg-page: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(8,102,255,0.06), transparent),
                radial-gradient(ellipse 50% 40% at 80% 100%, rgba(8,102,255,0.04), transparent),
@@ -71,17 +71,17 @@ html, body, [data-testid="stAppViewContainer"],
 /* ===================== TYPOGRAPHY ===================== */
 h1, h2, h3 {
     font-family: var(--font-heading) !important;
-    font-weight: 400 !important;
-    letter-spacing: -0.01em;
+    font-weight: 700 !important;
+    letter-spacing: -0.02em;
     color: var(--text-primary) !important;
 }
 h1 {
     font-size: 2rem !important;
-    font-weight: 300 !important;
-    letter-spacing: -0.02em;
+    font-weight: 700 !important;
+    letter-spacing: -0.03em;
 }
-h2 { font-size: 1.35rem !important; }
-h3 { font-size: 1.1rem !important; }
+h2 { font-size: 1.35rem !important; font-weight: 600 !important; }
+h3 { font-size: 1.1rem !important; font-weight: 600 !important; }
 
 p, label, span, li, .stCaptionContainer, .stMarkdown {
     font-family: var(--font-body) !important;
