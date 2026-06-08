@@ -16,18 +16,18 @@ CSS = """
 :root {
     --font-heading: 'DM Sans', system-ui, -apple-system, sans-serif;
     --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
-    --bg-page: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(8,102,255,0.06), transparent),
-               radial-gradient(ellipse 50% 40% at 80% 100%, rgba(8,102,255,0.04), transparent),
-               #F0F2F5;
+    --bg-page: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(61,90,128,0.05), transparent),
+               radial-gradient(ellipse 50% 40% at 80% 100%, rgba(61,90,128,0.03), transparent),
+               #F2F2F7;
     --bg-card: rgba(255, 255, 255, 0.78);
     --bg-card-solid: #FFFFFF;
     --border-card: rgba(206, 208, 212, 0.45);
-    --border-card-accent: rgba(8, 102, 255, 0.15);
+    --border-card-accent: rgba(61, 90, 128, 0.18);
     --text-primary: #1C1E21;
     --text-secondary: #65676B;
-    --accent: #0866FF;
-    --accent-soft: rgba(8, 102, 255, 0.08);
-    --accent-glow: rgba(8, 102, 255, 0.15);
+    --accent: #3D5A80;
+    --accent-soft: rgba(61, 90, 128, 0.08);
+    --accent-glow: rgba(61, 90, 128, 0.15);
     --shadow-card: 0 1px 3px rgba(0,0,0,0.04), 0 8px 32px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.02);
     --shadow-elevated: 0 1px 3px rgba(0,0,0,0.04), 0 16px 48px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.04);
     --track-bg: rgba(0, 0, 0, 0.06);
@@ -396,18 +396,18 @@ button[data-baseweb="tab"]:focus-visible {
 CSS_DARK = """
 <style>
 :root {
-    --bg-page: radial-gradient(ellipse 90% 55% at 50% -10%, rgba(8,102,255,0.08), transparent),
-               radial-gradient(ellipse 60% 40% at 80% 90%, rgba(88,166,255,0.04), transparent),
+    --bg-page: radial-gradient(ellipse 90% 55% at 50% -10%, rgba(123,156,196,0.08), transparent),
+               radial-gradient(ellipse 60% 40% at 80% 90%, rgba(123,156,196,0.04), transparent),
                #0B0F1A;
     --bg-card: rgba(22, 28, 45, 0.82);
     --bg-card-solid: #181E2E;
     --border-card: rgba(48, 54, 75, 0.55);
-    --border-card-accent: rgba(88, 166, 255, 0.2);
+    --border-card-accent: rgba(123, 156, 196, 0.22);
     --text-primary: #F0F2F5;
     --text-secondary: #8B949E;
-    --accent: #58A6FF;
-    --accent-soft: rgba(88, 166, 255, 0.1);
-    --accent-glow: rgba(88, 166, 255, 0.18);
+    --accent: #7B9CC4;
+    --accent-soft: rgba(123, 156, 196, 0.1);
+    --accent-glow: rgba(123, 156, 196, 0.18);
     --shadow-card: 0 1px 3px rgba(0,0,0,0.2), 0 8px 32px rgba(0,0,0,0.35);
     --shadow-elevated: 0 1px 3px rgba(0,0,0,0.2), 0 16px 48px rgba(0,0,0,0.45), 0 8px 24px rgba(0,0,0,0.2);
     --track-bg: rgba(255, 255, 255, 0.08);
