@@ -37,6 +37,7 @@ CSS = """
     --success: #2E7D32;
     --warning: #E65100;
     --danger: #C62828;
+    --anomaly-bg: rgba(230, 81, 0, 0.08);
     --sidebar-bg: rgba(255,255,255,0.85);
 }
 
@@ -416,6 +417,7 @@ CSS_DARK = """
     --success: #66BB6A;
     --warning: #FFA726;
     --danger: #EF5350;
+    --anomaly-bg: rgba(255, 167, 38, 0.1);
     --sidebar-bg: rgba(13, 17, 28, 0.92);
 }
 

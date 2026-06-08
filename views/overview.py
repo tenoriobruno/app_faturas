@@ -64,10 +64,27 @@ def render_overview(df: pd.DataFrame, df_consolidated: pd.DataFrame, csv_files: 
     if anomalies:
         with st.expander(f"⚠️ Alertas de Anomalias ({len(anomalies)} categoria(s) fora do padrão)", expanded=True):
             for a in anomalies:
-                st.warning(
-                    f"⚠️ O gasto com **{a['category']}** este mês está **{a['excess_pct']:.0f}%** "
-                    f"acima da média histórica (R$ {a['current_spend']:,.2f} vs R$ {a['avg_spend']:,.2f})"
-                )
+                col1, col2 = st.columns([1, 2])
+                with col1:
+                    st.markdown(
+                        f'<div style="padding:12px;background:var(--anomaly-bg);'
+                        f'border-left:4px solid #E74C3C;border-radius:4px;">'
+                        f'<span style="font-weight:700;font-size:0.9rem;">{a["category"]}</span><br>'
+                        f'<span style="color:var(--text-secondary);font-size:0.8rem;">'
+                        f'{a["excess_pct"]:.0f}% acima</span>'
+                        f'</div>',
+                        unsafe_allow_html=True
+                    )
+                with col2:
+                    st.markdown(
+                        f'<div style="padding:12px;">'
+                        f'<span style="font-size:0.85rem;color:var(--text-secondary);">Este mês</span><br>'
+                        f'<span style="font-weight:600;font-size:1rem;">R$ {a["current_spend"]:,.2f}</span><br>'
+                        f'<span style="font-size:0.75rem;color:var(--text-secondary);">'
+                        f'Histórico: R$ {a["avg_spend"]:,.2f}</span>'
+                        f'</div>',
+                        unsafe_allow_html=True
+                    )
     else:
         with st.expander("✅ Alertas de Anomalias — tudo certo", expanded=False):
             st.caption("Nenhum gasto fora do padrão detectado neste período.")
