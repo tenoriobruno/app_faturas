@@ -4,6 +4,8 @@ from components.charts import render_donut, render_bar_history
 from components.budget import render_budget
 from components.metrics import metric_card
 from core.anomalies import detect_anomalies
+from core.projections import calculate_linear_projection
+from data.repository import budget_repo
 
 
 def render_overview(df: pd.DataFrame, df_consolidated: pd.DataFrame, csv_files: list, selected_file, all_data: dict):
@@ -60,33 +62,56 @@ def render_overview(df: pd.DataFrame, df_consolidated: pd.DataFrame, csv_files: 
 
     st.divider()
 
-    anomalies = detect_anomalies(df, df_consolidated)
-    if anomalies:
-        with st.expander(f"⚠️ Alertas de Anomalias ({len(anomalies)} categoria(s) fora do padrão)", expanded=True):
-            for a in anomalies:
-                col1, col2 = st.columns([1, 2])
-                with col1:
-                    st.markdown(
-                        f'<div style="padding:12px;background:var(--anomaly-bg);'
-                        f'border-left:4px solid #E74C3C;border-radius:4px;">'
-                        f'<span style="font-weight:700;font-size:0.9rem;">{a["category"]}</span><br>'
-                        f'<span style="color:var(--text-secondary);font-size:0.8rem;">'
-                        f'{a["excess_pct"]:.0f}% acima</span>'
-                        f'</div>',
-                        unsafe_allow_html=True
-                    )
-                with col2:
-                    st.markdown(
-                        f'<div style="padding:12px;">'
-                        f'<span style="font-size:0.85rem;color:var(--text-secondary);">Este mês</span><br>'
-                        f'<span style="font-weight:600;font-size:1rem;">R$ {a["current_spend"]:,.2f}</span><br>'
-                        f'<span style="font-size:0.75rem;color:var(--text-secondary);">'
-                        f'Histórico: R$ {a["avg_spend"]:,.2f}</span>'
-                        f'</div>',
-                        unsafe_allow_html=True
-                    )
-    else:
-        with st.expander("✅ Alertas de Anomalias — tudo certo", expanded=False):
-            st.caption("Nenhum gasto fora do padrão detectado neste período.")
+    _render_month_health(df, df_consolidated)
 
-    render_budget(df)
+    render_budget(df, df_consolidated)
+
+
+def _render_month_health(df: pd.DataFrame, df_consolidated: pd.DataFrame):
+    """Painel unificado: categorias que estouraram o orçamento e/ou estão fora
+    do padrão histórico (anomalias). Marca quando as duas coisas coincidem —
+    sinal mais forte de atenção."""
+    anomalies = detect_anomalies(df, df_consolidated)
+    anomaly_by_cat = {a['category']: a for a in anomalies}
+
+    budgets = budget_repo.load() or {"global": 0, "categories": {}}
+    cat_budgets = budgets.get("categories", {})
+    projection = calculate_linear_projection(df, budgets.get("global", 0), cat_budgets)
+    over_budget_by_cat = {c: p for c, p in projection['cat_projections'].items() if p['spent_pct'] >= 100}
+
+    health_cats = sorted(set(anomaly_by_cat) | set(over_budget_by_cat))
+
+    if not health_cats:
+        with st.expander("✅ Saúde do Mês — tudo certo", expanded=False):
+            st.caption("Nenhuma categoria fora do padrão ou acima do orçamento neste período.")
+        return
+
+    with st.expander(f"🩺 Saúde do Mês ({len(health_cats)} categoria(s) pedem atenção)", expanded=True):
+        for cat in health_cats:
+            anomaly = anomaly_by_cat.get(cat)
+            over = over_budget_by_cat.get(cat)
+
+            tags = []
+            if over:
+                tags.append('<span style="background:#E74C3C;color:white;font-size:0.7rem;font-weight:700;'
+                            'padding:2px 8px;border-radius:10px;">💰 ESTOUROU LIMITE</span>')
+            if anomaly:
+                tags.append('<span style="background:#F39C12;color:white;font-size:0.7rem;font-weight:700;'
+                            'padding:2px 8px;border-radius:10px;">📈 FORA DO PADRÃO</span>')
+            border_color = "#E74C3C" if (over and anomaly) else ("#E74C3C" if over else "#F39C12")
+
+            details = []
+            if over:
+                details.append(f'Orçamento: R$ {over["spent"]:,.2f} / R$ {over["limit"]:,.2f} ({over["spent_pct"]:.0f}%)')
+            if anomaly:
+                details.append(f'Histórico médio: R$ {anomaly["avg_spend"]:,.2f} &nbsp;·&nbsp; {anomaly["excess_pct"]:.0f}% acima do normal')
+
+            st.markdown(
+                f'<div style="padding:12px 16px;background:var(--anomaly-bg);'
+                f'border-left:4px solid {border_color};border-radius:4px;margin-bottom:8px;">'
+                f'<span style="font-weight:700;font-size:0.92rem;">{cat}</span> &nbsp;'
+                f'{" ".join(tags)}<br>'
+                f'<span style="color:var(--text-secondary);font-size:0.8rem;">{" &nbsp;|&nbsp; ".join(details)}</span>'
+                f'</div>',
+                unsafe_allow_html=True
+            )

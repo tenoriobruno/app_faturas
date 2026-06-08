@@ -89,5 +89,5 @@ class AuditLogRepository(JSONRepository):
 
 # Singletons
 cache_repo = CacheRepository(settings.CACHE_PATH / "categories_cache.json")
-budget_repo = JSONRepository(settings.BUDGET_PATH / "budget.json")
+budget_repo = JSONRepository(settings.BUDGET_PATH)
 audit_repo = AuditLogRepository()

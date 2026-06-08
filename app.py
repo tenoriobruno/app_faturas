@@ -90,7 +90,9 @@ df = all_data[selected_file.name].copy()
 df['date'] = pd.to_datetime(df['date'])
 
 from components.sidebar import render_sidebar
+from components.budget import render_budget_sidebar_summary
 
+render_budget_sidebar_summary(df)
 df_filtered = render_sidebar(df, list(CATEGORY_COLORS.keys()))
 
 if len(df_filtered) > 0:
@@ -122,7 +124,20 @@ except ValueError:
 _summary = calculate_overview_metrics(df_filtered, _prev_df)
 _anomalies = detect_anomalies(df_filtered, df_consolidated)
 
-col_s1, col_s2, col_s3 = st.columns(3)
+from data.repository import budget_repo as _budget_repo
+from core.projections import calculate_linear_projection as _calc_projection
+
+_budgets = _budget_repo.load() or {"global": 0, "categories": {}}
+_global_budget = _budgets.get("global", 0)
+_budget_status_txt = "Não configurado"
+if _global_budget > 0:
+    _projection = _calc_projection(df_filtered, _global_budget, _budgets.get("categories", {}))
+    if _projection['global_warning']:
+        _budget_status_txt = "🚨 Estourado" if not _projection['is_current_month'] else "⚠️ Risco de estourar"
+    else:
+        _budget_status_txt = "✅ Sob controle"
+
+col_s1, col_s2, col_s3, col_s4 = st.columns(4)
 with col_s1:
     metric_card(
         "Gasto no Período",
@@ -138,6 +153,8 @@ with col_s3:
         metric_card("Alertas de Anomalia", f"⚠️ {len(_anomalies)} categoria(s)")
     else:
         metric_card("Alertas de Anomalia", "✅ Tudo certo")
+with col_s4:
+    metric_card("🎯 Orçamento", _budget_status_txt)
 
 tabs = st.tabs(["Visão Geral", "Transações", "Comparação Mês a Mês", "Recorrências", "Parcelas Futuras"])
 
