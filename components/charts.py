@@ -29,13 +29,14 @@ def render_donut(df: pd.DataFrame):
 
     fig_pie.update_layout(
         **plot_layout,
-        margin=dict(t=16, b=16, l=16, r=120),
-        height=400,
+        margin=dict(t=16, b=40, l=16, r=16),
+        height=420,
         showlegend=True,
         legend=dict(
-            orientation='v',
-            x=1.02,
-            y=0.5,
+            orientation='h',
+            x=0.5,
+            xanchor='center',
+            y=-0.08,
             bgcolor='rgba(0,0,0,0)',
             font=dict(size=11, color='#8B949E' if is_dark else '#64748B')
         )
