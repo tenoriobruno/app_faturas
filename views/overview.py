@@ -9,52 +9,60 @@ from data.repository import budget_repo
 
 
 def render_overview(df: pd.DataFrame, df_consolidated: pd.DataFrame, csv_files: list, selected_file, all_data: dict):
-    col_left, col_right = st.columns([0.6, 0.4], gap="large")
+    # --- métricas do período ---
+    prev_df = None
+    try:
+        idx = csv_files.index(selected_file)
+        if idx + 1 < len(csv_files):
+            prev_file = csv_files[idx + 1]
+            prev_df = all_data[prev_file.name]
+    except ValueError:
+        pass
 
-    with col_right:
-        st.markdown(
-            '<div style="margin-bottom:12px;">'
-            '<span style="font-weight:700;font-size:1.05rem;">📊 Resumo do Período</span>'
-            '</div>',
-            unsafe_allow_html=True,
-        )
+    from core.metrics import calculate_overview_metrics
+    metrics = calculate_overview_metrics(df, prev_df)
 
-        prev_df = None
-        try:
-            idx = csv_files.index(selected_file)
-            if idx + 1 < len(csv_files):
-                prev_file = csv_files[idx + 1]
-                prev_df = all_data[prev_file.name]
-        except ValueError:
-            pass
-
-        from core.metrics import calculate_overview_metrics
-        metrics = calculate_overview_metrics(df, prev_df)
-
-        metric_card("Transações (Gastos)", f"{metrics['total_tx']}", delta=f"{metrics['delta_tx']:+d}" if metrics['delta_tx'] is not None else None, delta_color="normal")
-        metric_card("Valor Total", f"R$ {metrics['valor_total']:,.2f}", delta=f"R$ {metrics['delta_valor']:+,.2f}" if metrics['delta_valor'] is not None else None, delta_color="inverse")
-        metric_card("Ticket Médio", f"R$ {metrics['ticket_medio']:,.2f}", delta=f"R$ {metrics['delta_ticket']:+,.2f}" if metrics['delta_ticket'] is not None else None, delta_color="inverse")
+    # --- linha de metric cards em grid (topo) ---
+    c1, c2, c3, c4 = st.columns(4)
+    with c1:
+        metric_card("Valor Total", f"R$ {metrics['valor_total']:,.2f}",
+                    delta=f"R$ {metrics['delta_valor']:+,.2f}" if metrics['delta_valor'] is not None else None,
+                    delta_color="inverse")
+    with c2:
+        metric_card("Ticket Médio", f"R$ {metrics['ticket_medio']:,.2f}",
+                    delta=f"R$ {metrics['delta_ticket']:+,.2f}" if metrics['delta_ticket'] is not None else None,
+                    delta_color="inverse")
+    with c3:
+        metric_card("Transações (Gastos)", f"{metrics['total_tx']}",
+                    delta=f"{metrics['delta_tx']:+d}" if metrics['delta_tx'] is not None else None,
+                    delta_color="normal")
+    with c4:
         metric_card("Maior Categoria", metrics['top_cat'])
+
+    # linha auxiliar: % não-classificado + atalho de filtro da maior categoria
+    aux_l, aux_r = st.columns([0.6, 0.4])
+    with aux_l:
+        st.caption(f"% Não-classificado: {metrics['outros_pct']:.1f}%")
+    with aux_r:
         if metrics['top_cat'] != "N/A":
             if st.button(f"🔍 Ver transações de {metrics['top_cat']}", key="quick_filter_top_cat"):
                 st.session_state['quick_filter_category'] = metrics['top_cat']
-                st.toast(f"Filtro aplicado! Abra a aba 'Transações' para ver os resultados.", icon="🔍")
+                st.toast("Filtro aplicado! Abra a aba 'Transações' para ver os resultados.", icon="🔍")
                 st.rerun()
-
-        metric_card("% Não-classificado", f"{metrics['outros_pct']:.1f}%")
-
-    with col_left:
-        df_gastos = df[df['tipo_transacao'] == 'gasto']
-        st.markdown(
-            '<div style="margin-bottom:12px;">'
-            '<span style="font-weight:700;font-size:1.05rem;">💸 Gastos por Categoria</span>'
-            '</div>',
-            unsafe_allow_html=True,
-        )
-        render_donut(df_gastos)
 
     st.divider()
 
+    # --- donut em largura total (detalhe do mês) ---
+    df_gastos = df[df['tipo_transacao'] == 'gasto']
+    st.markdown(
+        '<div style="font-weight:700;font-size:1.05rem;margin-bottom:12px;">💸 Gastos por Categoria</div>',
+        unsafe_allow_html=True,
+    )
+    render_donut(df_gastos)
+
+    st.divider()
+
+    # --- histórico em largura total (tendência) ---
     st.markdown('<div class="glass-card">', unsafe_allow_html=True)
     st.markdown('<div style="font-weight:700;font-size:1.05rem;margin-bottom:16px;">📈 Histórico Mensal de Gastos</div>', unsafe_allow_html=True)
     render_bar_history(df_consolidated)
