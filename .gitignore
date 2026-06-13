@@ -9,3 +9,7 @@ data/*.csv
 .*
 docs/archive/
 .superpowers/
+*.png
+*.jpg
+*.jpeg
+.DS_Store

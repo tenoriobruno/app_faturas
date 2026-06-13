@@ -6,18 +6,19 @@ CATEGORY_COLORS = {
     'Delivery': '#C44E52',      # tijolo
     'Supermercado': '#81B29A',  # sage
     'Transporte': '#6FB3B8',    # teal suave
-    'Saúde': '#9D8DF1',         # lavanda
+    'Saúde': '#6952AD',         # violeta acinzentado
     'Assinaturas': '#7B8FC7',   # índigo suave
-    'Serviço': '#8E9AAF',       # azul-cinza
+    'Serviço': '#5E7A4F',       # verde-musgo
     'Compras': '#D8A657',       # ocre
     'Lazer': '#B07AA1',         # malva
     'Educação': '#6A8CA4',      # azul-poeira
     'Viagem': '#E0B452',        # ouro
     'Feira': '#A3B565',         # oliva
-    'Carro': '#7D6E83',         # ameixa acinzentada
+    'Carro': '#9B7BA8',         # violeta acinzentado
     'Estorno': '#A8C686',       # verde suave (positivo)
     'Outros': '#B0B3B8',        # cinza neutro
-    # Aliases legados — categorias antigas que ainda podem aparecer em cache/CSV.
+    'Convênio': '#8C5A6B',      # vinho acinzentado
+    # Aliases legados/bancários — categorias antigas ou variações de nome que ainda podem aparecer em cache/CSV.
     'Alimentação': '#E07A5F',
-    'Gasolina': '#7D6E83',
+    'Gasolina': '#9B7BA8',
 }

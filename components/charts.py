@@ -15,6 +15,9 @@ def render_donut(df: pd.DataFrame):
     fig_pie = go.Figure(data=[go.Pie(
         labels=category_spend.index,
         values=category_spend.values,
+        sort=False,
+        direction='clockwise',
+        rotation=0,
         textposition='auto',
         textinfo='label+percent',
         textfont=dict(size=11, family='DM Sans'),

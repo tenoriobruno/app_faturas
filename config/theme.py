@@ -244,7 +244,9 @@ button[data-baseweb="tab"][aria-selected="true"] {
 
 /* ===================== INPUTS ===================== */
 .stSelectbox > div > div,
+.stMultiSelect > div > div,
 .stSelectbox input,
+.stMultiSelect input,
 .stTextInput input,
 .stNumberInput input,
 .stDateInput input {
@@ -256,28 +258,64 @@ button[data-baseweb="tab"][aria-selected="true"] {
     transition: border-color 0.18s ease, box-shadow 0.18s ease !important;
 }
 .stSelectbox > div > div:focus-within,
+.stMultiSelect > div > div:focus-within,
 .stTextInput input:focus,
 .stNumberInput input:focus,
 .stDateInput input:focus {
     border-color: var(--accent) !important;
     box-shadow: 0 0 0 3px var(--accent-soft) !important;
 }
-.stSelectbox div[role="listbox"] {
+.stSelectbox div[role="listbox"],
+.stMultiSelect div[role="listbox"] {
     background-color: var(--input-bg) !important;
     border: 1px solid var(--border-card) !important;
     border-radius: 10px !important;
     box-shadow: var(--shadow-elevated) !important;
 }
-.stSelectbox div[role="option"] {
+.stSelectbox div[role="option"],
+.stMultiSelect div[role="option"] {
     background-color: transparent !important;
     color: var(--text-primary) !important;
     padding: 8px 12px;
     transition: background 0.12s ease;
 }
-.stSelectbox div[role="option"]:hover {
+.stSelectbox div[role="option"]:hover,
+.stMultiSelect div[role="option"]:hover {
     background-color: var(--accent-soft) !important;
 }
-.stSelectbox div[role="option"][aria-selected="true"] {
+.stSelectbox div[role="option"][aria-selected="true"],
+.stMultiSelect div[role="option"][aria-selected="true"] {
+    background-color: var(--accent-soft) !important;
+    color: var(--accent) !important;
+    font-weight: 600;
+}
+.stMultiSelect span[data-baseweb="tag"] {
+    background-color: var(--accent-soft) !important;
+    border: 1px solid var(--border-card-accent) !important;
+    color: var(--accent) !important;
+}
+.stMultiSelect span[data-baseweb="tag"] svg {
+    fill: var(--accent) !important;
+}
+.stMultiSelect [data-baseweb="select"] > div {
+    background-color: transparent !important;
+}
+
+/* Dropdown popover is portaled to <body>, style it globally */
+[data-testid="stVirtualDropdown"] {
+    background-color: var(--input-bg) !important;
+    border: 1px solid var(--border-card) !important;
+    border-radius: 10px !important;
+    box-shadow: var(--shadow-elevated) !important;
+}
+[data-testid="stVirtualDropdown"] li[role="option"] {
+    background-color: transparent !important;
+    color: var(--text-primary) !important;
+}
+[data-testid="stVirtualDropdown"] li[role="option"]:hover {
+    background-color: var(--accent-soft) !important;
+}
+[data-testid="stVirtualDropdown"] li[aria-selected="true"] {
     background-color: var(--accent-soft) !important;
     color: var(--accent) !important;
     font-weight: 600;
@@ -312,7 +350,13 @@ button[data-baseweb="tab"][aria-selected="true"] {
     border-color: var(--accent) !important;
 }
 [data-testid="stFileUploader"] section {
+    background-color: var(--input-bg) !important;
     color: var(--text-primary) !important;
+}
+[data-testid="stFileUploader"] section > button {
+    background-color: var(--bg-card-solid) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-card) !important;
 }
 
 /* BUTTON */
@@ -488,7 +532,9 @@ button[data-baseweb="tab"][aria-selected="true"] {
 
 /* DARK INPUTS */
 .stSelectbox > div > div,
+.stMultiSelect > div > div,
 .stSelectbox input,
+.stMultiSelect input,
 .stTextInput input,
 .stNumberInput input,
 .stDateInput input {
@@ -497,22 +543,35 @@ button[data-baseweb="tab"][aria-selected="true"] {
     color: var(--text-primary) !important;
 }
 .stSelectbox > div > div:focus-within,
+.stMultiSelect > div > div:focus-within,
 .stTextInput input:focus,
 .stNumberInput input:focus,
 .stDateInput input:focus {
     border-color: var(--accent) !important;
     box-shadow: 0 0 0 3px var(--accent-soft) !important;
 }
-.stSelectbox div[role="listbox"] {
+.stSelectbox div[role="listbox"],
+.stMultiSelect div[role="listbox"] {
     background-color: var(--input-bg) !important;
 }
-.stSelectbox div[role="option"] {
+.stSelectbox div[role="option"],
+.stMultiSelect div[role="option"] {
     color: var(--text-primary) !important;
 }
 .stSelectbox div[role="option"]:hover,
-.stSelectbox div[role="option"][aria-selected="true"] {
+.stMultiSelect div[role="option"]:hover,
+.stSelectbox div[role="option"][aria-selected="true"],
+.stMultiSelect div[role="option"][aria-selected="true"] {
     background-color: var(--accent-soft) !important;
     color: var(--accent) !important;
+}
+.stMultiSelect span[data-baseweb="tag"] {
+    background-color: var(--accent-soft) !important;
+    border-color: var(--border-card-accent) !important;
+    color: var(--accent) !important;
+}
+.stMultiSelect span[data-baseweb="tag"] svg {
+    fill: var(--accent) !important;
 }
 
 /* DARK DATA FRAME */
